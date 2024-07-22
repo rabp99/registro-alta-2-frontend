@@ -1,0 +1,359 @@
+@import '_vars';
+
+.dropdown-horizontal-list.active {
+    background-color: #fff !important;
+}
+
+#ul-horizontal-nav {
+    overflow-x: auto !important;
+}
+
+.menu-links-3cols {
+    width: 55% !important;
+}
+
+.menu-links-2cols {
+//    width: 50% !important;
+    min-width: 35% !important;
+}
+
+.header-title-enlace {
+    background: #0288d1 !important;
+}
+
+.header-title-enlace a {
+    color: #fff !important;
+    &:hover {
+        color: #000 !important;
+    }
+}
+
+.icon-menu {
+    color: #fff !important;
+}
+
+#search-page #search-wrapper {
+    background-image: url('../images/fondo_recortado.jpg') !important;
+    min-height: 230px;
+    .card-content {
+        padding: 0px;
+    }
+    .header-search-title {
+        color: #fff;
+        text-shadow: 2px 2px #038AD2;
+        font-size: 44px;
+    }
+    .btn {
+        margin-bottom: 20px;
+    }
+}
+
+.subcategoria-child {
+    min-height: 260px !important;
+}
+
+header .brand-logo.brand-logo-theme-horizontal {
+    padding: 5px 12px !important;
+    .logo-image {
+        height: 50px !important;
+    }
+    .logo-text {
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 25px;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    nav .brand-logo {
+        margin-top: 8px !important;
+        margin-left: 95px !important;
+    }
+}
+
+.results {
+    &.ng-hide-add {
+        animation: fadeDown 0.8s;
+        -webkit-animation: fadeDown 0.8s;
+    }
+
+    &.ng-hide-remove {
+        animation: fadeUp 0.4s;
+        -webkit-animation: fadeUp 0.4s;
+    }
+}
+
+.loader-results {
+    height: 4px;
+    margin-top: 15px;
+    margin-bottom: 7.5px;
+    .progress.ng-hide-add {
+        -webkit-animation: fadeOut 0.8s;
+        animation: fadeOut 0.8s;
+    }
+    .progress.ng-hide-remove {
+        -webkit-animation: fadeIn 0.4s;
+        animation: fadeIn 0.4s;
+    }
+}
+
+.subcategoria-results {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 100%;
+}
+
+@media only screen and (max-width : 992px) {
+  header, main, footer {
+    padding-left: 0;
+  }
+}
+
+.child-header-text {
+    font-weight: bold;
+}
+
+header .brand-logo.brand-logo-theme-vertical {
+    .logo-image {
+        height: $vertical-theme-height !important;
+    }
+    .logo-text {
+        display: inline-block;
+        vertical-align: top;
+        line-height: $vertical-theme-height;
+    }
+}
+
+.container .row.heading-page {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+#login-page {
+    margin-top: 70px;
+}
+
+#main-container {
+    margin-top: 70px;
+}
+
+.main-icons {
+    font-size: 140px !important;
+}
+
+.on-md-and-down-logo {
+    margin-left: 55px;
+    height: 30px !important;
+}
+
+.login-inputs {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
+
+.input-bold {
+    font-weight: bold;
+}
+
+.input-group {
+    display: table;
+}
+
+.input-group input, .suffix {
+    display: table-cell;
+}
+
+.suffix {
+    width:1%;
+}
+
+.info-notice {
+    text-align: center;
+}
+
+.info-notice {
+    font-family: Arial;
+    padding: 20px 60px 0px 60px;
+    .info-notice-hashtag {
+        background-color: #048BCD;
+        padding: 10px;
+        color: white;
+        border-radius: 15px;
+        font-size: 200%;
+        font-weight: bold;
+        line-height: 40px;
+        margin: 0px !important;
+    }
+
+    .info-notice-subtitule {
+        font-weight: bold;
+        color: #08B2E6;
+    }
+}
+.info-notice-message {
+    border-radius: 25px;
+    border: 2px dashed black;
+    padding: 10px;
+}
+
+.text-justify {
+    text-align: justify;
+    margin-bottom: 10px !important;
+}
+.info-notice-image-wrapper {
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    .info-notice-image {
+        width: 50px;
+        height: 100%;
+    }
+}
+
+.equal {
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    .card {
+        height: 90%;
+    }
+}
+
+.btn-registro {
+    width: 154px;
+}
+
+dl {
+    dt {
+        font-weight: bold;
+    }
+    dd {
+        margin-bottom: 10px;
+    }
+}
+
+.navbar-fixed {
+    @media only screen and (min-width: 993px) {
+        margin-bottom: 0px !important;
+    }
+}
+
+.firma {
+    border: 1px solid;
+    display: inline-block;
+}
+
+.btns-entrada-salida {
+    .btn-entrada {
+        margin-right: $separate-entrada-salida;
+    }
+    .btn-salida {
+        margin-left: $separate-entrada-salida;
+    }
+}
+
+.equal-entrada-salida {
+    .card {
+        min-height: 360px;
+    }
+}
+
+.solicitudes-li {
+    padding: 20px;
+    span.cantidad {
+        color: white;
+        font-size: 1.5em !important;
+    }
+    span.tipo_epp {
+        margin-left: 15px;
+    }
+}
+
+.entrega-cantidad {
+    width: 68px;
+}
+
+.modal-action {
+    color: white !important;
+}
+
+.cuestionario {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 350px;
+    &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: white;
+    }
+    &::-webkit-scrollbar {
+        width: 8px;
+        background-color: #10A0D4;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #10A0D4;
+    }
+}
+
+.firma-img {
+    border: 1px solid;
+}
+
+.btn-estado {
+    width: 164px;
+}
+
+.indumentaria-register {
+    border: 1px solid black;
+    padding: 0px !important;
+}
+
+.td-detail {
+    width: 10px;
+    i {
+        cursor: pointer;
+    }
+}
+
+#toast-container.entrada {
+    top: auto !important;
+    right: auto !important;
+    bottom: 90%;
+    left: 35%;
+    .toast {
+        font-size: 2em !important;
+    }
+}
+
+.tbody-responsive {
+    overflow-y: hidden;
+    overflow-x: auto;
+    &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: white;
+    }
+    &::-webkit-scrollbar {
+        height: 6px;
+        background-color: #10A0D4;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #10A0D4;
+    }
+}
+
+.stock-input {
+    width: 55% !important;
+}
+
+.fecha_last_entrega {
+    font-weight: bold;
+    color: blue;
+}

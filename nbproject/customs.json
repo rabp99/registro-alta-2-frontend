@@ -1,0 +1,36 @@
+{
+    "elements": {
+        "div": {
+            "attributes": {
+                "class": {}
+            }
+        },
+        "p": {},
+        "pagination": {
+            "attributes": {
+                "page-size": {},
+                "total": {},
+                "use-simple-prev-next": {},
+                "scroll-top": {},
+                "dots": {},
+                "hide-if-empty": {},
+                "adjacent": {},
+                "page": {},
+                "show-prev-next": {},
+                "class": {},
+                "pagination-action": {}
+            }
+        },
+        "ui-view": {},
+        "h6": {}
+    },
+    "attributes": {
+        "watch": {},
+        "checklist-model": {},
+        "options": {},
+        "modal": {},
+        "ui-sref": {
+            "context": "a"
+        }
+    }
+}

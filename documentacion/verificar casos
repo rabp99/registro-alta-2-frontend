@@ -1,0 +1,28 @@
+con 1 EPP
+case 1:
+	programado con turno normal-------------------
+
+case 2:
+	programado con break--------------------------
+
+case 3:
+	programado de emergencia----------------------
+
+case 4:
+	programado externo----------------------------
+
+
+
+
+con 2 EPP
+case 1:
+	programado con turno normal
+
+case 2:
+	programado con break
+
+case 3:
+	programado de emergencia
+
+case 4:
+	programado externo

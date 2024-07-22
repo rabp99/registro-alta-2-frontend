@@ -1,0 +1,103 @@
+<div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
+    <!-- Search for small screen-->
+    <div class="container">
+        <div class="row heading-page">
+            <div class="col s10 m6 l6">
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Supervisores</span></h5>
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item"><a ui-sref="admin.main">Inicio</a></li>
+                    <li class="breadcrumb-item active">Supservisores</li>
+                </ol>
+            </div>
+            <div class="col s2 m6 l6">
+                <a class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right" ui-sref="admin.supervisoresAdd" ng-disabled="loading">
+                    <i class="material-icons left">add</i>
+                    <span class="hide-on-small-onl">Nuevo Supervisor </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col xl12 l12 m12 s12">
+    <div class="container">
+        <div class="section treeview-wrapper">
+            <div class="row">
+                <div class="col xl12 s12">
+                    <div class="card card-tabs">
+                        <div class="card-content">
+                            <h6>Filtros de Búsqueda</h6>
+                            <hr>
+                            <div class="row">
+                                <div class="input-field col xl3 l3 m3 s4">
+                                    <i class="material-icons prefix">tag</i>
+                                    <input id="nro_documento" type="text" class="validate" ng-model="search.nro_documento">
+                                    <label for="nro_documento">N° de DNI</label>
+                                </div>
+                                <div class="input-field col xl3 l3 m3 s4">
+                                    <button type="button" class="btn dropdown-settings waves-effect waves-light right breadcrumbs-btn" ng-click="searchSupervisores()">
+                                        <span class="hide-on-small-onl">Buscar </span>
+                                        <i class="material-icons right">search</i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                Total de registros encontrados: <span ng-show="!tableSupervisores.loading">{{ tableSupervisores.count }}</span>
+                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <i class="material-icons">tag</i>
+                                        </th>
+                                        <th>DNI</th>
+                                        <th>Trabajador</th>
+                                        <th>Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="5" ng-show="tableSupervisores.loading">
+                                            <div class="center">
+                                                <div class="preloader-wrapper big active">
+                                                    <div class="spinner-layer spinner-blue-only">
+                                                        <div class="circle-clipper left">
+                                                            <div class="circle"></div>
+                                                        </div><div class="gap-patch">
+                                                            <div class="circle"></div>
+                                                        </div><div class="circle-clipper right">
+                                                            <div class="circle"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr><td colspan="4" ng-show="!tableSupervisores.loading && tableSupervisores.count === 0">No se encontraron supervisores</td></tr>
+                                    <tr ng-repeat="supervisor in supervisores" ng-show="!tableSupervisores.loading">
+                                        <td>{{ supervisor.id }}</td>
+                                        <td>{{ supervisor.nro_documento }}</td>
+                                        <td>{{ supervisor.trabajador }}</td>
+                                        <td>{{ supervisor.estado.descripcion }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="center">
+                                <pagination class="pagination"
+                                    page="tableSupervisores.page"
+                                    page-size="tableSupervisores.pagination.itemsPerPage"
+                                    total="tableSupervisores.count"
+                                    show-prev-next="true"
+                                    use-simple-prev-next="false"
+                                    dots="...."
+                                    hide-if-empty="false"
+                                    adjacent="2"
+                                    scroll-top="false"
+                                    pagination-action="tableSupervisores.pageChanged(page)" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+<div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
+    <!-- Search for small screen-->
+    <div class="container">
+        <div class="row heading-page">
+            <div class="col s10 m6 l6">
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Registrar Devolución</span></h5>
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item"><a ui-sref="admin.main">Inicio</a>
+                    </li>
+                    <li class="breadcrumb-item active">Registrar Devolución</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col xl12 l12 m12 s12">
+    <div class="container">
+        <div class="section treeview-wrapper">
+            <div class="row">
+                <div class="col xl12 s12">
+                    <div class="card card-tabs">
+                        <div class="card-content">
+                            <div class="center" ng-show="loadingSearch || loadingRegister">
+                                <div class="preloader-wrapper big active">
+                                    <div class="spinner-layer spinner-blue-only">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div><div class="gap-patch">
+                                            <div class="circle"></div>
+                                        </div><div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-hide="loadingSearch || loadingRegister">
+                                <p>Seleccione la indumentaria a registrar su devolución</p>
+                                <div>
+                                    Total de registros encontrados: <span ng-show="!loading">{{ reutilizablesSolicitudesDetalles.length }}</span>
+                                </div>
+                                <!--Json data treeview example -->
+                                <h6>Indumentaria</h6>
+                                <hr>
+                                <form ng-submit="searchReutilizable(tipo)" ng-repeat="tipo in tipos">
+                                    <div class="row">
+                                        <div class="input-field input-group col xl12 l12 m12 s12">
+                                            <i class="material-icons prefix">tag</i>
+                                            <input ng-attr-id="reutilizable{{ tipo.id }}" ng-attr-name="reutilizable{{ tipo.id }}" ng-model="tipo.codigo_searched" type="text" autocomplete="off">
+                                            <label ng-attr-for="reutilizable{{ tipo.id }}">N° {{ tipo.descripcion }}</label>
+                                        </div>
+                                    </div>
+                                </form>
+                                Indumentaria seleccionada: {{ reutilizables_selected.length }}
+                                <div class="row">
+                                    <div class="col xl3 l3 m4 s6 center indumentaria-register" ng-repeat="reutilizable in reutilizables_selected">
+                                        <label>
+                                            <div class="indumentaria-register-container">
+                                                <h6 class="center">{{ reutilizable.tipo.descripcion }}</h6>
+                                                <p class="center">N° {{ reutilizable.codigo }}</p>
+                                                <input type="checkbox" class="chReutilizables" checklist-model="reutilizables_selected" checklist-value="reutilizable"/>
+                                                <span></span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3" ng-hide="reutilizables_selected.length === 0">
+                <div class="col xl12 l12 m12 s12">
+                    <button class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right btn-submit" ng-click="registrarDevolucion(reutilizables_selected)" type="button">
+                        <span class="hide-on-small-onl">Registrar</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

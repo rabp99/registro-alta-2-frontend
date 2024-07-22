@@ -1,0 +1,45 @@
+<link rel="stylesheet" type="text/css" href="app-assets/css/layouts/style-horizontal.min.css">
+<link rel="stylesheet" type="text/css" href="app-assets/css/themes/horizontal-menu-template/style.min.css">
+<!-- BEGIN: Header-->
+<header class="page-topbar" id="header">
+    <div class="navbar navbar-fixed">
+        <nav class="navbar-main navbar-color nav-collapsible sideNav-lock navbar-dark gradient-45deg-light-blue-cyan">
+            <div class="row">
+                <div class="col s12 l10 offset-l1">
+                    <div class="nav-wrapper">
+                        <ul class="left">
+                            <li>
+                                <h1 class="logo-wrapper">
+                                    <a class="brand-logo brand-logo-theme-horizontal darken-1" ng-click="reloadPage()">
+                                        <img class="logo-image" src="images/logo_esquina_izquierda.png" alt="Red Asistencial La Libertad">
+                                        <span class="logo-text hide-on-med-and-down">Red Asistencial La Libertad</span>
+                                    </a>
+                                </h1>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- BEGIN: Page Main-->
+<div id="main">
+    <div class="row">
+        <div class="col s12">
+            <div class="container">
+                <ui-view></ui-view>
+            </div>
+            <div class="content-overlay"></div>
+        </div>
+    </div>
+</div>
+<!-- END: Page Main-->
+
+<!-- BEGIN: Footer-->
+<footer class="page-footer footer footer-static footer-dark gradient-45deg-light-blue-cyan gradient-shadow navbar-border navbar-shadow">
+    <div class="footer-copyright">
+        <div class="container"><span>&copy; 2021 <a href="#" target="_blank">Soporte Informatico RALL</a></span><span class="right hide-on-small-only">Desarrollado por  <a href="#">Soporte Informatico RALL</a></span></div>
+    </div>
+</footer>

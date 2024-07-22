@@ -1,0 +1,73 @@
+<div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
+    <!-- Search for small screen-->
+    <div class="container">
+        <div class="row heading-page">
+            <div class="col xl6 l6 m12 s12">
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Nuevo Usuario</span></h5>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col xl12 l12 m12 s12">
+    <form ng-submit="registrarUser(newUser)">
+        <div class="container">
+            <!-- Treeview  -->
+            <div class="section treeview-wrapper">
+                <!-- treeview description -->
+                <div class="row">
+                    <div class="col xl6 l6 m12 s12">
+                        <div class="card card-tabs">
+                            <div class="card-content">
+                                <div class="center" ng-show="loading">
+                                    <div class="preloader-wrapper big active">
+                                        <div class="spinner-layer spinner-blue-only">
+                                            <div class="circle-clipper left">
+                                                <div class="circle"></div>
+                                            </div><div class="gap-patch">
+                                                <div class="circle"></div>
+                                            </div><div class="circle-clipper right">
+                                                <div class="circle"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3" ng-hide="loading">
+                                    <div class="col xl12 l12 m12 s12">
+                                        <!--Json data treeview example -->
+                                        <div class="row">
+                                            <div class="input-field input-group col xl12 l12 m12 s12">
+                                                <i class="material-icons prefix">tag</i>
+                                                <input id="username" name="username" type="text" class="validate" ng-model="newUser.username" maxlength="10" required>
+                                                <label for="username">Nombre de Usuario</label>
+                                            </div>
+                                            <div class="input-field input-group col xl12 l12 m12 s12">
+                                                <i class="material-icons prefix">person</i>
+                                                <input id="nombre_completo" name="nombre_completo" type="text" ng-model="newUser.nombre_completo" required>
+                                                <label for="nombre_completo">Apellidos y nombres</label>
+                                            </div>
+                                            <div class="input-field input-group col xl12 l12 m12 s12">
+                                                <i class="material-icons prefix">accessibility</i>
+                                                <select id="tipo_epp" ng-model="newUser.rol" material-select watch name="rol">
+                                                    <option value="">Seleccione un Rol</option>
+                                                    <option ng-value="rol" ng-repeat="rol in roles">{{ rol }}</option>
+                                                </select>
+                                                <label for="rol">Rol</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col xl12 l12 m12 s12">
+                                        <button class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right btn-submit" type="submit">
+                                            <span class="hide-on-small-onl">Registrar</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

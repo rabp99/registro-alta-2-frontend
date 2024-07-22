@@ -1,0 +1,297 @@
+<div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
+    <!-- Search for small screen-->
+    <div class="container">
+        <div class="row heading-page">
+            <div class="col offset-xl1 offset-l1 xl10 l10 m12 s12">
+                <h5 class="mt-0 mb-0"><span>Registrar Entrada</span></h5>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col offset-xl1 offset-l1 xl10 l10 m12 s12">
+    <div class="container">
+        <!-- Treeview  -->
+        <div class="section treeview-wrapper">
+            <!-- treeview description -->
+            <div class="row">
+                <div class="col xl6 l6 m12 s12 equal-entrada-salida">
+                    <div class="card card-tabs">
+                        <div class="card-content">
+                            <div class="row mb-3">
+                                <div class="col xl12 l12 m12 s12 ">
+                                    <!--Json data treeview example -->
+                                    <h6>Información del Registro</h6>
+                                    <hr>
+                                    <div class="center" ng-show="loadingProgramaciones">
+                                        <div class="preloader-wrapper big active">
+                                            <div class="spinner-layer spinner-blue-only">
+                                                <div class="circle-clipper left">
+                                                    <div class="circle"></div>
+                                                </div><div class="gap-patch">
+                                                    <div class="circle"></div>
+                                                </div><div class="circle-clipper right">
+                                                    <div class="circle"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" ng-hide="loadingProgramaciones">
+                                        <form ng-submit="search(dni_medico)" >
+                                            <div class="input-field input-group col xl12 l12 m12 s12">
+                                                <i class="material-icons prefix">person</i>
+                                                <input id="dni" name="dni" type="text" class="validate" ng-model="dni_medico" maxlength="9" required autocomplete="off">
+                                                <label for="dni">Número de Documento</label>
+                                                <span class="suffix">
+                                                    <button type="submit" ng-class="{disabled: dni_medico.length < 8}" class="btn waves-effect waves-light">
+                                                        <i class="material-icons">{{ searching }}</i>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </form>
+                                        <div class="input-field col xl12 l12 m12 s12">
+                                            <i class="material-icons prefix">schedule</i>
+                                            <select id="turno" ng-model="turno" material-select watch name="turno" ng-change="onTurnoSelected(turno)">
+                                                <option value="" ng-if="programacionesEntregados.length !== 1">Seleccione un Turno</option>
+                                                <option ng-value="programacionEntregado.fecha_programacion + ' ' + programacionEntregado.turno" ng-repeat="programacionEntregado in programacionesEntregados">{{ programacionEntregado.fecha_programacion + ' ' + programacionEntregado.turno }}</option>
+                                            </select>
+                                            <label for="turno">Turno</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col xl6 l6 m12 s12 equal-entrada-salida" ng-hide="trabajador.full_name === undefined || (programacionSelected.estado_id === 4 && programacionSelected.flag_interno === '0') || (programacionSelected.estado_id === 11 && !inTime(programacionSelected) || programacionSelected.turno === 'Emergencia' && programacionSelected.estado_id === 4)">
+                    <div class="card card-tabs">
+                        <div class="card-content">
+                            <div class="row mb-3">
+                                <div class="col xl12 l12 m12 s12 ">
+                                    <!--Json data treeview example -->
+                                    <h6 ng-hide="programacionSelected.area === null">Detalle</h6>
+                                    <hr ng-hide="programacionSelected.area === null">
+                                    <div class="row">
+                                        <div class="input-field input-group col xl12 l12 m12 s12" ng-hide="programacion.profesional === undefined">
+                                            <i class="material-icons prefix">person</i>
+                                            <input id="profesional" name="profesional" type="text" ng-model="programacion.profesional" required readonly>
+                                            <label for="profesional">Profesional</label>
+                                        </div>
+                                        <div class="input-field input-group col xl12 l12 m12 s12" ng-hide="programacionSelected.area === null">
+                                            <i class="material-icons prefix">local_hospital</i>
+                                            <input id="area" name="profesional" type="text" ng-model="programacionSelected.area" required readonly>
+                                            <label for="area">Área</label>
+                                        </div>
+                                        <div class="input-field input-group col xl12 l12 m12 s12" ng-hide="programacionSelected.servicio === null">
+                                            <i class="material-icons prefix">local_hospital</i>
+                                            <input id="servicio" name="profesional" type="text" ng-model="programacionSelected.servicio" required readonly>
+                                            <label for="servicio">Servicio</label>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3" ng-show="programacionSelected.estado_id === 5 || programacionSelected.estado_id === 11">
+                                        <div class="col xl12 l12 m12 s12">
+                                            <!--Json data treeview example -->
+                                            <h6>Indumentaria por devolver</h6>
+                                            <hr>
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Tipo</th>
+                                                        <th>N°</th>
+                                                        <th>Devolver</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-show="loadingReutilizables">
+                                                        <td colspan="3">
+                                                            <div class="center">
+                                                                <div class="preloader-wrapper big active">
+                                                                    <div class="spinner-layer spinner-blue-only">
+                                                                        <div class="circle-clipper left">
+                                                                            <div class="circle"></div>
+                                                                        </div><div class="gap-patch">
+                                                                            <div class="circle"></div>
+                                                                        </div><div class="circle-clipper right">
+                                                                            <div class="circle"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr ng-repeat="reutilizablesSolicitudesDetalle in reutilizablesSolicitudesDetalles" row-id="{{ reutilizablesSolicitudesDetalle.id }}" ng-hide="loadingReutilizables">
+                                                        <td>{{ reutilizablesSolicitudesDetalle.reutilizable.tipo.descripcion }}</td>
+                                                        <td>{{ reutilizablesSolicitudesDetalle.reutilizable.codigo }}</td>
+                                                        <td>
+                                                            <label>
+                                                                <input type="checkbox" class="chReutilizablesSolicitudesDetalle" checklist-model="reutilizablesSolicitudesDetalle_selected" checklist-value="reutilizablesSolicitudesDetalle"/>
+                                                                <span></span>
+                                                            </label>
+                                                        </td>                            
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row equal" ng-hide="programacionSelected.area === undefined || (programacionSelected.estado_id === 11 && !inTime(programacionSelected))">
+                <div class="col xl12 l12 m12 s12">
+                    <div class="card card-tabs">
+                        <div class="card-content">
+                            <div class="row mb-3">
+                                <div class="col offset-xl2 offset-l2 xl8 l8 m12 s12 ">
+                                    <!--Json data treeview example -->
+                                    <div class="row">
+                                        <div class="center" ng-show="loadingRegister">
+                                            <div class="preloader-wrapper big active">
+                                                <div class="spinner-layer spinner-blue-only">
+                                                    <div class="circle-clipper left">
+                                                        <div class="circle"></div>
+                                                    </div><div class="gap-patch">
+                                                        <div class="circle"></div>
+                                                    </div><div class="circle-clipper right">
+                                                        <div class="circle"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="center-align" ng-hide="loadingRegister">
+                                            <button class="gradient-45deg-green-teal btn-large btn left" type="button" ng-click="registerEntrada(programacionSelected)" ng-show="programacionSelected.estado_id === 4">
+                                                Entrada
+                                                <i class="material-icons left">login</i>
+                                            </button>
+                                            <button class="gradient-45deg-purple-deep-purple btn-large btn left" style="margin-left: 10px;" type="button" ng-click="registerBreakFinal(programacionSelected)" ng-show="programacionSelected.estado_id === 10">
+                                                Break - Final
+                                                <i class="material-icons left">login</i>
+                                            </button>
+                                            <button class="gradient-45deg-indigo-light-blue btn-large btn right" type="button" style="margin-right: 10px;" ng-show="programacionSelected.estado_id === 5 || programacionSelected.estado_id === 11" data-target='cuestionario' modal>
+                                                Registrar Cuestionario
+                                                <i class="material-icons right">assignment</i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="cuestionario" class="modal">
+    <div class="modal-content">
+        <h4>Cuestionario</h4>
+        <hr>
+        <div class="cuestionario">
+            <div class="row">
+                <div class="col xl12 l12 m12 s12">
+                    <div class="center" ng-show="loadingCuestionario">
+                        <div class="preloader-wrapper big active">
+                            <div class="spinner-layer spinner-blue-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <table ng-repeat="grupo in grupos" ng-hide="loadingCuestionario">
+                        <thead>
+                            <tr>
+                                <th colspan="4">{{ grupo.descripcion }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="pregunta in grupo.preguntas">
+                                <td>{{ pregunta.nro }}</td>
+                                <td ng-bind-html="pregunta.descripcion"></td>
+                                <td>
+                                    <div style="display: inline;">
+                                        <label>
+                                            <input class="with-gap" type="radio" ng-model="pregunta.respuesta_valor" value="1">
+                                            <span style="padding-left: 25px;">SÌ</span>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div style="display: inline;">
+                                        <label>
+                                            <input class="with-gap" type="radio" ng-model="pregunta.respuesta_valor" value="0">
+                                            <span style="padding-left: 25px;">NO</span>
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="input-field col xl8 l8 m8 s12">
+                    <i class="material-icons prefix">accessibility_new</i>
+                    <select id="supervisor" ng-model="supervisorId" material-select watch name="supervisor" ng-change="selectSupervisor(supervisorId)">
+                        <option value="">Seleccione un Supervisor</option>
+                        <option ng-value="supervisor.id" ng-repeat="supervisor in supervisores">{{ supervisor.trabajador }}</option>
+                    </select>
+                    <label for="supervisor">Nombre del Supervisor</label>
+                </div>
+                <div class="input-field input-group col xl4 l4 m4 s12">
+                    <i class="material-icons prefix">person</i>
+                    <input id="supervisor_dni" name="supervisor_dni" type="text" ng-model="cuestionario.supervisor_dni" maxlength="9" required readonly>
+                    <label for="supervisor_dni">DNI de Supervisor</label>
+                </div>
+                <div class="input-field input-group col xl4 l4 m12 s12" ng-show="loadingSupervisor">
+                    <div class="center">
+                        <div class="preloader-wrapper big active">
+                            <div class="spinner-layer spinner-blue-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-field input-group col xl12 l12 m12 s12">
+                    <i class="material-icons prefix">chat_bubble</i>
+                    <textarea id="observaciones" name="observaciones" ng-model="cuestionario.observaciones" class="materialize-textarea"></textarea>
+                    <label for="observaciones">Observaciones</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="modal-action modal-close gradient-45deg-light-blue-cyan btn-flat" type="button">Aceptar</button>
+    </div>
+</div>
+<a ng-show="false" class='btn' data-target='selectTurnoModal' modal open="openModal">Show Modal</a>
+<div id="selectTurnoModal" class="modal">
+    <div class="modal-content">
+        <h4>Seleccione un Turno</h4>
+        <hr>
+        <div class="row">
+            <div class="col xl12 l12 m12 s12">
+                <form ng-submit="selectModalTurno(turnoModal)">
+                    <input id="turnoModal" name="turnoModal" type="text" ng-model="turnoModal">
+                </form>
+                <ol>
+                    <li ng-repeat="programacion in programacionesEntregados">
+                        {{ programacion.fecha_programacion | date: 'dd/MM/yyyy': 'America/Lima' }} - {{ programacion.turno }}
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>

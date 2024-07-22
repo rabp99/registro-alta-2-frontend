@@ -1,0 +1,199 @@
+<div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
+    <!-- Search for small screen-->
+    <div class="container">
+        <div class="row heading-page">
+            <div class="col offset-xl2 xl8 l8 s12">
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Nueva Solicitud</span></h5>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col xl12 l12 m12 s12">
+    <div class="container">
+        <!-- Treeview  -->
+        <div class="section treeview-wrapper">
+            <!-- treeview description -->
+            <div class="row">
+                <div class="col xl8 l8 s12 offset-xl2">
+                    <div class="card card-tabs z-depth-4">
+                        <div class="card-content">
+                            <div class="center">
+                                <img src="images/loading.gif" alt="cargando" ng-show="loading">
+                            </div>
+                            <form
+                                ng-submit="solicitar(trabajador, programacionSelected, area_ingreso, tipo_epp, cantidad)"
+                                ng-show="!loading">
+                                <div class="row mb-3">
+                                    <div class="col xl12 l2 m12 s12" ng-show="step === 1">
+                                        <!--Json data treeview example -->
+                                        <h6>Información Personal</h6>
+                                        <hr>
+                                        <div class="center" ng-show="loadingTrabajador">
+                                            <div class="preloader-wrapper big active">
+                                                <div class="spinner-layer spinner-blue-only">
+                                                    <div class="circle-clipper left">
+                                                        <div class="circle"></div>
+                                                    </div>
+                                                    <div class="gap-patch">
+                                                        <div class="circle"></div>
+                                                    </div>
+                                                    <div class="circle-clipper right">
+                                                        <div class="circle"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" ng-hide="loadingTrabajador">
+                                            <div class="row">
+                                                <div class="input-field input-group col xl l6 m12 s12">
+                                                    <i class="material-icons prefix">person</i>
+                                                    <input id="dni_medico" name="dni_medico" type="text"
+                                                        class="validate" ng-model="dni_medico" maxlength="9" required
+                                                        autocomplete="off">
+                                                    <label for="dni_medico">Número de Documento</label>
+                                                    <span class="suffix">
+                                                        <button type="button" ng-click="search(dni_medico)"
+                                                            ng-class="{disabled: (dni_medico.length < 8 || dni_medico === undefined)}"
+                                                            class="btn waves-effect waves-light btn-search">
+                                                            <i class="material-icons">{{ searching }}</i>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="row" ng-hide="trabajador.ndoc === undefined">
+                                                <div class="input-field col xl12 l12 m12 s12">
+                                                    <i class="material-icons prefix">account_box</i>
+                                                    <input id="profesional" name="profesional" type="text"
+                                                        class="validate" ng-model="trabajador.full_name" required
+                                                        readonly>
+                                                    <label for="profesional">Profesional</label>
+                                                </div>
+                                                <div class="input-field col xl12 l12 m12 s12">
+                                                    <i class="material-icons prefix">person</i>
+                                                    <input id="grupo_ocupacional" name="grupo_ocupacional" type="text"
+                                                        class="validate" ng-model="trabajador.grupo_ocupacional">
+                                                    <label for="grupo_ocupacional">Grupo Ocupacional</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col xl12 l2 m12 s12" ng-show="step === 2">
+                                        <!--Json data treeview example -->
+                                        <h6>Área a la que va a ingresar</h6>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="row">
+                                                <div class="col xl12 l12 m12 s12">
+                                                    <div>
+                                                        <label>
+                                                            <input class="with-gap" name="area_ingreso" type="radio"
+                                                                value="ÁREAS DE HOSPITALIZACIÓN"
+                                                                ng-model="area_ingreso" />
+                                                            <span>ÁREAS DE HOSPITALIZACIÓN</span>
+                                                        </label>
+                                                    </div>
+                                                    <div>
+                                                        <label>
+                                                            <input class="with-gap" name="area_ingreso" type="radio"
+                                                                value="ÁREAS EXTERNAS" ng-model="area_ingreso" />
+                                                            <span>ÁREAS EXTERNAS</span>
+                                                        </label>
+                                                    </div>
+                                                    <div>
+                                                        <label>
+                                                            <input class="with-gap" name="area_ingreso" type="radio"
+                                                                value="ÁREA HOSPITALIZACIÓN VILLA ES SALUD"
+                                                                ng-model="area_ingreso" />
+                                                            <span>ÁREA HOSPITALIZACIÓN VILLA ES SALUD</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col xl12 l2 m12 s12" ng-show="step === 3">
+                                        <!--Json data treeview example -->
+                                        <h6>Detalle de EPP's</h6>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="row">
+                                                <div class="input-field col xl6 l6 m12 s12">
+                                                    <i class="material-icons prefix">accessibility</i>
+                                                    <select id="tipo_epp" ng-model="tipo_epp" material-select watch
+                                                        name="tipo_epp">
+                                                        <option value="" ng-if="tipos_epps.length !== 1">Seleccione un
+                                                            Tipo de EPP</option>
+                                                        <option ng-value="tipos_epp"
+                                                            ng-repeat="tipos_epp in tipos_epps">{{ tipos_epp }}</option>
+                                                    </select>
+                                                    <label for="tipo_epp">Tipo de EPP</label>
+                                                </div>
+                                                <div class="input-field col xl6 l6 m12 s12">
+                                                    <i class="material-icons prefix">tag</i>
+                                                    <input id="cantidad" type="number" ng-model="cantidad"
+                                                        name="cantidad">
+                                                    <label for="cantidad">Cantidad</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col xl12 l2 m12 s12" ng-show="step === 4">
+                                        <!--Json data treeview example -->
+                                        <h6>Resumen</h6>
+                                        <hr>
+                                        <div class="center" ng-show="loadingSolicitar">
+                                            <div class="preloader-wrapper big active">
+                                                <div class="spinner-layer spinner-blue-only">
+                                                    <div class="circle-clipper left">
+                                                        <div class="circle"></div>
+                                                    </div>
+                                                    <div class="gap-patch">
+                                                        <div class="circle"></div>
+                                                    </div>
+                                                    <div class="circle-clipper right">
+                                                        <div class="circle"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" ng-hide="loadingSolicitar">
+                                            <div class="row">
+                                                <div class="col xl12 l12 m12 s12">
+                                                    <h6>Profesinal:</h6>
+                                                    <p>{{ trabajador.ndoc }}</p>
+                                                    <p>{{ trabajador.full_name }}</p>
+                                                    <h6>Detalle:</h6>
+                                                    <p>{{ area_ingreso }}</p>
+                                                    <p>{{ cantidad }} -> {{ tipo_epp }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col xl12 l12 s12 m12">
+                                        <button
+                                            class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn left"
+                                            ng-click="goTo(step -1)" type="button" ng-show="step !== 1">
+                                            <span class="hide-on-small-onl">&lt;&lt; Anterior</span>
+                                        </button>
+                                        <button
+                                            class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right"
+                                            ng-click="goTo(step + 1)" type="button" ng-show="step !== 4">
+                                            <span class="hide-on-small-onl">Siguiente &gt;&gt;</span>
+                                        </button>
+                                        <button
+                                            class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right btn-submit"
+                                            type="submit" ng-show="step === 4">
+                                            <span class="hide-on-small-onl">Registrar</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

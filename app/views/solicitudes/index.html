@@ -1,0 +1,137 @@
+<div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
+    <!-- Search for small screen-->
+    <div class="container">
+        <div class="row heading-page">
+            <div class="col s10 m6 l6">
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Solicitudes</span></h5>
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item"><a ui-sref="admin.main">Inicio</a></li>
+                    <li class="breadcrumb-item active">Solicitudes</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col xl12 l12 m12 s12">
+    <div class="container">
+        <div class="section treeview-wrapper">
+            <div class="row">
+                <div class="col xl12 s12">
+                    <div class="card card-tabs">
+                        <div class="card-content">
+                            <h6>Filtros de Búsqueda</h6>
+                            <hr>
+                            <div class="row">
+                                <div class="input-field col xl3 l3 m4 s6">
+                                    <i class="material-icons prefix">person</i>
+                                    <input id="dni" type="text" class="validate" ng-model="search.dni">
+                                    <label for="dni">Número de Documento</label>
+                                </div>
+                                <div class="input-field col xl3 l3 m4 s6">
+                                    <i class="material-icons prefix">healing</i>
+                                    <select id="tipo_epp" ng-model="search.tipo_epp" material-select watch name="tipo_epp">
+                                        <option value="">Seleccione Tipo de Producto</option>
+                                        
+                                        <option ng-value="tipo_epp.valor" ng-repeat="tipo_epp in tipo_epps">{{ tipo_epp.descripcion }}</option>
+                                    </select>
+                                    <label for="onsumible">Producto</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col xl3 l3 m4 s6">
+                                    <i class="material-icons prefix">date_range</i>
+                                    <input id="fecha_inicio" name="fecha_inicio" type="date" class="validate" ng-model="pre_fecha_inicio">
+                                    <label for="fecha_inicio">Fecha Inicio</label>
+                                </div>
+                                <div class="input-field col xl3 l3 m4 s6">
+                                    <i class="material-icons prefix">date_range</i>
+                                    <input id="fecha_fin" name="fecha_fin" type="date" class="validate" ng-model="pre_fecha_fin">
+                                    <label for="fecha_fin">Fecha Fin</label>
+                                </div>
+                                <div class="input-field col xl6 l6 m12 s12">
+                                    <button type="button" class="btn dropdown-settings waves-effect waves-light right breadcrumbs-btn" ng-click="searchSolicitudes()">
+                                        <span class="hide-on-small-onl">Buscar </span>
+                                        <i class="material-icons right">search</i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                Total de registros encontrados: <span ng-show="!loading">{{ tableSolicitudes.count }}</span>
+                            </div>
+                            <table class="responsive-table">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Nro. de Doc.</th>
+                                        <th>Nombre del Trabajador</th>
+                                        <th>Estado</th>
+                                        <th>Solicitud</th>
+                                        <th>Entrega</th>
+                                        <th>Área a la que ingresa</th>
+                                        <th>Tipo de EPP</th>
+                                        <th>Cantidad</th>
+                                        <th>Turno</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="tbody-responsive">
+                                    <tr>
+                                        <td colspan="10" ng-show="loading">
+                                            <div class="center">
+                                                <div class="preloader-wrapper big active">
+                                                    <div class="spinner-layer spinner-blue-only">
+                                                        <div class="circle-clipper left">
+                                                            <div class="circle"></div>
+                                                        </div><div class="gap-patch">
+                                                            <div class="circle"></div>
+                                                        </div><div class="circle-clipper right">
+                                                            <div class="circle"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr><td colspan="10" ng-show="tableSolicitudes.loading">Cargando...</td></tr>
+                                    <tr><td colspan="10" ng-show="!tableSolicitudes.loading && solicitudes.length === 0 && !inicio">No se encontraron solicitudes</td></tr>
+                                    <tr ng-repeat="solicitud in solicitudes" ng-show="!tableSolicitudes.loading && !loading">
+                                        <td class="td-detail">
+                                            <a ng-click="remove(solicitud)" title="Eliminar solicitud">
+                                                <i class="material-icons right">cancel</i>
+                                            </a>
+                                        </td>
+                                        <td>{{ solicitud.programacion_dni_medico }}</td>
+                                        <td>{{ solicitud.profesional }}</td>
+                                        <td>
+                                            <a ng-class="{'gradient-45deg-deep-orange-orange': solicitud.estado_id === 3, 'gradient-45deg-indigo-light-blue': solicitud.estado_id === 4}" class="waves-effect waves-light btn btn-registro">
+                                                {{ solicitud.estado.descripcion }} 
+                                            </a>
+                                        </td>
+                                        <td>{{ solicitud.fecha_solicitud | date: 'dd/MM/yyyy hh:mm a': 'America/Lima' }}</td>
+                                        <td>{{ solicitud.fecha_entrega | date: 'dd/MM/yyyy hh:mm a': 'America/Lima' }}</td>
+                                        <td>{{ solicitud.area_ingreso }}</td>
+                                        <td>{{ solicitud.tipo_epp }}</td>
+                                        <td>{{ solicitud.cantidad }}</td>
+                                        <td>{{ solicitud.programacion_turno }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="center">
+                                <pagination class="pagination"
+                                    page="tableSolicitudes.page"
+                                    page-size="tableSolicitudes.pagination.itemsPerPage"
+                                    total="tableSolicitudes.count"
+                                    show-prev-next="true"
+                                    use-simple-prev-next="false"
+                                    dots="...."
+                                    hide-if-empty="false"
+                                    adjacent="2"
+                                    scroll-top="false"
+                                    pagination-action="tableSolicitudes.pageChanged(page)" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

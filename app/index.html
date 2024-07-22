@@ -1,0 +1,111 @@
+<!doctype html>
+<html class="loading" lang="es" data-textdirection="ltr" ng-app="registroAltaFrontendApp">
+<head>
+    <meta charset="utf-8">
+    <title ng-bind="title + ' - Registro de Entrada y Salida'">RALL</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link href="app-assets/css/icon.css" rel="stylesheet">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-scrollable-table/scrollable-table.css" />
+    <link rel="stylesheet" href="bower_components/materialize/bin/materialize.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+    <link rel="stylesheet" type="text/css" href="app-assets/css/themes/horizontal-menu-template/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/pages/page-search.min.css">
+</head>
+<body class="horizontal-layout page-header-light horizontal-menu preload-transitions 2-columns" data-open="click" data-menu="horizontal-menu" data-col="2-columns" ng-cloak>
+    <ui-view></ui-view>
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/tg-angular-validator/dist/angular-validator.js"></script>
+    <script src="bower_components/angular-scrollable-table/angular-scrollable-table.js"></script>
+    <script src="bower_components/materialize/bin/materialize.js"></script>
+    <script src="bower_components/angular-materialize/src/angular-materialize.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="bower_components/checklist-model/checklist-model.js"></script>
+    <script src="bower_components/firebase/firebase.js"></script>
+    <script src="bower_components/angularfire/dist/angularfire.js"></script>
+    <script src="bower_components/pdfmake/build/pdfmake.js"></script>
+    <script src="bower_components/pdfmake/build/vfs_fonts.js"></script>
+    <script src="bower_components/blob-polyfill/Blob.js"></script>
+    <script src="bower_components/file-saver.js/FileSaver.js"></script>
+    <script src="bower_components/angular-file-saver/dist/angular-file-saver.bundle.js"></script>
+    <script src="bower_components/angular-canvas-painter/dist/angular-canvas-painter.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/public.js"></script>
+    <script src="scripts/admin.js"></script>
+    <script src="scripts/login.js"></script>
+    <script src="scripts/services/envservice.js"></script>
+    <script src="scripts/services/$utilsviewservice.js"></script>
+    <script src="scripts/services/oauthhttpinterceptor.js"></script>
+    <script src="scripts/services/usersservice.js"></script>
+    <script src="scripts/services/programacionesservice.js"></script>
+    <script src="scripts/services/trabajadoresservice.js"></script>
+    <script src="scripts/services/gruposservice.js"></script>
+    <script src="scripts/services/personasservice.js"></script>
+    <script src="scripts/services/solicitudesservice.js"></script>
+    <script src="scripts/services/reutilizablessolicitudesdetallesservice.js"></script>
+    <script src="scripts/services/tiposservice.js"></script>
+    <script src="scripts/services/reutilizablesservice.js"></script>
+    <script src="scripts/services/entregasservice.js"></script>
+    <script src="scripts/services/consumiblesservice.js"></script>
+    <script src="scripts/services/colaboradoresservice.js"></script>
+    <script src="scripts/services/supervisoresservice.js"></script>
+    <script src="scripts/directives/uppercased.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/users/login.js"></script>
+    <script src="scripts/controllers/admin/main.js"></script>
+    <script src="scripts/controllers/users/changepassword.js"></script>
+    <script src="scripts/controllers/users/index.js"></script>
+    <script src="scripts/controllers/users/add.js"></script>
+    <script src="scripts/controllers/users/edit.js"></script>
+    <script src="scripts/controllers/users/view.js"></script>
+    <script src="scripts/controllers/admin/config.js"></script>
+    <script src="scripts/controllers/programaciones/load.js"></script>
+    <script src="scripts/controllers/programaciones/solicitud.js"></script>
+    <script src="scripts/controllers/programaciones/entrega.js"></script>
+    <script src="scripts/controllers/programaciones/salida.js"></script>
+    <script src="scripts/controllers/reportes/solicitudes.js"></script>
+    <script src="scripts/controllers/vestidores/register.js"></script>
+    <script src="scripts/controllers/reportes/indumentaria.js"></script>
+    <script src="scripts/controllers/solicitudes/add.js"></script>
+    <script src="scripts/controllers/solicitudes/firma.js"></script>
+    <script src="scripts/controllers/lavanderia/register.js"></script>
+    <script src="scripts/controllers/solicitudes/devolver.js"></script>
+    <script src="scripts/controllers/reportes/marcaciones.js"></script>
+    <script src="scripts/controllers/programaciones/externo.js"></script>
+    <script src="scripts/controllers/productos/entregar.js"></script>
+    <script src="scripts/controllers/reportes/productos.js"></script>
+    <script src="scripts/controllers/programaciones/entrada.js"></script>
+    <script src="scripts/controllers/indumentaria/liberar.js"></script>
+    <script src="scripts/controllers/lavanderia/regularizar.js"></script>
+    <script src="scripts/controllers/reportes/anexos.js"></script>
+    <script src="scripts/services/gruposocupacionalesservice.js"></script>
+    <script src="scripts/controllers/reportes/cuadro_resumen.js"></script>
+    <script src="scripts/controllers/reportes/reporte_semanal.js"></script>
+    <script src="scripts/controllers/productos/index.js"></script>
+    <script src="scripts/controllers/colaboradores/index.js"></script>
+    <script src="scripts/controllers/colaboradores/add.js"></script>
+    <script src="scripts/controllers/supervisores/index.js"></script>
+    <script src="scripts/controllers/supervisores/add.js"></script>
+    <script src="scripts/controllers/solicitudes/index.js"></script>
+    <!-- endbuild -->
+</body>
+</html>

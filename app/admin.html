@@ -1,0 +1,198 @@
+<link rel="stylesheet" type="text/css" href="app-assets/css/themes/vertical-modern-menu-template/style.min.css">
+<!-- BEGIN: Header-->
+<header class="page-topbar" id="header">
+    <div class="navbar navbar-fixed">
+        <nav class="navbar-main navbar-color nav-collapsible sideNav-lock navbar-dark gradient-45deg-light-blue-cyan">
+            <div class="nav-wrapper">
+                <div class="header-search-wrapper">
+                    <a class="brand-logo brand-logo-theme-vertical darken-1 hide-on-small-only hide-on-med-only"
+                        ui-sref='admin.main'>
+                        <img class="logo-image" src="images/logo_esquina_izquierda.png"
+                            alt="Essalud - Red Asistencial La Libertad">
+                        <span class="logo-text hide-on-med-and-down">Red Asistencial La Libertad</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+<!-- END: Header-->
+<!-- BEGIN: SideNav-->
+<aside class="sidenav-main nav-expanded sidenav-fixed nav-lock nav-collapsible sidenav-light sidenav-active-square">
+    <div class="brand-sidebar">
+        <h1 class="logo-wrapper">
+            <a class="brand-logo darken-1" ui-sref='admin.main'>
+                <img class="hide-on-med-and-down" src="images/logo_esquina_izquierda.jpg"
+                    alt="Essalud - Red Asistencial La Libertad" />
+                <img class="show-on-medium-and-down hide-on-med-and-up on-md-and-down-logo"
+                    src="images/logo_esquina_izquierda.png" alt="Essalud - Red Asistencial La Libertad" />
+                <span class="logo-text hide-on-med-and-down">Registro</span>
+            </a>
+        </h1>
+    </div>
+    <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed fixed menu-shadow"
+        data-menu="menu-navigation" id="slide-out" data-collapsible="accordion" watch>
+        <li class="bold hide-on-large-only">
+            <a class="waves-effect waves-cyan" ui-sref='admin.main' ui-sref-active="active" ng-click="resetLinks()"><i
+                    class="material-icons">home</i><span class="menu-title">Inicio</span></a>
+        </li>
+        <!--
+        <li class="bold" ng-if="user.rol === 'Administrador'">
+            <a class="waves-effect waves-cyan" ui-sref="admin.programacionesLoad" ui-sref-active="active"
+                ng-click="resetLinks()"><i class="material-icons">ios_share</i><span class="menu-title">Cargar
+                    Programación</span></a>
+        </li>
+        -->
+        <li class="bold" ng-if="user.rol === 'Farmacia'">
+            <a class="waves-effect waves-cyan" ui-sref="admin.solicitudesAdd" ui-sref-active="active"
+                ng-click="resetLinks()"><i class="material-icons">add_circle</i><span class="menu-title">Nueva
+                    Solicitud</span></a>
+        </li>
+        <li class="bold" ng-if="user.rol === 'Farmacia'">
+            <a class="waves-effect waves-cyan" ui-sref="admin.programacionesEntrega" ui-sref-active="active"
+                ng-click="resetLinks()"><i class="material-icons">accessibility_new</i><span
+                    class="menu-title">Registrar Entrega de EPP's</span></a>
+        </li>
+        <li class="bold" ng-if="user.rol === 'Vestidores'">
+            <a class="waves-effect waves-cyan" ui-sref="admin.vestidoresRegister" ui-sref-active="active"
+                ng-click="resetLinks()"><i class="material-icons">accessibility_new</i><span
+                    class="menu-title">Registrar en Vestidores</span></a>
+        </li>
+        <li class="bold" ng-if="user.rol === 'Lavandería'">
+            <a class="waves-effect waves-cyan" ui-sref="admin.lavanderiaRegister" ui-sref-active="active"
+                ng-click="resetLinks()"><i class="material-icons">assignment_ind</i><span class="menu-title">Registrar
+                    en Lavandería</span></a>
+        </li>
+        <li class="bold" ng-if="user.rol === 'Farmacia'">
+            <a class="waves-effect waves-cyan" ui-sref="admin.solicitudesDevolver" ui-sref-active="active"
+                ng-click="resetLinks()"><i class="material-icons">reply_all</i><span class="menu-title">Registrar
+                    Devolución</span></a>
+        </li>
+        <li class="bold" ng-if="user.rol === 'Farmacia'">
+            <a class="waves-effect waves-cyan" ui-sref="admin.productosEntregar" ui-sref-active="active"
+                ng-click="resetLinks()"><i class="material-icons">healing</i><span class="menu-title">Entregar Prd. de
+                    Protección</span></a>
+        </li>
+        <li class="bold" ng-if="user.rol === 'Farmacia' || user.rol === 'Administrador'">
+            <a id="reportes-link" class="collapsible-header waves-effect waves-cyan"><i
+                    class="material-icons">build</i><span class="menu-title">Mantenimiento</span></a>
+            <div class="collapsible-body">
+                <ul class="collapsible collapsible-sub">
+                    <li class="bold" ng-if="user.rol === 'Farmacia'">
+                        <a class="waves-effect waves-cyan" ui-sref="admin.productosIndex" ui-sref-active="active"><i
+                                class="material-icons">healing</i><span class="menu-title">Productos de
+                                Protección</span></a>
+                    </li>
+                    <li class="bold" ng-if="user.rol === 'Administrador'">
+                        <a class="waves-effect waves-cyan" ui-sref="admin.colaboradoresIndex" ui-sref-active="active"><i
+                                class="material-icons">assignment_ind</i><span
+                                class="menu-title">Colaboradores</span></a>
+                    </li>
+                    <li class="bold" ng-if="user.rol === 'Administrador'">
+                        <a class="waves-effect waves-cyan" ui-sref="admin.usersIndex" ui-sref-active="active"><i
+                                class="material-icons">account_box</i><span class="menu-title">Usuarios</span></a>
+                    </li>
+                    <li class="bold" ng-if="user.rol === 'Administrador'">
+                        <a class="waves-effect waves-cyan" ui-sref="admin.supervisoresIndex" ui-sref-active="active"><i
+                                class="material-icons">account_circle</i><span
+                                class="menu-title">Supervisores</span></a>
+                    </li>
+                    <li class="bold" ng-if="user.rol === 'Administrador'">
+                        <a class="waves-effect waves-cyan" ui-sref="admin.solicitudesIndex" ui-sref-active="active"><i
+                                class="material-icons">accessibility_new</i><span
+                                class="menu-title">Solicitudes</span></a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="bold"
+            ng-if="user.rol === 'Farmacia' || user.rol === 'Administrador' || user.rol === 'Médico Ocupacional' || user.rol === 'Jefe de Servicio'">
+            <a id="reportes-link" class="collapsible-header waves-effect waves-cyan"><i
+                    class="material-icons">description</i><span class="menu-title">Reportes</span></a>
+            <div class="collapsible-body">
+                <ul class="collapsible collapsible-sub">
+                    <li class="bold"
+                        ng-if="user.rol === 'Farmacia' || user.rol === 'Administrador' || user.rol === 'Jefe de Servicio'">
+                        <a class="waves-effect waves-cyan" ui-sref="admin.reportesSolicitudes"
+                            ui-sref-active="active"><i class="material-icons">description</i><span
+                                class="menu-title">Reporte de Solicitudes</span></a>
+                    </li>
+                    <li class="bold" ng-if="user.rol === 'Farmacia' || user.rol === 'Administrador'">
+                        <a class="waves-effect waves-cyan" ui-sref="admin.reportesIndumentaria"
+                            ui-sref-active="active"><i class="material-icons">description</i><span
+                                class="menu-title">Reporte de Indumentaria</span></a>
+                    </li>
+                    <li class="bold"
+                        ng-if="user.rol === 'Farmacia' || user.rol === 'Administrador' || user.rol === 'Jefe de Servicio'">
+                        <a class="waves-effect waves-cyan" ui-sref="admin.reportesMarcaciones"
+                            ui-sref-active="active"><i class="material-icons">description</i><span
+                                class="menu-title">Reporte de Marcaciones</span></a>
+                    </li>
+                    <li class="bold"
+                        ng-if="user.rol === 'Farmacia' || user.rol === 'Administrador' || user.rol === 'Médico Ocupacional'">
+                        <a class="waves-effect waves-cyan" ui-sref="admin.reportesCuadroResumen"
+                            ui-sref-active="active"><i class="material-icons">description</i><span
+                                class="menu-title">Cuadro Resumen</span></a>
+                    </li>
+                    <li class="bold"
+                        ng-if="user.rol === 'Farmacia' || user.rol === 'Administrador' || user.rol === 'Médico Ocupacional'">
+                        <a class="waves-effect waves-cyan" ui-sref="admin.reportesReporteSemanal"
+                            ui-sref-active="active"><i class="material-icons">description</i><span
+                                class="menu-title">Reporte Semanal</span></a>
+                    </li>
+                    <li class="bold"
+                        ng-if="user.rol === 'Farmacia' || user.rol === 'Administrador' || user.rol === 'Médico Ocupacional'">
+                        <a class="waves-effect waves-cyan" ui-sref="admin.reportesAnexos" ui-sref-active="active"><i
+                                class="material-icons">description</i><span class="menu-title">Anexos</span></a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="bold" ng-if="user.rol === 'Administrador' || user.rol === 'Farmacia'">
+            <a class="waves-effect waves-cyan" ui-sref="admin.indumentariaLiberar" ui-sref-active="active"
+                ng-click="resetLinks()"><i class="material-icons">label_outline</i><span class="menu-title">Liberar
+                    Indumentaria</span></a>
+        </li>
+        <li class="bold" ng-if="user.rol === 'Lavandería'">
+            <a class="waves-effect waves-cyan" ui-sref="admin.lavanderiaRegularizar" ui-sref-active="active"
+                ng-click="resetLinks()"><i class="material-icons">label_outline</i><span class="menu-title">Regularizar
+                    en Lavandería</span></a>
+        </li>
+
+
+        <li class="bold">
+            <a class="waves-effect waves-cyan" ui-sref="admin.usersChangepassword" ui-sref-active="active"
+                ng-click="resetLinks()"><i class="material-icons">vpn_key</i><span class="menu-title">Cambiar
+                    contraseña</span></a>
+        </li>
+        <li class="bold">
+            <a class="waves-effect waves-cyan" ng-click="logout()" ui-sref-active="active" ng-click="resetLinks()"><i
+                    class="material-icons">reply</i><span class="menu-title">Cerrar Sesión</span></a>
+        </li>
+    </ul>
+    <div class="navigation-background"></div>
+    <a id="sidenav-anchor"
+        class="sidenav-trigger mb-6 btn-floating btn-large waves-effect waves-light cyan btn-medium waves-effect waves-light hide-on-large-only"
+        data-activates="slide-out" data-sidenav="left" data-menuwidth="260" data-closeonclick="false">
+        <i class="material-icons">menu</i>
+    </a>
+</aside>
+<!-- END: SideNav-->
+
+<!-- BEGIN: Page Main-->
+<div id="main">
+    <div class="row">
+        <div class="content-wrapper-before gradient-45deg-indigo-blue"></div>
+        <ui-view></ui-view>
+    </div>
+</div>
+<!-- END: Page Main-->
+
+<!-- BEGIN: Footer-->
+<footer
+    class="page-footer footer footer-static footer-dark gradient-45deg-indigo-blue gradient-shadow navbar-border navbar-shadow">
+    <div class="footer-copyright">
+        <div class="container"><span>&copy; 2021 ESSALUD</span><span class="right hide-on-small-only">Oficina de Soporte
+                Informático</span></div>
+    </div>
+</footer>

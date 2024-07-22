@@ -1,0 +1,33 @@
+<div class="container" ng-cloak>
+    <div id="login-page" class="row">
+        <div class="col xl4 offset-xl4 l6 offset-l3 m8 offset-m2 s12 z-depth-4 card-panel border-radius-6 login-card bg-opacity-8">
+            <form class="login-form" ng-submit="loginUser(user)">
+                <div class="row">
+                    <div class="input-field col s12 center">
+                        <h5 class="ml-4">Registro de Entrada y Salida</h5>
+                        <img style="height: 100px;"  src="images/logo_esquina_izquierda.jpg" alt="Essalud">
+                    </div>
+                </div>
+                <div class="row margin">
+                    <div class="input-field col s12 login-inputs">
+                        <i class="material-icons prefix pt-2">person_outline</i>
+                        <input id="username" type="text" ng-model="user.username" required autocomplete="off">
+                        <label for="username" class="center-align">Usuario</label>
+                    </div>
+                </div>
+                <div class="row margin">
+                    <div class="input-field col s12 login-inputs">
+                        <i class="material-icons prefix pt-2">lock_outline</i>
+                        <input id="password" type="password" ng-model="user.password" required>
+                        <label for="password">Contraseña</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 login-inputs">
+                        <button type="submit" class="btn btn-submit waves-effect waves-light border-round gradient-45deg-indigo-blue col s12">Iniciar Sesión</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

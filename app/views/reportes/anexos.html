@@ -1,0 +1,60 @@
+<div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
+    <!-- Search for small screen-->
+    <div class="container">
+        <div class="row heading-page">
+            <div class="col s10 m6 l6">
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Anexos</span></h5>
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item"><a ui-sref="admin.main">Inicio</a>
+                    </li>
+                    <li class="breadcrumb-item">Reportes</li>
+                    <li class="breadcrumb-item active">Anexos</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col xl12 l12 m12 s12">
+    <div class="container">
+        <div class="section treeview-wrapper">
+            <div class="row">
+                <div class="col xl12 s12">
+                    <div class="card card-tabs">
+                        <div class="card-content">
+                            <h6>Filtros de Búsqueda</h6>
+                            <hr>
+                            <div class="row">
+                                <div class="input-field col xl4 l4 m6 s6">
+                                    <i class="material-icons prefix">date_range</i>
+                                    <input id="fecha_inicio" name="fecha_inicio" type="date" class="validate"
+                                        ng-model="pre_fecha_inicio">
+                                    <label for="fecha_inicio">Fecha Inicio</label>
+                                </div>
+                                <div class="input-field col xl4 l4 m6 s6">
+                                    <i class="material-icons prefix">date_range</i>
+                                    <input id="fecha_fin" name="fecha_fin" type="date" class="validate"
+                                        ng-model="pre_fecha_fin">
+                                    <label for="fecha_fin">Fecha Fin</label>
+                                </div>
+                                <div class="input-field col xl4 l4 m6 s4 right">
+                                    <button type="button" style="margin: 10px;"
+                                        class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right"
+                                        ng-click="exportAnexo4()" ng-disabled="loading">
+                                        <span class="hide-on-small-onl">Anexo 4</span>
+                                        <i class="material-icons right">description</i>
+                                    </button>
+                                    <button type="button" style="margin: 10px;"
+                                        class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right"
+                                        ng-click="exportAnexo3()" ng-disabled="loading">
+                                        <span class="hide-on-small-onl">Anexo 3</span>
+                                        <i class="material-icons right">description</i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

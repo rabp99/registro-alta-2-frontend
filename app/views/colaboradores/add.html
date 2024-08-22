@@ -23,9 +23,11 @@
                                         <div class="spinner-layer spinner-blue-only">
                                             <div class="circle-clipper left">
                                                 <div class="circle"></div>
-                                            </div><div class="gap-patch">
+                                            </div>
+                                            <div class="gap-patch">
                                                 <div class="circle"></div>
-                                            </div><div class="circle-clipper right">
+                                            </div>
+                                            <div class="circle-clipper right">
                                                 <div class="circle"></div>
                                             </div>
                                         </div>
@@ -37,28 +39,41 @@
                                         <div class="row">
                                             <div class="input-field input-group col xl12 l12 m12 s12">
                                                 <i class="material-icons prefix">tag</i>
-                                                <input id="nro_documento" name="nro_documento" type="text" class="validate" ng-model="newColaborador.nro_documento" maxlength="9" required>
-                                                <label for="nro_documento">Número de Documento</label>
+                                                <input id="dni_medico" name="dni_medico" type="text" class="validate"
+                                                    ng-model="newColaborador.dni_medico" maxlength="9" required>
+                                                <label for="dni_medico">Número de Documento</label>
                                             </div>
                                             <div class="input-field input-group col xl12 l12 m12 s12">
                                                 <i class="material-icons prefix">person</i>
-                                                <input id="trabajador" name="trabajador" type="text" ng-model="newColaborador.trabajador" required>
-                                                <label for="trabajador">Apellidos y nombres</label>
+                                                <input id="nombre_completo" name="nombre_completo" type="text"
+                                                    ng-model="newColaborador.nombre_completo" required>
+                                                <label for="nombre_completo">Apellidos y nombres</label>
+                                            </div>
+                                            <div class="input-field input-group col xl12 l12 m12 s12">
+                                                <i class="material-icons prefix">contacts</i>
+                                                <input id="cod_planilla" name="cod_planilla" type="text"
+                                                    ng-model="newColaborador.cod_planilla" required>
+                                                <label for="cod_planilla">Cód. Planilla</label>
                                             </div>
                                             <div class="input-field input-group col xl12 l12 m12 s12">
                                                 <i class="material-icons prefix">accessibility</i>
-                                                <select id="tipo_epp" ng-model="newColaborador.grupo_ocupacional" material-select watch name="grupo_ocupacional">
+                                                <select id="tipo_epp" ng-model="newColaborador.grupo_ocupacional_id"
+                                                    material-select watch name="grupo_ocupacional_id">
                                                     <option value="" ng-if="grupos_ocupacionales.length !== 1">Seleccione un Grupo Ocupacional</option>
-                                                    <option ng-value="grupo_ocupacional.descripcion" ng-repeat="grupo_ocupacional in grupos_ocupacionales">{{ grupo_ocupacional.descripcion }}</option>
+                                                    <option ng-value="grupo_ocupacional.id"
+                                                        ng-repeat="grupo_ocupacional in grupos_ocupacionales">{{
+                                                        grupo_ocupacional.descripcion }}</option>
                                                 </select>
-                                                <label for="grupo_ocupacional">Grupo Ocupacional</label>
+                                                <label for="grupo_ocupacional_id">Grupo Ocupacional</label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col xl12 l12 m12 s12">
-                                        <button class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right btn-submit" type="submit">
+                                        <button
+                                            class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right btn-submit"
+                                            type="submit">
                                             <span class="hide-on-small-onl">Registrar</span>
                                         </button>
                                     </div>

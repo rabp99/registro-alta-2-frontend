@@ -8,7 +8,7 @@
  * Controller of the registroAltaFrontendApp
  */
 angular.module('registroAltaFrontendApp')
-    .controller('ProgramacionesSolicitudCtrl', function ($scope, $utilsViewService, programacionesService, trabajadoresService, envService) {
+    .controller('ProgramacionesSolicitudCtrl', function ($scope, $utilsViewService, programacionesService, colaboradoresService) {
         $scope.init = function () {
             $scope.step = 1;
             $scope.dni_medico = '';
@@ -44,77 +44,28 @@ angular.module('registroAltaFrontendApp')
                 case 'ralta.ralalibertad.com':
             */
             $scope.cantidad_options = [1, 2];
-            programacionesService.findAvailables({ dni_medico: dni_medico }, function (data) {
-                if (data.programaciones.length > 0) {
-                    $scope.trabajador.ndoc = data.programaciones[0].dni_medico;
-                    $scope.trabajador.full_name = data.programaciones[0].profesional;
-                    $scope.trabajador.cp = data.programaciones[0].cod_planilla;
-                    $scope.trabajador.grupo_ocupacional = data.programaciones[0].grupo_ocupacional;
-                    $scope.programacionesAvailables = data.programaciones;
-                    if ($scope.programacionesAvailables.length === 1) {
-                        $scope.turno = $scope.programacionesAvailables[0].turno;
+
+            colaboradoresService.checkColaboradorProgramadoHoy({ dni_medico: dni_medico }).$promise
+                .then(function (data) {
+                    $scope.colaborador = data.colaborador;
+
+                    if (data.turno) {
+                        $scope.turno = data.turno;
                         $scope.onTurnoSelected($scope.turno);
                     }
+
                     $scope.showEmergencia = false;
                     $scope.onEmergencia = false;
-                } else {
-                    Materialize.toast(data.message, 4000);
-                }
-                $scope.searching = 'search';
-                $utilsViewService.enable('.btn-search');
-                $scope.loadingProgramacionesAvailables = false;
-            });
-            /*
-                    break;
-                case 'ralta.hacvp.com':
-                    $scope.cantidad_options = [1, 2];
-                    programacionesService.findAvailables({ dni_medico: dni_medico }, function (data) {
-                        if (data.programaciones.length > 0) {
-                            $scope.trabajador.ndoc = data.programaciones[0].dni_medico;
-                            $scope.trabajador.full_name = data.programaciones[0].profesional;
-                            $scope.trabajador.cp = data.programaciones[0].cod_planilla;
-                            $scope.trabajador.grupo_ocupacional = data.programaciones[0].grupo_ocupacional;
-                            $scope.programacionesAvailables = data.programaciones;
-                            if ($scope.programacionesAvailables.length === 1) {
-                                $scope.turno = $scope.programacionesAvailables[0].turno;
-                                $scope.onTurnoSelected($scope.turno);
-                            }
-                            $scope.showEmergencia = false;
-                            $scope.onEmergencia = false;
-                        } else {
-                            Materialize.toast(data.message, 4000);
-                        }
-                        $scope.searching = 'search';
-                        $utilsViewService.enable('.btn-search');
-                        $scope.loadingProgramacionesAvailables = false;
-                    });
-                    break;
-                default:
-                    $scope.cantidad_options = [1];
-                    trabajadoresService.getByDni({ texto: dni_medico }, function (data) {
-                        if (data.trabajador !== null) {
-                            $scope.trabajador = data.trabajador;
-                            $scope.trabajador.full_name = $scope.trabajador.apa + ' ' + $scope.trabajador.ama + ', ' + $scope.trabajador.nom;
-                            $scope.programacionesAvailables = [];
-                            $scope.programacionSelected = {};
-                            Materialize.toast(data.message, 4000);
-                            $scope.showEmergencia = true;
-                            $scope.onEmergencia = true
-                            $scope.loadingProgramacionesAvailables = false;
-                        } else {
-                            $scope.trabajador = {};
-                            $scope.programacionesAvailables = [];
-                            Materialize.toast('No se encontró un trabajador con ese número de documento', 4000);
-                            $scope.loadingProgramacionesAvailables = false;
-                        }
-                        $scope.searching = 'search';
-                        $utilsViewService.enable('.btn-search');
-                    }, function (err) {
-                        $scope.loadingProgramacionesAvailables = false;
-                    });
-                    break;
-            }
-            */
+                })
+                .catch(function (error) {
+                    Materialize.toast(error.data.message, 4000);
+                })
+                .finally(function () {
+                    $scope.searching = 'search';
+                    $utilsViewService.enable('.btn-search');
+                    $scope.loadingProgramacionesAvailables = false;
+
+                });
         };
 
         $scope.onTurnoSelected = function (turno) {

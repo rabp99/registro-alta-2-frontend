@@ -1,0 +1,65 @@
+<div class="col xl12 l12 m12 s12">
+    <div class="container">
+        <!-- Treeview  -->
+        <div class="section treeview-wrapper">
+            <!-- treeview description -->
+            <div class="row">
+                <div class="col xl8 l8 s12 offset-xl2">
+                    <div class="card card-tabs z-depth-4">
+                        <div class="card-content">
+                            <form ng-submit="sendSignature()">
+                                <div class="row">
+                                    <div class="col s12">
+                                        <div class="input-field input-group col offset-m3 m6 s12">
+                                            <i class="material-icons prefix">assignment_ind</i>
+                                            <select id="document_type" ng-model="document_type"
+                                                required material-select>
+                                                <option value="DNI">DNI</option>
+                                                <option value="CE">CE</option>
+                                            </select>
+                                            <label for="document_type">Tipo de Documento</label>
+                                        </div>
+                                    </div>
+                                    <div class="col s12">
+                                        <div class="input-field input-group col offset-m3 m6 s12">
+                                            <i class="material-icons prefix">tag</i>
+                                            <input id="document_number" name="document_number" type="text"
+                                                class="validate" ng-model="document_number"
+                                                maxlength="8" required pattern="\d*">
+                                            <label for="document_number">Número de Documento</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="center">
+                                        <div class="firma" pw-canvas version="version"
+                                            options="{width: 600, 
+                                            height: 400, 
+                                            color: '#000', 
+                                            undo: true,
+                                            lineWidth: 2,
+                                            customCanvasId: 'signature'}">
+                                        </div>
+                                    </div>
+                                    <div class="center">
+                                        <div>
+                                            <button class="red btn btn-reset" type="button" ng-click="clearSignature()">
+                                                <i class="material-icons left">clear</i>Borrar Firma
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col offset-xl3 offset-l3 xl6 l6 m12 s12 center">
+                                        <button class="modal-action modal-close gradient-45deg-light-blue-cyan btn-flat" type="submit">Enviar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

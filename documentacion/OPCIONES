@@ -1,0 +1,65 @@
+Colaborador
+-   Solicitud
+-   Solicitud Externo
+
+Administrador 40900935
+-	Cargar Programación                             OK
+-	Mantenimiento                                   
+    o	Colaboradores                               OK
+    o	Usuarios                                    OK
+    o	Supervisores                                OK
+    o	Solicitudes
+-	Reportes
+    o	Reporte de Solicitudes
+    o	Reporte de Indumentaria
+    o	Reporte de Marcaciones
+    o	Cuadro Resumen
+    o	Reporte Semanal
+    o	Anexos
+-	Liberar Indumentaria
+-	Cambiar Contraseña
+-	Cerrar Sesión
+
+Farmacia 41870794
+-	Nueva Solicitud
+-	Registrar Entrega
+-	Registrar Devolución
+-	Entregar Productos de Protección
+-	Mantenimiento
+    o	Productos de Protección
+-	Reportes
+    o	Reporte de Solicitudes
+    o	Reporte de Indumentaria
+    o	Reporte de Marcaciones
+    o	Cuadro Resumen
+    o	Reporte Semanal
+    o	Anexos
+-	Liberar Indumentaria
+-	Cambio de Contraseña
+-	Cerrar Sesión
+
+Vestidores 70801887
+-	Registrar ingreso a Vestidores
+-	Cambio de Contraseña
+-	Cerrar Sesión
+ 
+Lavandería 47104444
+-	Registrar en Lavandería
+-	Regularizar en Lavandería
+-	Cambio de Contraseña
+-	Cerrar session
+
+Médico Ocupacional 70296473
+-	Reportes
+    o	Cuadro Resumen
+    o	Reporte Semanal
+    o	Anexos
+-	Cambio de Contraseña
+-	Cerrar Sesión
+
+Jefe de Servicio 32939794
+-	Reportes
+    o	Reporte de Solicitudes
+    o	Reporte de Marcaciones
+-	Cambio de Contraseña
+-	Cerrar Sesión

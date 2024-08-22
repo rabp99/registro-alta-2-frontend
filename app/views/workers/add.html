@@ -1,0 +1,214 @@
+<div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
+    <!-- Search for small screen-->
+    <div class="container">
+        <div class="row heading-page">
+            <div class="col xl6 l6 m12 s12">
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Nuevo Colaborador</span></h5>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col xl12 l12 m12 s12">
+    <form ng-submit="addWorker(newWorker)">
+        <div class="container">
+            <!-- Treeview  -->
+            <div class="section treeview-wrapper">
+
+                <!-- treeview description -->
+                <div class="row">
+                    <div class="col xl12 l12 m12 s12">
+                        <div class="card card-tabs">
+                            <div class="card-content">
+                                <div class="center" ng-show="loading">
+                                    <div class="preloader-wrapper big active">
+                                        <div class="spinner-layer spinner-blue-only">
+                                            <div class="circle-clipper left">
+                                                <div class="circle"></div>
+                                            </div>
+                                            <div class="gap-patch">
+                                                <div class="circle"></div>
+                                            </div>
+                                            <div class="circle-clipper right">
+                                                <div class="circle"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" ng-hide="loading">
+                                    <div class="col s6">
+                                        <div class="row mb-3">
+                                            <div class="col xl12 l12 m12 s12">
+                                                <!--Json data treeview example -->
+                                                <div class="row">
+                                                    <div class="input-field input-group col xl12 l12 m12 s12">
+                                                        <i class="material-icons prefix">assignment_ind</i>
+                                                        <select id="document_type" ng-model="newWorker.document_type"
+                                                            required material-select>
+                                                            <option value="DNI">DNI</option>
+                                                            <option value="CE">CE</option>
+                                                        </select>
+                                                        <label for="document_type">Tipo de Documento</label>
+                                                    </div>
+                                                    <div class="input-field input-group col xl12 l12 m12 s12">
+                                                        <i class="material-icons prefix">tag</i>
+                                                        <input id="document_number" name="document_number" type="text"
+                                                            class="validate" ng-model="newWorker.document_number"
+                                                            maxlength="8" required pattern="\d*">
+                                                        <label for="document_number">Número de Documento</label>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div>
+                                                            <div class="col xl6 l6 m6 p-0">
+                                                                <div
+                                                                    class="input-field input-group col xl12 l12 m12 s12">
+                                                                    <i class="material-icons prefix">person</i>
+                                                                    <input id="last_name1" name="last_name1" type="text"
+                                                                        maxlength="60" uppercased
+                                                                        ng-model="newWorker.last_name1" required>
+                                                                    <label for="last_name1">Apellido
+                                                                        Paterno</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col xl6 l6 m6 p-0">
+                                                                <div
+                                                                    class="input-field input-group col xl12 l12 m12 s12">
+                                                                    <i class="material-icons prefix">person</i>
+                                                                    <input id="last_name2" name="last_name2" type="text"
+                                                                        maxlength="60" uppercased
+                                                                        ng-model="newWorker.last_name2" required>
+                                                                    <label for="last_name2">Apellido
+                                                                        Materno</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-field input-group col xl12 l12 m12 s12">
+                                                        <i class="material-icons prefix">person</i>
+                                                        <input id="names" name="names" type="text"
+                                                            maxlength="60" uppercased
+                                                            ng-model="newWorker.names" required>
+                                                        <label for="names">Nombres</label>
+                                                    </div>
+                                                    <div class="input-field input-group col xl12 l12 m12 s12">
+                                                        <i class="material-icons prefix">event</i>
+                                                        <input id="birth_date" name="birth_date" type="date"
+                                                            ng-model="newWorker.cod_planilla">
+                                                        <label for="birth_date">Fecha de Nacimiento</label>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div>
+                                                            <div class="col xl6 l6 m6 p-0">
+                                                                <div
+                                                                    class="input-field input-group col xl12 l12 m12 s12">
+                                                                    <i class="material-icons prefix">contacts</i>
+                                                                    <input id="tuition_code" name="tuition_code"
+                                                                        maxlength="10"
+                                                                        type="text" ng-model="newWorker.tuition_code" pattern="\d*">
+                                                                    <label for="tuition_code">Colegiatura</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col xl6 l6 m6 p-0">
+                                                                <div
+                                                                    class="input-field input-group col xl12 l12 m12 s12">
+                                                                    <i class="material-icons prefix">contacts</i>
+                                                                    <input id="payroll_code" name="payroll_code"
+                                                                        maxlength="10"
+                                                                        type="text" ng-model="newWorker.payroll_code" pattern="\d*">
+                                                                    <label for="payroll_code">Cód. Planilla</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col s6">
+                                        <div class="row mb-3">
+                                            <div class="col xl12 l12 m12 s12">
+                                                <!--Json data treeview example -->
+                                                <div class="row">
+                                                    <div class="input-field input-group col xl12 l12 m12 s12">
+                                                        <i class="material-icons prefix">groups</i>
+                                                        <select id="worker_occupational_group_id"
+                                                            ng-model="newWorker.worker_occupational_group_id"
+                                                            material-select watch> required
+                                                            <option value="" disabled selected>{{
+                                                                worker_occupational_group_empty }}</option>
+                                                            <option ng-value="worker_occupational_group.id"
+                                                                ng-repeat="worker_occupational_group in worker_occupational_groups">{{ worker_occupational_group.description }}
+                                                            </option>
+                                                        </select>
+                                                        <label for="worker_occupational_group_id">Grupo
+                                                            Ocupacional</label>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div>
+                                                            <div class="col xl6 l6 m6 p-0">
+                                                                <div
+                                                                    class="input-field input-group col xl12 l12 m12 s12">
+                                                                    <i class="material-icons prefix">home_health</i>
+                                                                    <select id="belongs_other_cas"
+                                                                        ng-model="newWorker.belongs_other_cas"
+                                                                        material-select watch required>
+                                                                        <option value="SI">SÍ</option>
+                                                                        <option value="NO">NO</option>
+                                                                    </select>
+                                                                    <label for="belongs_other_cas">Pertenece a otro
+                                                                        CAS</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col xl6 l6 m6 p-0">
+                                                                <div
+                                                                    class="input-field input-group col xl12 l12 m12 s12">
+                                                                    <i class="material-icons prefix">person_apron</i>
+                                                                    <select id="worker_condition_id"
+                                                                        ng-model="newWorker.worker_condition_id"
+                                                                        material-select watch required>
+                                                                        <option value="" disabled selected>{{
+                                                                            worker_condition_empty }}</option>
+                                                                        <option ng-value="worker_condition.id"
+                                                                            ng-repeat="worker_condition in worker_conditions">{{ worker_condition.description }}
+                                                                        </option>
+                                                                    </select>
+                                                                    <label for="worker_condition_id">Condición
+                                                                        Laboral</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-field input-group col xl12 l12 m12 s12">
+                                                        <i class="material-icons prefix">perm_contact_calendar</i>
+                                                        <select id="tipo_epp"
+                                                            ng-model="newWorker.worker_medical_speciality_id"
+                                                            material-select watch required>
+                                                            <option value="" disabled selected>{{
+                                                                worker_medical_speciality_empty }}</option>
+                                                            <option ng-value="worker_medical_speciality.id"
+                                                                ng-repeat="worker_medical_speciality in worker_medical_specialities">{{ worker_medical_speciality.description }}
+                                                            </option>
+                                                        </select>
+                                                        <label for="worker_medical_speciality_id">Especialidad</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3" ng-hide="loading">
+                                    <div class="col xl12 l12 m12 s12">
+                                        <button
+                                            class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right btn-submit"
+                                            type="submit">
+                                            <span class="hide-on-small-onl">Registrar</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

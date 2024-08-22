@@ -37,36 +37,16 @@
                     class="material-icons">home</i><span class="menu-title">Inicio</span></a>
         </li>
         <!--
-        <li class="bold" ng-if="user.rol === 'Administrador'">
-            <a class="waves-effect waves-cyan" ui-sref="admin.programacionesLoad" ui-sref-active="active"
-                ng-click="resetLinks()"><i class="material-icons">ios_share</i><span class="menu-title">Cargar
-                    Programación</span></a>
-        </li>
-        -->
         <li class="bold" ng-if="user.rol === 'Farmacia'">
             <a class="waves-effect waves-cyan" ui-sref="admin.solicitudesAdd" ui-sref-active="active"
                 ng-click="resetLinks()"><i class="material-icons">add_circle</i><span class="menu-title">Nueva
                     Solicitud</span></a>
         </li>
+        -->
         <li class="bold" ng-if="user.rol === 'Farmacia'">
-            <a class="waves-effect waves-cyan" ui-sref="admin.programacionesEntrega" ui-sref-active="active"
+            <a class="waves-effect waves-cyan" ui-sref="admin.productRequestsAttend" ui-sref-active="active"
                 ng-click="resetLinks()"><i class="material-icons">accessibility_new</i><span
-                    class="menu-title">Registrar Entrega de EPP's</span></a>
-        </li>
-        <li class="bold" ng-if="user.rol === 'Vestidores'">
-            <a class="waves-effect waves-cyan" ui-sref="admin.vestidoresRegister" ui-sref-active="active"
-                ng-click="resetLinks()"><i class="material-icons">accessibility_new</i><span
-                    class="menu-title">Registrar en Vestidores</span></a>
-        </li>
-        <li class="bold" ng-if="user.rol === 'Lavandería'">
-            <a class="waves-effect waves-cyan" ui-sref="admin.lavanderiaRegister" ui-sref-active="active"
-                ng-click="resetLinks()"><i class="material-icons">assignment_ind</i><span class="menu-title">Registrar
-                    en Lavandería</span></a>
-        </li>
-        <li class="bold" ng-if="user.rol === 'Farmacia'">
-            <a class="waves-effect waves-cyan" ui-sref="admin.solicitudesDevolver" ui-sref-active="active"
-                ng-click="resetLinks()"><i class="material-icons">reply_all</i><span class="menu-title">Registrar
-                    Devolución</span></a>
+                    class="menu-title">Atender Solicitud de EPP's</span></a>
         </li>
         <li class="bold" ng-if="user.rol === 'Farmacia'">
             <a class="waves-effect waves-cyan" ui-sref="admin.productosEntregar" ui-sref-active="active"
@@ -84,18 +64,13 @@
                                 Protección</span></a>
                     </li>
                     <li class="bold" ng-if="user.rol === 'Administrador'">
-                        <a class="waves-effect waves-cyan" ui-sref="admin.colaboradoresIndex" ui-sref-active="active"><i
+                        <a class="waves-effect waves-cyan" ui-sref="admin.workersIndex" ui-sref-active="active"><i
                                 class="material-icons">assignment_ind</i><span
                                 class="menu-title">Colaboradores</span></a>
                     </li>
                     <li class="bold" ng-if="user.rol === 'Administrador'">
                         <a class="waves-effect waves-cyan" ui-sref="admin.usersIndex" ui-sref-active="active"><i
                                 class="material-icons">account_box</i><span class="menu-title">Usuarios</span></a>
-                    </li>
-                    <li class="bold" ng-if="user.rol === 'Administrador'">
-                        <a class="waves-effect waves-cyan" ui-sref="admin.supervisoresIndex" ui-sref-active="active"><i
-                                class="material-icons">account_circle</i><span
-                                class="menu-title">Supervisores</span></a>
                     </li>
                     <li class="bold" ng-if="user.rol === 'Administrador'">
                         <a class="waves-effect waves-cyan" ui-sref="admin.solicitudesIndex" ui-sref-active="active"><i
@@ -147,11 +122,6 @@
                     </li>
                 </ul>
             </div>
-        </li>
-        <li class="bold" ng-if="user.rol === 'Administrador' || user.rol === 'Farmacia'">
-            <a class="waves-effect waves-cyan" ui-sref="admin.indumentariaLiberar" ui-sref-active="active"
-                ng-click="resetLinks()"><i class="material-icons">label_outline</i><span class="menu-title">Liberar
-                    Indumentaria</span></a>
         </li>
         <li class="bold" ng-if="user.rol === 'Lavandería'">
             <a class="waves-effect waves-cyan" ui-sref="admin.lavanderiaRegularizar" ui-sref-active="active"

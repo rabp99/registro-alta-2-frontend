@@ -11,7 +11,7 @@
             </div>
             <div class="col s2 m6 l6">
                 <a class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right"
-                    ui-sref="admin.colaboradoresAdd" ng-disabled="loading">
+                    ui-sref="admin.workersAdd" ng-disabled="loading">
                     <i class="material-icons left">add</i>
                     <span class="hide-on-small-onl">Nuevo Colaborador </span>
                 </a>
@@ -31,35 +31,37 @@
                             <div class="row">
                                 <div class="input-field col xl3 l3 m3 s4">
                                     <i class="material-icons prefix">tag</i>
-                                    <input id="dni_medico" type="text" class="validate" ng-model="search.dni_medico">
-                                    <label for="dni_medico">N° de DNI</label>
+                                    <input id="dni_medico" type="text" class="validate"
+                                        ng-model="search.document_number">
+                                    <label for="dni_medico">N° de Documento</label>
                                 </div>
                                 <div class="input-field col xl3 l3 m3 s4">
                                     <button type="button"
                                         class="btn dropdown-settings waves-effect waves-light right breadcrumbs-btn"
-                                        ng-click="searchColaboradores()">
+                                        ng-click="searchWorkers()">
                                         <span class="hide-on-small-onl">Buscar </span>
                                         <i class="material-icons right">search</i>
                                     </button>
                                 </div>
                             </div>
                             <div>
-                                Total de registros encontrados: <span ng-show="!tableColaboradores.loading">{{
-                                    tableColaboradores.count }}</span>
+                                Total de registros encontrados: <span ng-show="!tableWorkers.loading">{{
+                                    tableWorkers.count }}</span>
                             </div>
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>DNI</th>
-                                        <th>Trabajador</th>
+                                        <th>N° Documento</th>
+                                        <th>Nombre Completo</th>
                                         <th>Cod. Planilla</th>
                                         <th>Grupo Ocupacional</th>
-                                        <th>Estado</th>
+                                        <th>Condición</th>
+                                        <th>Especialidad</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td colspan="5" ng-show="tableColaboradores.loading">
+                                        <td colspan="6" ng-show="tableWorkers.loading">
                                             <div class="center">
                                                 <div class="preloader-wrapper big active">
                                                     <div class="spinner-layer spinner-blue-only">
@@ -78,25 +80,25 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="5"
-                                            ng-show="!tableColaboradores.loading && tableColaboradores.count === 0">No
+                                        <td colspan="6" ng-show="!tableWorkers.loading && tableWorkers.count === 0">No
                                             se encontraron colaboradores</td>
                                     </tr>
-                                    <tr ng-repeat="colaborador in colaboradores" ng-show="!tableColaboradores.loading">
-                                        <td>{{ colaborador.dni_medico }}</td>
-                                        <td>{{ colaborador.nombre_completo }}</td>
-                                        <td>{{ colaborador.cod_planilla }}</td>
-                                        <td>{{ colaborador.grupo_ocupacional.descripcion }}</td>
-                                        <td>{{ colaborador.estado.descripcion }}</td>
+                                    <tr ng-repeat="worker in workers" ng-show="!tableWorkers.loading">
+                                        <td>{{ worker.document }}</td>
+                                        <td>{{ worker.full_name }}</td>
+                                        <td>{{ worker.payroll_code }}</td>
+                                        <td>{{ worker.worker_occupational_group.description }}</td>
+                                        <td>{{ worker.worker_condition.description }}</td>
+                                        <td>{{ worker.worker_medical_speciality.description }}</td>
                                     </tr>
                                 </tbody>
                             </table>
                             <div class="center">
-                                <pagination class="pagination" page="tableColaboradores.page"
-                                    page-size="tableColaboradores.pagination.itemsPerPage"
-                                    total="tableColaboradores.count" show-prev-next="true" use-simple-prev-next="false"
-                                    dots="...." hide-if-empty="false" adjacent="2" scroll-top="false"
-                                    pagination-action="tableColaboradores.pageChanged(page)" />
+                                <pagination class="pagination" page="tableWorkers.page"
+                                    page-size="tableWorkers.pagination.itemsPerPage" total="tableWorkers.count"
+                                    show-prev-next="true" use-simple-prev-next="false" dots="...." hide-if-empty="false"
+                                    adjacent="2" scroll-top="false"
+                                    pagination-action="tableWorkers.pageChanged(page)" />
                             </div>
                         </div>
                     </div>

@@ -20,7 +20,9 @@
                             <div class="center">
                                 <img src="images/loading.gif" alt="cargando" ng-show="loading">
                             </div>
-                            <form ng-submit="solicitar(trabajador, programacionSelected, area_ingreso, tipo_epp, cantidad)" ng-show="!loading">
+                            <form
+                                ng-submit="solicitar(trabajador, programacionSelected, area_ingreso, tipo_epp, cantidad)"
+                                ng-show="!loading">
                                 <div class="row mb-3">
                                     <div class="col xl12 l2 m12 s12" ng-show="step === 1">
                                         <!--Json data treeview example -->
@@ -31,22 +33,27 @@
                                                 <div class="spinner-layer spinner-blue-only">
                                                     <div class="circle-clipper left">
                                                         <div class="circle"></div>
-                                                    </div><div class="gap-patch">
+                                                    </div>
+                                                    <div class="gap-patch">
                                                         <div class="circle"></div>
-                                                    </div><div class="circle-clipper right">
+                                                    </div>
+                                                    <div class="circle-clipper right">
                                                         <div class="circle"></div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row"  ng-hide="loadingProgramacionesAvailables">
+                                        <div class="row" ng-hide="loadingProgramacionesAvailables">
                                             <div class="row">
                                                 <div class="input-field input-group col xl l6 m12 s12">
                                                     <i class="material-icons prefix">person</i>
-                                                    <input id="dni_medico" name="dni_medico" type="text" class="validate" ng-model="dni_medico" maxlength="9" required>
+                                                    <input id="dni_medico" name="dni_medico" type="text"
+                                                        class="validate" ng-model="dni_medico" maxlength="9" required>
                                                     <label for="dni_medico">Número de Documento</label>
                                                     <span class="suffix">
-                                                        <button type="button" ng-click="search(dni_medico)" ng-class="{disabled: (dni_medico.length < 8 || dni_medico === undefined)}" class="btn waves-effect waves-light btn-search">
+                                                        <button type="button" ng-click="search(dni_medico)"
+                                                            ng-class="{disabled: (dni_medico.length < 8 || dni_medico === undefined)}"
+                                                            class="btn waves-effect waves-light btn-search">
                                                             <i class="material-icons">{{ searching }}</i>
                                                         </button>
                                                     </span>
@@ -55,17 +62,22 @@
                                             <div class="row" ng-hide="trabajador.ndoc === undefined">
                                                 <div class="input-field col xl12 l12 m12 s12">
                                                     <i class="material-icons prefix">account_box</i>
-                                                    <input id="profesional" name="profesional" type="text" class="validate" ng-model="trabajador.full_name" required readonly>
+                                                    <input id="profesional" name="profesional" type="text"
+                                                        class="validate" ng-model="trabajador.full_name" required
+                                                        readonly>
                                                     <label for="profesional">Profesional</label>
                                                 </div>
                                                 <div class="input-field col xl6 l6 m12 s12">
                                                     <i class="material-icons prefix">description</i>
-                                                    <input id="cod_planilla" name="area" type="text" class="validate" ng-model="trabajador.cp" required readonly>
+                                                    <input id="cod_planilla" name="area" type="text" class="validate"
+                                                        ng-model="trabajador.cp" required readonly>
                                                     <label for="cod_planilla">Código Planilla</label>
                                                 </div>
                                                 <div class="input-field col xl6 l6 m12 s12">
                                                     <i class="material-icons prefix">person</i>
-                                                    <input id="grupo_ocupacional" name="grupo_ocupacional" type="text" class="validate" ng-model="trabajador.grupo_ocupacional" required readonly>
+                                                    <input id="grupo_ocupacional" name="grupo_ocupacional" type="text"
+                                                        class="validate" ng-model="trabajador.grupo_ocupacional"
+                                                        required readonly>
                                                     <label for="grupo_ocupacional">Grupo Ocupacional</label>
                                                 </div>
                                             </div>
@@ -79,9 +91,13 @@
                                             <div class="row">
                                                 <div class="input-field col xl6 l6 m12 s12">
                                                     <i class="material-icons prefix">schedule</i>
-                                                    <select id="turno" ng-model="turno" material-select watch name="turno" ng-change="onTurnoSelected(turno)">
-                                                        <option value="" ng-if="programacionesAvailables.length !== 1">Seleccione un Turno</option>
-                                                        <option ng-value="programacionAvailable.turno" ng-repeat="programacionAvailable in programacionesAvailables">{{ programacionAvailable.turno }}</option>
+                                                    <select id="turno" ng-model="turno" material-select watch
+                                                        name="turno" ng-change="onTurnoSelected(turno)">
+                                                        <option value="" ng-if="programacionesAvailables.length !== 1">
+                                                            Seleccione un Turno</option>
+                                                        <option ng-value="programacionAvailable.turno"
+                                                            ng-repeat="programacionAvailable in programacionesAvailables">
+                                                            {{ programacionAvailable.turno }}</option>
                                                     </select>
                                                     <label for="turno">Turno</label>
                                                 </div>
@@ -89,22 +105,27 @@
                                             <div class='row' ng-hide="turno === ''">
                                                 <div class="input-field col xl6 l6 m12 s12">
                                                     <i class="material-icons prefix">local_hospital</i>
-                                                    <input id="area" name="area" type="text" class="validate" ng-model="programacionSelected.area" required readonly>
+                                                    <input id="area" name="area" type="text" class="validate"
+                                                        ng-model="programacionSelected.area" required readonly>
                                                     <label for="area">Área</label>
                                                 </div>
                                                 <div class="input-field col xl6 l6 m12 s12">
                                                     <i class="material-icons prefix">local_hospital</i>
-                                                    <input id="servicio" name="servicio" type="text" class="validate" ng-model="programacionSelected.servicio" required readonly>
+                                                    <input id="servicio" name="servicio" type="text" class="validate"
+                                                        ng-model="programacionSelected.servicio" required readonly>
                                                     <label for="servicio">Servicio</label>
                                                 </div>
                                                 <div class="input-field col xl12 l12 m12 s12">
                                                     <i class="material-icons prefix">local_hospital</i>
-                                                    <input id="actividad" name="servicio" type="text" class="validate" ng-model="programacionSelected.actividad" required readonly>
+                                                    <input id="actividad" name="servicio" type="text" class="validate"
+                                                        ng-model="programacionSelected.actividad" required readonly>
                                                     <label for="actividad">Actividad</label>
                                                 </div>
                                                 <div class="input-field col xl12 l12 m12 s12">
                                                     <i class="material-icons prefix">local_hospital</i>
-                                                    <input id="subactividad" name="subactividad" type="text" class="validate" ng-model="programacionSelected.subactividad" required readonly>
+                                                    <input id="subactividad" name="subactividad" type="text"
+                                                        class="validate" ng-model="programacionSelected.subactividad"
+                                                        required readonly>
                                                     <label for="subactividad">Sub Actividad</label>
                                                 </div>
                                             </div>
@@ -119,19 +140,24 @@
                                                 <div class="col xl12 l12 m12 s12">
                                                     <div>
                                                         <label>
-                                                            <input class="with-gap" name="area_ingreso" type="radio" value="ÁREAS DE HOSPITALIZACIÓN" ng-model="area_ingreso"/>
+                                                            <input class="with-gap" name="area_ingreso" type="radio"
+                                                                value="ÁREAS DE HOSPITALIZACIÓN"
+                                                                ng-model="area_ingreso" />
                                                             <span>ÁREAS DE HOSPITALIZACIÓN</span>
                                                         </label>
                                                     </div>
                                                     <div>
                                                         <label>
-                                                            <input class="with-gap" name="area_ingreso" type="radio" value="ÁREAS EXTERNAS" ng-model="area_ingreso"/>
+                                                            <input class="with-gap" name="area_ingreso" type="radio"
+                                                                value="ÁREAS EXTERNAS" ng-model="area_ingreso" />
                                                             <span>ÁREAS EXTERNAS</span>
                                                         </label>
                                                     </div>
                                                     <div>
                                                         <label>
-                                                            <input class="with-gap" name="area_ingreso" type="radio" value="ÁREA HOSPITALIZACIÓN VILLA ES SALUD" ng-model="area_ingreso"/>
+                                                            <input class="with-gap" name="area_ingreso" type="radio"
+                                                                value="ÁREA HOSPITALIZACIÓN VILLA ES SALUD"
+                                                                ng-model="area_ingreso" />
                                                             <span>ÁREA HOSPITALIZACIÓN VILLA ES SALUD</span>
                                                         </label>
                                                     </div>
@@ -147,16 +173,21 @@
                                             <div class="row">
                                                 <div class="input-field col xl6 l6 m12 s12">
                                                     <i class="material-icons prefix">accessibility</i>
-                                                    <select id="tipo_epp" ng-model="tipo_epp" material-select watch name="tipo_epp">
-                                                        <option value="" ng-if="tipos_epps.length !== 1">Seleccione un Tipo de EPP</option>
-                                                        <option ng-value="tipos_epp" ng-repeat="tipos_epp in tipos_epps">{{ tipos_epp }}</option>
+                                                    <select id="tipo_epp" ng-model="tipo_epp" material-select watch
+                                                        name="tipo_epp">
+                                                        <option value="" ng-if="tipos_epps.length !== 1">Seleccione un
+                                                            Tipo de EPP</option>
+                                                        <option ng-value="tipos_epp"
+                                                            ng-repeat="tipos_epp in tipos_epps">{{ tipos_epp }}</option>
                                                     </select>
                                                     <label for="tipo_epp">Tipo de EPP</label>
                                                 </div>
                                                 <div class="input-field col xl6 l6 m12 s12">
                                                     <i class="material-icons prefix">tag</i>
-                                                    <select id="cantidad" ng-model="cantidad" material-select watch name="cantidad">
-                                                        <option ng-value="option" ng-repeat="option in cantidad_options">{{ option }}</option>
+                                                    <select id="cantidad" ng-model="cantidad" material-select watch
+                                                        name="cantidad">
+                                                        <option ng-value="option"
+                                                            ng-repeat="option in cantidad_options">{{ option }}</option>
                                                     </select>
                                                     <label for="cantidad">Cantidad</label>
                                                 </div>
@@ -172,9 +203,11 @@
                                                 <div class="spinner-layer spinner-blue-only">
                                                     <div class="circle-clipper left">
                                                         <div class="circle"></div>
-                                                    </div><div class="gap-patch">
+                                                    </div>
+                                                    <div class="gap-patch">
                                                         <div class="circle"></div>
-                                                    </div><div class="circle-clipper right">
+                                                    </div>
+                                                    <div class="circle-clipper right">
                                                         <div class="circle"></div>
                                                     </div>
                                                 </div>
@@ -188,7 +221,8 @@
                                                     <p>{{ trabajador.full_name }}</p>
                                                     <h6 ng-show="!onEmergencia">Turno:</h6>
                                                     <p ng-show="!onEmergencia">{{ programacionSelected.turno }}</p>
-                                                    <p ng-show="!onEmergencia">{{ programacionSelected.area }} / {{ programacionSelected.servicio }}</p>
+                                                    <p ng-show="!onEmergencia">{{ programacionSelected.area }} / {{
+                                                        programacionSelected.servicio }}</p>
                                                     <h6>Detalle:</h6>
                                                     <p>{{ area_ingreso }}</p>
                                                     <p>{{ cantidad }} -> {{ tipo_epp }}</p>
@@ -199,18 +233,27 @@
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col xl12 l12 s12 m12">
-                                        <button class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn left" ng-click="goTo(step -1)" type="button" ng-show="step !== 1">
+                                        <button
+                                            class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn left"
+                                            ng-click="goTo(step -1)" type="button" ng-show="step !== 1">
                                             <span class="hide-on-small-onl">&lt;&lt; Anterior</span>
                                         </button>
-                                        <button class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right" ng-click="goTo(step + 1)" type="button" ng-show="step !== 5">
+                                        <button
+                                            class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right"
+                                            ng-click="goTo(step + 1)" type="button" ng-show="step !== 5">
                                             <span class="hide-on-small-onl">Siguiente &gt;&gt;</span>
-                                        </button> 
-                                        <button class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right btn-submit" type="submit" ng-show="step === 5">
+                                        </button>
+                                        <button
+                                            class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right btn-submit"
+                                            type="submit" ng-show="step === 5">
                                             <span class="hide-on-small-onl">Registrar</span>
                                         </button>
-                                        <button class="btn dropdown-settings gradient-45deg-red-pink breadcrumbs-btn right" ng-click="goTo(step + 2)" type="button" ng-show="showEmergencia" style="margin-right: 10px">
+                                        <button
+                                            class="btn dropdown-settings gradient-45deg-red-pink breadcrumbs-btn right"
+                                            ng-click="goTo(step + 2)" type="button" ng-show="showEmergencia"
+                                            style="margin-right: 10px">
                                             <span class="hide-on-small-onl">Solicitar de Emergencia</span>
-                                        </button> 
+                                        </button>
                                     </div>
                                 </div>
                             </form>

@@ -1,0 +1,283 @@
+<div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
+    <!-- Search for small screen-->
+    <div class="container">
+        <div class="row heading-page">
+            <div class="col offset-xl3 offset-l3 xl6 l6 m12 s12">
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Attender Solicitud de EPP's</span></h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col xl12 l12 m12 s12">
+    <div class="container">
+        <!-- Treeview  -->
+        <div class="section treeview-wrapper">
+            <!-- treeview description -->
+            <div class="row">
+                <div class="col xl8 l8 s12 offset-xl2">
+                    <div class="card card-tabs z-depth-4">
+                        <div class="card-content">
+                            <div class="mb-3">
+                                <div class="display-flex justify-content-center">
+                                    <button type="button" class="waves-effect waves-light btn box-shadow-none border-round mr-1 cursor-default-no-select"
+                                        ng-class="{'gradient-45deg-amber-amber': step === 1, 'gradient-45deg-light-blue-cyan': step !== 1}">
+                                        Información Personal
+                                    </button>
+                                    <button type="button" class="waves-effect waves-light btn box-shadow-none border-round mr-1 cursor-default-no-select"
+                                        ng-class="{'gradient-45deg-amber-amber': step === 2, 'gradient-45deg-light-blue-cyan': step !== 2}">
+                                        Lugar de Trabajo
+                                    </button>
+                                    <button type="button" class="waves-effect waves-light btn box-shadow-none border-round mr-1 cursor-default-no-select"
+                                        ng-class="{'gradient-45deg-amber-amber': step === 3, 'gradient-45deg-light-blue-cyan': step !== 3}">
+                                        Área
+                                    </button>
+                                    <button type="button" class="waves-effect waves-light btn box-shadow-none border-round mr-1 cursor-default-no-select"
+                                        ng-class="{'gradient-45deg-amber-amber': step === 4, 'gradient-45deg-light-blue-cyan': step !== 4}">
+                                        Registrar Solicitud
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="step1" ng-show="step === 1">
+                                <form ng-submit="onSelectWorker(selectedWorker)">
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <div class="input-field input-group col offset-m3 m6 s12">
+                                                <i class="material-icons prefix">assignment_ind</i>
+                                                <select id="worker_document_type" ng-model="worker_document_type"
+                                                    required material-select>
+                                                    <option value="DNI">DNI</option>
+                                                    <option value="CE">CE</option>
+                                                </select>
+                                                <label for="worker_document_type">Tipo de Documento</label>
+                                            </div>
+                                        </div>
+                                        <div class="col s12">
+                                            <div class="input-field input-group col offset-m3 m6 s12">
+                                                <i class="material-icons prefix">tag</i>
+                                                <input id="worker_document_number" type="text"
+                                                    class="validate" ng-model="worker_document_number"
+                                                    ng-keypress="checkEnter($event)"
+                                                    maxlength="8" required pattern="\d*">
+                                                <label for="worker_document_number">Número de Documento</label>
+                                                <span class="suffix">
+                                                    <button type="button" ng-click="searchWorker(worker_document_type, worker_document_number)"
+                                                        ng-class="{disabled: (worker_document_number.length < 8 || worker_document_number === undefined)}"
+                                                        class="btn waves-effect waves-light btn-search">
+                                                        <i class="material-icons">search</i>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="center">
+                                            <img src="images/loading.gif" alt="Cargando" ng-show="searchingWorker">
+                                        </div>
+                                        <div ng-show="selectedWorker.full_name && !searchingWorker">
+                                            <div class="col s12">
+                                                <div class="input-field input-group col offset-m3 m6 s12">
+                                                    <i class="material-icons prefix">person</i>
+                                                    <input id="worker_full_name" type="text"
+                                                        ng-model="selectedWorker.full_name" readonly>
+                                                    <label for="worker_full_name">Nombre Completo</label>
+                                                </div>
+                                            </div>
+                                            <div class="col s12">
+                                                <div class="input-field input-group col offset-m3 m6 s12">
+                                                    <i class="material-icons prefix">groups</i>
+                                                    <input id="worker_worker_occupational_group_description" type="text"
+                                                        ng-model="selectedWorker.worker_occupational_group.description" readonly>
+                                                    <label for="worker_worker_occupational_group_description">Grupo Ocupacional</label>
+                                                </div>
+                                            </div>
+                                            <div class="col s12">
+                                                <div class="input-field input-group col offset-m3 m6 s12">
+                                                    <i class="material-icons prefix">perm_contact_calendar</i>
+                                                    <input id="worker_worker_medical_speciality_description" type="text"
+                                                        ng-model="selectedWorker.worker_medical_speciality.description" readonly>
+                                                    <label for="worker_worker_medical_speciality_description">Especialidad</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="display-flex justify-content-center">
+                                            <button
+                                                style="opacity: 0;"
+                                                disabled
+                                                class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right mr-1">
+                                                <span class="hide-on-small-onl">Anterior &gt;&gt;</span>
+                                            </button>
+                                            <button
+                                                ng-disabled="!selectedWorker.full_name"
+                                                class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right"
+                                                type="submit">
+                                                <span class="hide-on-small-onl">Siguiente &gt;&gt;</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div id="step2" ng-show="step === 2">
+                                <form ng-submit="onSelectProductRequest(selectedProductRequest)">
+                                    <div class="row mb-3">
+                                        <div class="col m6 mb-1" ng-repeat="productRequest in productRequests">
+                                            <div class="z-depth-1 padding-3">
+                                                <div class="display-flex justify-content-between">
+                                                    <h6 class="strong">Solciitud #{{ productRequest.code }}</h6>
+                                                    <label>
+                                                        <input type="radio"
+                                                            name="selectedProductRequestId" 
+                                                            ng-model="selectedProductRequestCode" 
+                                                            ng-value="{year: productRequest.year, number: productRequest.number}"
+                                                            ng-change="onRadioChange(selectedProductRequestCode)">
+                                                        <span></span>
+                                                    </label>
+                                                </div>
+                                                <hr>
+                                                <div class="mb-3">
+                                                    <p class="font-weight-600">Lugar de Trabajo</p>
+                                                    <p class="medium-small">{{ productRequest.work_area.workplace.description }}</p>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <p class="font-weight-600">Área</p>
+                                                    <p class="medium-small">{{ productRequest.work_area.description }}</p>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <p class="font-weight-600">Productos solicitados</p>
+                                                    <ul style="margin-top: 0px;">
+                                                        <li ng-repeat="kits_product_request in productRequest.kits_product_requests">
+                                                            {{ kits_product_request.amount }} {{ kits_product_request.kit.description }}
+                                                            <ul>
+                                                                <li ng-repeat="product_request_detail in kits_product_request.product_request_details" class="ml-4">
+                                                                    - {{ product_request_detail.amount }} {{ product_request_detail.product.description }}
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="display-flex justify-content-center">
+                                            <button
+                                                type="button"
+                                                ng-click="backToSelectWorker()"
+                                                class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right mr-1">
+                                                <span class="hide-on-small-onl">&lt;&lt; Anterior</span>
+                                            </button>
+                                            <button
+                                                ng-disabled="!selectedProductRequest"
+                                                class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right"
+                                                type="submit">
+                                                <span class="hide-on-small-onl">Siguiente &gt;&gt;</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div id="step3" ng-show="step === 3">
+                                <form ng-submit="onSign()">
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <div class="col offset-m3 m6 s12">
+                                                <h6>Firma del Trabajador</h6>
+                                                <hr>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col xl12 l12 m12 s12 ">
+                                            <div class="center-align">
+                                                <div class="border min-height-300 firma" style="min-width: 500px;">
+                                                    <img ng-show="signature" class="firma-img responsive-img"
+                                                        ng-src="{{ signature }}"
+                                                        alt="firma">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="display-flex justify-content-center">
+                                            <button
+                                                class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right mr-1">
+                                                <span class="hide-on-small-onl">&lt;&lt; Anterior</span>
+                                            </button>
+                                            <button
+                                                class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right"
+                                                type="submit">
+                                                <span class="hide-on-small-onl">Siguiente &gt;&gt;</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div id="step4" ng-show="step === 4">
+                                <form ng-submit="save(productRequest)">
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <div class="input-field input-group col offset-m3 m6 s12">
+                                                <h5>RESUMEN DE LA SOLICITUD</h5>
+                                                <hr>
+                                                <div class="mb-3">
+                                                    <p class="font-weight-600">Número de Documento</p>
+                                                    <p class="medium-small">DNI: 10101010</p>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <p class="font-weight-600">Nombre del Trabajdor</p>
+                                                    <p class="medium-small">JIMÉNEZ MENDOZA, MIGUEL EDUARDO</p>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <p class="font-weight-600">Grupo Ocupacional</p>
+                                                    <p class="medium-small">MÉÐICO</p>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <p class="font-weight-600">Especialidad</p>
+                                                    <p class="medium-small">CIRUGIA GENERAL</p>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <p class="font-weight-600">Lugar de Trabajo</p>
+                                                    <p class="medium-small">HOSPITALIZACIÓN / </p>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <p class="font-weight-600">Área</p>
+                                                    <p class="medium-small">Examen físico y entrevista al paciente</p>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <p class="font-weight-600">Productos a Entregar</p>
+                                                    <ul style="margin-top: 0px;">
+                                                        <li>KIT N° 02
+                                                            <ul>
+                                                                <li>- RESPIRADOR D/PIEZA FACIAL FILTRANTE</li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="display-flex justify-content-center">
+                                            <button
+                                                class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right mr-1">
+                                                <span class="hide-on-small-onl">&lt;&lt; Anterior</span>
+                                            </button>
+                                            <button
+                                                class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right"
+                                                type="submit">
+                                                <span class="hide-on-small-onl">Registrar</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

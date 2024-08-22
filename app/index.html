@@ -1,5 +1,6 @@
 <!doctype html>
 <html class="loading" lang="es" data-textdirection="ltr" ng-app="registroAltaFrontendApp">
+
 <head>
     <meta charset="utf-8">
     <title ng-bind="title + ' - Registro de Entrada y Salida'">RALL</title>
@@ -19,8 +20,11 @@
     <link rel="stylesheet" type="text/css" href="app-assets/css/themes/horizontal-menu-template/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="app-assets/css/pages/page-search.min.css">
 </head>
-<body class="horizontal-layout page-header-light horizontal-menu preload-transitions 2-columns" data-open="click" data-menu="horizontal-menu" data-col="2-columns" ng-cloak>
+
+<body class="horizontal-layout page-header-light horizontal-menu preload-transitions 2-columns" data-open="click"
+    data-menu="horizontal-menu" data-col="2-columns" ng-cloak>
     <ui-view></ui-view>
+    <script src="app-assets/vendors/sweetalert/sweetalert.min.js"></script>
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -44,7 +48,7 @@
     <script src="bower_components/blob-polyfill/Blob.js"></script>
     <script src="bower_components/file-saver.js/FileSaver.js"></script>
     <script src="bower_components/angular-file-saver/dist/angular-file-saver.bundle.js"></script>
-    <script src="bower_components/angular-canvas-painter/dist/angular-canvas-painter.js"></script>
+    <script src="bower_components/angular-canvas-painter/dist/angular-canvas-painter.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -106,6 +110,23 @@
     <script src="scripts/controllers/supervisores/index.js"></script>
     <script src="scripts/controllers/supervisores/add.js"></script>
     <script src="scripts/controllers/solicitudes/index.js"></script>
+
+    <script src="scripts/services/workersservice.js"></script>
+    <script src="scripts/services/workeroccupationalgroupsservice.js"></script>
+    <script src="scripts/services/workerconditionsservice.js"></script>
+    <script src="scripts/services/workermedicalspecialitiesservice.js"></script>
+    <script src="scripts/services/workplacesservice.js"></script>
+    <script src="scripts/services/workareasservice.js"></script>
+    <script src="scripts/services/kitsworkareasservice.js"></script>
+    <script src="scripts/services/productrequestsservice.js"></script>
+    <script src="scripts/services/webSocketservice.js"></script>
+
+    <script src="scripts/controllers/workers/index.js"></script>
+    <script src="scripts/controllers/workers/add.js"></script>
+    <script src="scripts/controllers/product-requests/register.js"></script>
+    <script src="scripts/controllers/product-requests/attend.js"></script>
+    <script src="scripts/controllers/product-requests/signature.js"></script>
     <!-- endbuild -->
 </body>
+
 </html>

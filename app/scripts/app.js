@@ -362,6 +362,51 @@ angular
             title: 'Lista de Solicitudes'
         };
 
+        var workersIndexState = {
+            name: 'admin.workersIndex',
+            url: '/workers/',
+            templateUrl: 'views/workers/index.html',
+            controller: 'WorkersIndexCtrl',
+            controllerAs: 'workersIndex',
+            title: 'Colaboradores'
+        };
+
+        var workersAddState = {
+            name: 'admin.workersAdd',
+            url: '/workers/add',
+            templateUrl: 'views/workers/add.html',
+            controller: 'WorkersAddCtrl',
+            controllerAs: 'workersAdd',
+            title: 'Nuevo Colaborador'
+        };
+
+        var productRequestsRegisterState = {
+            name: 'public.productRequestsRegister',
+            url: '/product-requests/register',
+            templateUrl: 'views/product-requests/register.html',
+            controller: 'ProductRequestsRegisterCtrl',
+            controllerAs: 'productRequestsRegister',
+            title: 'Registrar Solicitud'
+        };
+
+        var productRequestsAttendState = {
+            name: 'admin.productRequestsAttend',
+            url: '/product-requests/attend',
+            templateUrl: 'views/product-requests/attend.html',
+            controller: 'ProductRequestsAttendCtrl',
+            controllerAs: 'productRequestsAttend',
+            title: 'Atender Solicitud de EPP\'s'
+        };
+
+        var productRequestsSignatureState = {
+            name: 'public.productRequestsSignature',
+            url: '/product-requests/signature',
+            templateUrl: 'views/product-requests/signature.html',
+            controller: 'ProductRequestsSignatureCtrl',
+            controllerAs: 'productRequestsSignature',
+            title: 'Firma'
+        };
+
         $stateProvider.state(adminState);
         $stateProvider.state(publicState);
         $stateProvider.state(loginState);
@@ -372,7 +417,7 @@ angular
         $stateProvider.state(usersAddState);
         $stateProvider.state(usersEditState);
         $stateProvider.state(usersViewState);
-        // $stateProvider.state(programacionesLoadState);
+        $stateProvider.state(programacionesLoadState);
         $stateProvider.state(programacionesSolicitudState);
         $stateProvider.state(programacionesExternoState);
         $stateProvider.state(programacionesEntregaState);
@@ -399,6 +444,12 @@ angular
         $stateProvider.state(supervisoresIndexState);
         $stateProvider.state(supervisoresAddState);
         $stateProvider.state(solicitudesIndexState);
+
+        $stateProvider.state(workersIndexState);
+        $stateProvider.state(workersAddState);
+        $stateProvider.state(productRequestsRegisterState);
+        $stateProvider.state(productRequestsAttendState);
+        $stateProvider.state(productRequestsSignatureState);
         $urlRouterProvider.otherwise('/admin');
     })
     .run(function ($rootScope, $transitions, $state, $window, $cookies) {
@@ -426,6 +477,8 @@ angular
                     trans.$to().name !== 'public.solicitudesFirma' &&
                     trans.$to().name !== 'public.programacionesExterno' &&
                     trans.$to().name !== 'public.programacionesSalida' &&
+                    trans.$to().name !== 'public.productRequestsRegister' &&
+                    trans.$to().name !== 'public.productRequestsSignature' &&
                     trans.$to().name !== 'public.programacionesEntrada') {
                     return $state.target('login.login');
                 }

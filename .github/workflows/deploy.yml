@@ -1,0 +1,28 @@
+name: Deploy to cPanel
+
+on:
+  push:
+    branches:
+      - main  # Cambia a la rama que quieras monitorear
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install lftp
+        run: sudo apt-get install lftp
+
+      - name: Deploy to cPanel via FTP
+        env:
+          FTP_HOST: staging.epps.hacvp.com	
+          FTP_USERNAME: deployer
+          FTP_PASSWORD: Arrosses9*.
+        run: |
+          lftp -c "
+          open ftp://$FTP_USERNAME:$FTP_PASSWORD@$FTP_HOST;
+          mirror -R ./ /public_html/ --delete --verbose;
+          "

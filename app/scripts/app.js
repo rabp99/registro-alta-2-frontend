@@ -20,7 +20,6 @@ angular
         'ngFileUpload',
         'pw.canvas-painter',
         'checklist-model',
-        'firebase',
         'ngFileSaver'
     ])
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {

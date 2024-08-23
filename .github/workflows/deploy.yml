@@ -56,9 +56,10 @@ jobs:
           set ssl:verify-certificate no;
           open ftp://$FTP_USERNAME:$FTP_PASSWORD@$FTP_HOST;
           # Elimina todo en el directorio raíz
-          rm -rf /dist/* /app-assets/* /fonts/*
+          rm -rf /*
           # Sube las carpetas necesarias
-          mirror -R --delete ./dist/ /dist/ --verbose;
+          mirror -R --delete ./dist/ / --verbose;
           mirror -R --delete ./app/app-assets/ /app-assets/ --verbose;
           mirror -R --delete ./app/fonts/ /fonts/ --verbose;
           "
+

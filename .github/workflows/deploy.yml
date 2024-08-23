@@ -25,7 +25,7 @@ jobs:
         run: npm install -g bower
 
       - name: Install Bower dependencies
-        run: bower install
+        run: bower install --force
       
       - name: Install Grunt CLI
         run: npm install -g grunt-cli

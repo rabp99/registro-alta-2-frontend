@@ -8,7 +8,7 @@
  * Controller of the registroAltaFrontendApp
  */
 angular.module('registroAltaFrontendApp')
-    .controller('ProgramacionesEntregaCtrl', function ($scope, $utilsViewService, $window, solicitudesService, tiposService, $firebaseObject, $firebaseArray) {
+    .controller('ProgramacionesEntregaCtrl', function ($scope, $utilsViewService, $window, solicitudesService, tiposService) {
         $scope.init = function () {
             $scope.dni_medico = '';
             $scope.searching = 'search';
@@ -211,33 +211,6 @@ angular.module('registroAltaFrontendApp')
         };
 
         $scope.waitFirma = function () {
-            var today = new Date();
-
-            var id = $utilsViewService.makeid(4) + $utilsViewService.formatDateToSql2(today);
-
-            firebase.auth().signInAnonymously().then(function () {
-                var ref = firebase.database().ref().child('firmas/' + id);
-                $scope.firma = $firebaseObject(ref);
-                $scope.firma.$loaded().then(function () {
-                    if ($scope.firma.codigo === undefined) {
-                        $scope.firma.$value = {
-                            fecha: $utilsViewService.formatDateToSql(today),
-                            codigo: id.substr(0, 4)
-                        };
-                        $scope.firma.$save().then(function (firma) {
-                            $scope.idFound = true;
-                            $scope.showCodigo = true;
-                        }).catch(function (error) {
-                            Materialize.toast('Error', 4000);
-                        });
-                    } else {
-                        $scope.showCodigo = false;
-                        $scope.waitFirma();
-                    }
-                });
-            }).catch(function (error) {
-                console.error('Error al autenticar anónimamente:', error);
-            });
         };
 
         $scope.saveFirma = function () {

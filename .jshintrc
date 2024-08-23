@@ -14,7 +14,6 @@
     "angular": false,
     "$": false,
     "confirm": false,
-    "Materialize": false,
-    "firebase": false
+    "Materialize": false
   }
 }

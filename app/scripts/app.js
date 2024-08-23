@@ -20,16 +20,9 @@ angular
         'ngFileUpload',
         'pw.canvas-painter',
         'checklist-model',
-        'ngFileSaver'
     ])
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         $httpProvider.interceptors.push('oauthHttpInterceptor');
-        var config = {
-            apiKey: 'AIzaSyAnnhkAPF_Jm7T9mOW03WjxtjaE3NPDk7g',
-            authDomain: 'ralta-essalud.firebaseapp.com"',
-            databaseURL: 'https://ralta-essalud-default-rtdb.firebaseio.com'
-        };
-        firebase.initializeApp(config);
 
         var adminState = {
             name: 'admin',

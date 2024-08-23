@@ -8,7 +8,7 @@
  * Controller of the registroAltaFrontendApp
  */
 angular.module('registroAltaFrontendApp')
-    .controller('ProductRequestsSignatureCtrl', function ($scope, $utilsViewService, $window, solicitudesService, tiposService, $firebaseObject, $firebaseArray, webSocketService) {
+    .controller('ProductRequestsSignatureCtrl', function ($scope, $utilsViewService, $window, solicitudesService, tiposService, webSocketService) {
         $scope.init = function () {        
             $scope.worker_document_type = "DNI";
             $scope.worker_document_number = null;

@@ -9,11 +9,11 @@
  */
 angular.module('registroAltaFrontendApp')
     .factory('productRequestsService', function ($resource, envService) {
-        let url = 'product-requests';
-        return $resource(envService.getHost() + url + '/:id.json', {}, {
+        var endpointUrl = 'product-requests';
+        return $resource(envService.getHost() + endpointUrl + '/:id.json', {}, {
             getActiveByWorker: {
                 method: 'GET',
-                url: envService.getHost() + url + '/get-active-by-worker/:document_type/:document_number.json'
+                url: envService.getHost() + endpointUrl + '/get-active-by-worker/:document_type/:document_number.json'
             },
         });
     });

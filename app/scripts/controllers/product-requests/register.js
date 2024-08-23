@@ -124,8 +124,8 @@ angular.module('registroAltaFrontendApp')
     }
 
     $scope.save = function() {
-        let kitsProductRequests = $scope.kits.map(function(kit) {
-            let productRequestDetails = kit.products.map(function (product) {
+        var kitsProductRequests = $scope.kits.map(function(kit) {
+            var productRequestDetails = kit.products.map(function (product) {
                 return {
                     product_id: product.id,
                     amount: product.amount
@@ -138,7 +138,7 @@ angular.module('registroAltaFrontendApp')
                 product_request_details: productRequestDetails
             };
         });
-        let productRequest = {
+        var productRequest = {
             document_type: $scope.selectedWorker.document_type,
             document_number: $scope.selectedWorker.document_number,
             work_area_id: $scope.selectedWorkArea.id,

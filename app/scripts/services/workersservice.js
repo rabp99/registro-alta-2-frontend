@@ -9,25 +9,25 @@
  */
 angular.module('registroAltaFrontendApp')
     .factory('workersService', function ($resource, envService) {
-        let url = 'workers';
-        return $resource(envService.getHost() + url + '/:id.json', {}, {
+        var endpointUrl = 'workers';
+        return $resource(envService.getHost() + endpointUrl + '/:id.json', {}, {
             findByDocument: {
                 method: 'GET',
-                url: envService.getHost() + url + '/find-by-document/:document_type/:document_number.json'
+                url: envService.getHost() + endpointUrl + '/find-by-document/:document_type/:document_number.json'
             },
 
 
             findByDni: {
                 method: 'GET',
-                url: envService.getHost() + url + '/find_by_dni/:dni.json'
+                url: envService.getHost() + endpointUrl + '/find_by_dni/:dni.json'
             },
             getEnabled: {
                 method: 'GET',
-                url: envService.getHost() + url + '/get_enabled.json'
+                url: envService.getHost() + endpointUrl + '/get_enabled.json'
             },
             checkColaboradorProgramadoHoy: {
                 method: 'GET',
-                url: envService.getHost() + url + '/check-colaborador-programado-hoy/:dni_medico.json'
+                url: envService.getHost() + endpointUrl + '/check-colaborador-programado-hoy/:dni_medico.json'
             }
         });
     });

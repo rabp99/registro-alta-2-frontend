@@ -12,9 +12,7 @@ angular.module('registroAltaFrontendApp')
         $scope, 
         workersService,
         productRequestsService,
-        webSocketService,
-        
-        $window, solicitudesService, tiposService, $firebaseObject, $firebaseArray, 
+        webSocketService
     ) {
         var waitingSignature = false;
 

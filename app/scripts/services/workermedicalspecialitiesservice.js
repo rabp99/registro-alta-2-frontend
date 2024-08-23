@@ -9,11 +9,11 @@
  */
 angular.module('registroAltaFrontendApp')
     .factory('workerMedicalSpecialitiesService', function ($resource, envService) {
-        let url = 'worker-medical-specialities';
-        return $resource(envService.getHost() + url + '/:id.json', {}, {
+        var endpointUrl = 'worker-medical-specialities';
+        return $resource(envService.getHost() + endpointUrl + '/:id.json', {}, {
             getList: {
                 method: 'GET',
-                url: envService.getHost() + url + '/get-list.json'
+                url: envService.getHost() + endpointUrl + '/get-list.json'
             },
         });
     });

@@ -119,44 +119,44 @@
                             </div>
 
                             <div id="step2" ng-show="step === 2">
-                                <form ng-submit="onSelectProductRequest(selectedProductRequest)">
+                                <form ng-submit="onSelectProductRequest()">
                                     <div class="row mb-3">
                                         <div class="col m6 mb-1" ng-repeat="productRequest in productRequests">
-                                            <div class="z-depth-1 padding-3">
-                                                <div class="display-flex justify-content-between">
-                                                    <h6 class="strong">Solciitud #{{ productRequest.code }}</h6>
-                                                    <label>
+                                            <label class="cursor-pointer">
+                                                <div class="z-depth-1 padding-3" style="min-height: 420px;">
+                                                    <div class="display-flex justify-content-between">
+                                                        <h6 class="strong">Solciitud #{{ productRequest.code }}</h6>
                                                         <input type="radio"
                                                             name="selectedProductRequestId" 
                                                             ng-model="selectedProductRequestCode" 
                                                             ng-value="{year: productRequest.year, number: productRequest.number}"
-                                                            ng-change="onRadioChange(selectedProductRequestCode)">
+                                                            ng-change="selectProductRequest(selectedProductRequestCode)">
                                                         <span></span>
-                                                    </label>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="mb-3">
+                                                        <p class="font-weight-600">Lugar de Trabajo</p>
+                                                        <p class="medium-small">{{ productRequest.work_area.workplace.description }}</p>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <p class="font-weight-600">Área</p>
+                                                        <p class="medium-small">{{ productRequest.work_area.description }}</p>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <p class="font-weight-600">Productos solicitados</p>
+                                                        <ul style="margin-top: 0px;">
+                                                            <li ng-repeat="kits_product_request in productRequest.kits_product_requests">
+                                                                {{ kits_product_request.amount }} {{ kits_product_request.kit.description }}
+                                                                <ul>
+                                                                    <li ng-repeat="product_request_detail in kits_product_request.product_request_details" class="ml-4">
+                                                                        - {{ product_request_detail.amount }} {{ product_request_detail.product.description }}
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
-                                                <hr>
-                                                <div class="mb-3">
-                                                    <p class="font-weight-600">Lugar de Trabajo</p>
-                                                    <p class="medium-small">{{ productRequest.work_area.workplace.description }}</p>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <p class="font-weight-600">Área</p>
-                                                    <p class="medium-small">{{ productRequest.work_area.description }}</p>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <p class="font-weight-600">Productos solicitados</p>
-                                                    <ul style="margin-top: 0px;">
-                                                        <li ng-repeat="kits_product_request in productRequest.kits_product_requests">
-                                                            {{ kits_product_request.amount }} {{ kits_product_request.kit.description }}
-                                                            <ul>
-                                                                <li ng-repeat="product_request_detail in kits_product_request.product_request_details" class="ml-4">
-                                                                    - {{ product_request_detail.amount }} {{ product_request_detail.product.description }}
-                                                                </li>
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
+                                            </label>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -188,11 +188,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row mb-2">
                                         <div class="col xl12 l12 m12 s12 ">
                                             <div class="center-align">
                                                 <div class="border min-height-300 firma" style="min-width: 500px;">
-                                                    <img ng-show="signature" class="firma-img responsive-img"
+                                                    <img ng-show="signature" class="responsive-img"
                                                         ng-src="{{ signature }}"
                                                         alt="firma">
                                                 </div>
@@ -202,10 +202,13 @@
                                     <div class="row">
                                         <div class="display-flex justify-content-center">
                                             <button
+                                                ng-click="backToSelectProductRequest()"
+                                                type="button"
                                                 class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right mr-1">
                                                 <span class="hide-on-small-onl">&lt;&lt; Anterior</span>
                                             </button>
                                             <button
+                                                ng-disabled="!signature"
                                                 class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right"
                                                 type="submit">
                                                 <span class="hide-on-small-onl">Siguiente &gt;&gt;</span>
@@ -216,42 +219,71 @@
                             </div>
 
                             <div id="step4" ng-show="step === 4">
-                                <form ng-submit="save(productRequest)">
+                                <form ng-submit="save()">
                                     <div class="row">
-                                        <div class="col s12">
-                                            <div class="input-field input-group col offset-m3 m6 s12">
+                                        <div class="col offset-m2 m8 s12">
+                                            <div class="col m12 s12">
                                                 <h5>RESUMEN DE LA SOLICITUD</h5>
                                                 <hr>
+                                            </div>
+                                            <div class="col m6 s12">
                                                 <div class="mb-3">
                                                     <p class="font-weight-600">Número de Documento</p>
-                                                    <p class="medium-small">DNI: 10101010</p>
+                                                    <p class="medium-small">{{ selectedWorker.document_type }}: {{ selectedWorker.document_number }}</p>
                                                 </div>
+                                            </div>
+                                            <div class="col m6 s12">
                                                 <div class="mb-3">
                                                     <p class="font-weight-600">Nombre del Trabajdor</p>
-                                                    <p class="medium-small">JIMÉNEZ MENDOZA, MIGUEL EDUARDO</p>
+                                                    <p class="medium-small">{{ selectedWorker.full_name }}</p>
                                                 </div>
+                                            </div>
+                                            <div class="col m6 s12">
                                                 <div class="mb-3">
                                                     <p class="font-weight-600">Grupo Ocupacional</p>
-                                                    <p class="medium-small">MÉÐICO</p>
+                                                    <p class="medium-small">{{ selectedWorker.worker_occupational_group.description }}</p>
                                                 </div>
+                                            </div>
+                                            <div class="col m6 s12">
                                                 <div class="mb-3">
                                                     <p class="font-weight-600">Especialidad</p>
-                                                    <p class="medium-small">CIRUGIA GENERAL</p>
+                                                    <p class="medium-small">{{ selectedWorker.worker_medical_speciality.description }}</p>
                                                 </div>
+                                            </div>
+                                            <div class="col m6 s12">
+                                                <div class="mb-3">
+                                                    <p class="font-weight-600">Número de Solicitud</p>
+                                                    <p class="medium-small">{{ selectedProductRequest.code }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col m6 s12">
+                                                <div class="mb-3">
+                                                    <p class="font-weight-600">Fecha y hora de la solicitud</p>
+                                                    <p class="medium-small">{{ selectedProductRequest.created }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col m6 s12">
                                                 <div class="mb-3">
                                                     <p class="font-weight-600">Lugar de Trabajo</p>
-                                                    <p class="medium-small">HOSPITALIZACIÓN / </p>
+                                                    <p class="medium-small">{{ selectedProductRequest.work_area.workplace.description }}</p>
                                                 </div>
+                                            </div>
+                                            <div class="col m6 s12">
                                                 <div class="mb-3">
                                                     <p class="font-weight-600">Área</p>
-                                                    <p class="medium-small">Examen físico y entrevista al paciente</p>
+                                                    <p class="medium-small">{{ selectedProductRequest.work_area.description }}</p>
                                                 </div>
+                                            </div>
+                                            <div class="col m12 s12">
                                                 <div class="mb-3">
-                                                    <p class="font-weight-600">Productos a Entregar</p>
+                                                    <p class="font-weight-600">Productos a solicitar</p>
                                                     <ul style="margin-top: 0px;">
-                                                        <li>KIT N° 02
+                                                        <li ng-repeat="kits_product_request in selectedProductRequest.kits_product_requests">
+                                                            {{ kits_product_request.amount}} {{ kits_product_request.kit.description }}
                                                             <ul>
-                                                                <li>- RESPIRADOR D/PIEZA FACIAL FILTRANTE</li>
+                                                                <li ng-repeat="product_request_detail in kits_product_request.product_request_details" class="ml-4">
+                                                                    - {{ product_request_detail.amount}} {{ product_request_detail.product.description }}
+                                                                </li>
                                                             </ul>
                                                         </li>
                                                     </ul>
@@ -262,6 +294,8 @@
                                     <div class="row">
                                         <div class="display-flex justify-content-center">
                                             <button
+                                                type="button"
+                                                ng-click="backToSelectWorkArea()"
                                                 class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right mr-1">
                                                 <span class="hide-on-small-onl">&lt;&lt; Anterior</span>
                                             </button>

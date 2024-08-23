@@ -43,7 +43,6 @@ angular.module('registroAltaFrontendApp')
         };
 
         service.onMessage = function(message) {
-            // Override this function in your controller to handle incoming messages
             console.log('Received:', message);
         };
 

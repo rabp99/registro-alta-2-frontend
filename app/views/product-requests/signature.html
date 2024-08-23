@@ -12,26 +12,27 @@
                                     <div class="col s12">
                                         <div class="input-field input-group col offset-m3 m6 s12">
                                             <i class="material-icons prefix">assignment_ind</i>
-                                            <select id="document_type" ng-model="document_type"
+                                            <select id="worker_document_type" ng-model="worker_document_type"
                                                 required material-select>
                                                 <option value="DNI">DNI</option>
                                                 <option value="CE">CE</option>
                                             </select>
-                                            <label for="document_type">Tipo de Documento</label>
+                                            <label for="worker_document_type">Tipo de Documento</label>
                                         </div>
                                     </div>
                                     <div class="col s12">
                                         <div class="input-field input-group col offset-m3 m6 s12">
                                             <i class="material-icons prefix">tag</i>
-                                            <input id="document_number" name="document_number" type="text"
-                                                class="validate" ng-model="document_number"
+                                            <input id="worker_document_number" type="text"
+                                                class="validate" ng-model="worker_document_number"
+                                                ng-keypress="checkEnter($event)"
                                                 maxlength="8" required pattern="\d*">
-                                            <label for="document_number">Número de Documento</label>
+                                            <label for="worker_document_number">Número de Documento</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div>
-                                    <div class="center">
+                                    <div class="center mb-2">
                                         <div class="firma" pw-canvas version="version"
                                             options="{width: 600, 
                                             height: 400, 
@@ -52,7 +53,11 @@
 
                                 <div class="row">
                                     <div class="input-field col offset-xl3 offset-l3 xl6 l6 m12 s12 center">
-                                        <button class="modal-action modal-close gradient-45deg-light-blue-cyan btn-flat" type="submit">Enviar</button>
+                                        <button class="modal-action modal-close gradient-45deg-light-blue-cyan btn-flat" 
+                                            ng-disabled="!version"
+                                            type="submit">
+                                            Enviar
+                                        </button>
                                     </div>
                                 </div>
                             </form>

@@ -12,8 +12,12 @@ angular.module('registroAltaFrontendApp')
         $scope, 
         workersService,
         productRequestsService,
-        $window, solicitudesService, tiposService, $firebaseObject, $firebaseArray, webSocketService,
+        webSocketService,
+        
+        $window, solicitudesService, tiposService, $firebaseObject, $firebaseArray, 
     ) {
+        var waitingSignature = false;
+
         $scope.init = function () {
             $scope.step = 1;
             $scope.worker_document_type = "DNI";
@@ -26,8 +30,15 @@ angular.module('registroAltaFrontendApp')
 
             $scope.signature = null;
             webSocketService.connect('ws://localhost:8766');
-            webSocketService.onMessage = function(message) {
-                $scope.signature = message;
+            webSocketService.onMessage = function(payload) {
+                var data = JSON.parse(payload);
+                if (waitingSignature) {
+                    if (data.worker_document_type === $scope.worker_document_type && 
+                        data.worker_document_number === $scope.worker_document_number
+                    ) {
+                        $scope.signature = data.signature;
+                    }
+                }
             };
         };
 
@@ -67,46 +78,14 @@ angular.module('registroAltaFrontendApp')
             $scope.selectedProductRequest = null;
             $scope.step = 1;
         }
-    
-        /*
-        $scope.$watch('selectedProductRequestId', function(newVal) {
-            if (newVal) {
-                var found = $scope.productRequests.filter(function(productRequest) {
-                    return productRequest.id == newVal;
-                });
-                if (found) {
-                    $scope.selectedProductRequest = found[0];
-                }
-            }
-        });*/
-    
-        /*
-        $scope.search = function(product_request) {
-            $scope.searchingWorker = true;
-            console.log(product_request);
-            console.log('show grupo ocupacional y medical speciality');
-            console.log('paso 2 seleccionar el lugar de trabajo');
-            console.log('paso 3 seleccionar area');
-            console.log('paso 4 mostrar los productos que se le entregarán y todos los datos y habilitar botón Registrar');
-            $scope.searching = 'find_replace';
-            $utilsViewService.disable('.btn-search');
-            $scope.worker.id = 1;
-            $scope.worker = {
-                id: 1,
-                full_name: 'JIMÉNEZ MENDOZA, MIGUEL EDUARDO',
-                worker_occupational_group: {
-                    description: "MÉÐICO"
-                },
-                worker_medical_speciality: {
-                    description: "CIRUGIA GENERAL"
-                }
-            }
-            $scope.searchingWorker = false;
-        }
-        */
 
-        $scope.onSelectProductRequest = function(productRequestId) {
-            console.log(productRequestId);
+        $scope.backToSelectProductRequest = function() {
+            $scope.signature = null;
+            $scope.step = 2;
+        }
+    
+        $scope.onSelectProductRequest = function() {
+            waitingSignature = true;
             $scope.step = 3;
         }
 
@@ -114,7 +93,7 @@ angular.module('registroAltaFrontendApp')
             $scope.step = 4;
         }
 
-        $scope.onRadioChange = function(selectedProductRequestCode) {
+        $scope.selectProductRequest = function(selectedProductRequestCode) {
             if (selectedProductRequestCode) {
                 var found = $scope.productRequests.filter(function(productRequest) {
                     return productRequest.year == selectedProductRequestCode.year && productRequest.number == selectedProductRequestCode.number;

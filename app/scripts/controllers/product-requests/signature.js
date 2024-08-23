@@ -10,7 +10,8 @@
 angular.module('registroAltaFrontendApp')
     .controller('ProductRequestsSignatureCtrl', function ($scope, $utilsViewService, $window, solicitudesService, tiposService, $firebaseObject, $firebaseArray, webSocketService) {
         $scope.init = function () {        
-            $scope.document_type = "DNI";
+            $scope.worker_document_type = "DNI";
+            $scope.worker_document_number = null;
             webSocketService.connect('ws://localhost:8766');
         };
 
@@ -27,8 +28,22 @@ angular.module('registroAltaFrontendApp')
         $scope.sendSignature = function() {
             var canvas = document.getElementById('signature');
             var img = convertCanvasToImage(canvas);
-            console.log(img.src);
-            webSocketService.sendMessage(img.src);
+            var payload = {
+                worker_document_type: $scope.worker_document_type,
+                worker_document_number: $scope.worker_document_number,
+                signature: img.src
+            };
+
+            payload = JSON.stringify(payload);
+            webSocketService.sendMessage(payload);
+            swal({
+                title: "¡Operación exitosa!",
+                text: "La firma fue enviada correctamente",
+                icon: "success",
+                closeOnClickOutside: false
+            }).then(function(willProceed) {
+                $window.location.reload();
+            });
         }
 
         $scope.init();

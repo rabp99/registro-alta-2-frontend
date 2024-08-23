@@ -18,9 +18,9 @@ jobs:
 
       - name: Deploy to cPanel via FTP
         env:
-          FTP_HOST: staging.epps.hacvp.com	
-          FTP_USERNAME: deployer
-          FTP_PASSWORD: Arrosses9*.
+          FTP_HOST: ftp.hacvp.com
+          FTP_USERNAME: deployer@staging.epps.hacvp.com
+          FTP_PASSWORD: Trujillo09*.
         run: |
           lftp -c "
           open ftp://$FTP_USERNAME:$FTP_PASSWORD@$FTP_HOST;

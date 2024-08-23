@@ -23,6 +23,7 @@ jobs:
           FTP_PASSWORD: Trujillo09*.
         run: |
           lftp -c "
+          set ssl:verify-certificate no;
           open ftp://$FTP_USERNAME:$FTP_PASSWORD@$FTP_HOST;
           mirror -R ./ /public_html/ --delete --verbose;
           "

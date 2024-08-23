@@ -17,7 +17,17 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16.16.0'  # Cambia a la versión de Node.js que necesites
-
+      
+      - name: Install Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'  # Cambia a la versión de Ruby que necesites
+          
+      - name: Install Ruby gems
+        run: |
+          gem install sass
+          gem install compass
+          
       - name: Install dependencies
         run: npm install
          

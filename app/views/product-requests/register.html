@@ -153,19 +153,42 @@
                             </div>
 
                             <div id="step3" ng-show="step === 3">
-                                <form ng-submit="onSelectArea(selectedWorkArea)">
+                                <form ng-submit="onSelectWorkAreaDetail(selectedWorkAreaDetail)">
                                     <div class="row">
                                         <div class="col s12">
                                             <div class="input-field input-group col offset-m3 m6 s12">
                                                 <i class="material-icons prefix">person_apron</i>
                                                 <select id="selected_worker_area_id"
                                                     ng-model="selectedWorkAreaId"
+                                                    ng-change="onSelectWorkArea(selectedWorkAreaId)"
                                                     material-select watch required>
                                                     <option value="" disabled selected>{{
                                                         "SELECCIONAR UN ÁREA" }}</option>
                                                     <option ng-value="workArea.id" ng-repeat="workArea in workAreas">{{ workArea.description }}</option>
                                                 </select>
-                                                <label for="selected_worker_area_id">Lugar de Trabajo</label>
+                                                <label for="selected_worker_area_id">Área</label>
+                                            </div>
+                                        </div>
+                                        <div class="col s12">
+                                            <div class="input-field input-group col offset-m3 m6 s12" ng-show="workAreaDetails.length === 1">
+                                                <i class="material-icons prefix">person</i>
+                                                <textarea id="selected_work_area_detail_description" 
+                                                    rows="5" readonly
+                                                    class="materialize-textarea"
+                                                    ng-model="selectedWorkAreaDetail.description"></textarea>
+                                                <label for="selected_work_area_detail_description">Nota</label>
+                                            </div>
+                                            <div class="col offset-m3 m6 s12 mb-2" ng-show="workAreaDetails.length > 1">
+                                                <p ng-repeat="workAareaDetail in workAreaDetails">
+                                                    <label>
+                                                        <input type="radio"
+                                                            name="selectedWorkAreaDetailId" 
+                                                            ng-model="selectedWorkAreaDetailId" 
+                                                            ng-value="workAareaDetail.id"
+                                                            ng-change="selectWorkAreaDetail(selectedWorkAreaDetailId)">
+                                                        <span>{{ workAareaDetail.description }}</span>
+                                                    </label>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -178,7 +201,7 @@
                                                 <span class="hide-on-small-onl">&lt;&lt; Anterior</span>
                                             </button>
                                             <button
-                                                ng-disabled="!selectedWorkArea"
+                                                ng-disabled="!selectedWorkAreaDetail"
                                                 class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right"
                                                 type="submit">
                                                 <span class="hide-on-small-onl">Siguiente &gt;&gt;</span>
@@ -230,6 +253,12 @@
                                                 <div class="mb-3">
                                                     <p class="font-weight-600">Área</p>
                                                     <p class="medium-small">{{ selectedWorkArea.description }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col m12 s12">
+                                                <div class="mb-3">
+                                                    <p class="font-weight-600">Detalle</p>
+                                                    <p class="medium-small">{{ selectedWorkAreaDetail.description }}</p>
                                                 </div>
                                             </div>
                                             <div class="col m12 s12">

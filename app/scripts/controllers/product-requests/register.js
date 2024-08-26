@@ -13,9 +13,11 @@ angular.module('registroAltaFrontendApp')
     workersService, 
     workplacesService, 
     workAreasService,
-    kitsWorkAreasService,
+    workAreaDetailsService,
+    kitsWorkAreaDetailsService,
     productRequestsService,
-    $window
+    $window,
+    $timeout
 ) {
     $scope.init = function() {
         $scope.step = 1;
@@ -28,6 +30,13 @@ angular.module('registroAltaFrontendApp')
 
         $scope.selectedWorkAreaId = null;
         $scope.selectedWorkArea = null;
+
+        $scope.workAreaDetailId = null;
+        $scope.workAreaDetail = null;
+        
+        $scope.workplaces = [];
+        $scope.workAreas = [];
+        $scope.workAreaDetails = [];
 
         $scope.searchingWorker = false;
         $scope.kits = [];
@@ -65,6 +74,7 @@ angular.module('registroAltaFrontendApp')
     }
 
     $scope.backToSelectWorker = function() {
+        $scope.selectedWorkplaceId = null;
         $scope.selectedWorkplace = null;
         $scope.step = 1;
     }
@@ -83,6 +93,9 @@ angular.module('registroAltaFrontendApp')
 
     $scope.backToSelectWorkplace = function() {
         $scope.selectedWorkAreaId = null;
+        $scope.selectedWorkArea = null;
+        $scope.workAreaDetails = [];
+        $scope.selectedWorkAreaDetail = null;
         $scope.step = 2;
     }
 
@@ -90,6 +103,40 @@ angular.module('registroAltaFrontendApp')
         $scope.step = 3;
     }
     
+    $scope.onSelectWorkArea = function(selectedWorkAreaId) {
+        workAreaDetailsService.getByWorkArea({
+            work_area_id: selectedWorkAreaId
+        }, function (data) {
+            $scope.workAreaDetails = data.workAreaDetails;
+            if ($scope.workAreaDetails.length === 1) {
+                $scope.selectedWorkAreaDetail = $scope.workAreaDetails[0];
+                fixTextarea()
+            }
+        }, function (error) {
+            Materialize.toast(error.data.message, 4000);
+        })
+    }
+
+    $scope.selectWorkAreaDetail = function(selectedWorkAreaDetailId) {
+        var found = $scope.workAreaDetails.filter(function(workAreaDetail) {
+            return workAreaDetail.id == selectedWorkAreaDetailId;
+        });
+        if (found) {
+            $scope.selectedWorkAreaDetail = found[0];
+        }
+    }
+
+    $scope.onSelectWorkAreaDetail = function(selectedWorkAreaDetail) {
+        kitsWorkAreaDetailsService.getKitsByWorkAreaDetail({
+            work_area_detail_id: selectedWorkAreaDetail.id
+        }, function (data) {
+            $scope.kits = data.kits;
+            $scope.step = 4;
+        }, function (error) {
+            Materialize.toast(error.data.message, 4000);
+        })
+    }
+
     $scope.$watch('selectedWorkplaceId', function(newVal) {
         if (newVal) {
             var found = $scope.workplaces.filter(function(workplace) {
@@ -112,17 +159,6 @@ angular.module('registroAltaFrontendApp')
         }
     });
 
-    $scope.onSelectArea = function (selectedWorkArea) {
-        kitsWorkAreasService.getKitsByWorkArea({
-            work_area_id: selectedWorkArea.id
-        }, function (data) {
-            $scope.kits = data.kits;
-            $scope.step = 4;
-        }, function (error) {
-            Materialize.toast(error.data.message, 4000);
-        })
-    }
-
     $scope.save = function() {
         var kitsProductRequests = $scope.kits.map(function(kit) {
             var productRequestDetails = kit.products.map(function (product) {
@@ -141,7 +177,7 @@ angular.module('registroAltaFrontendApp')
         var productRequest = {
             document_type: $scope.selectedWorker.document_type,
             document_number: $scope.selectedWorker.document_number,
-            work_area_id: $scope.selectedWorkArea.id,
+            work_area_detail_id: $scope.selectedWorkAreaDetail.id,
             kits_product_requests: kitsProductRequests
         };
 
@@ -157,6 +193,24 @@ angular.module('registroAltaFrontendApp')
         }, function (error) {
             Materialize.toast(error.data.message, 4000);
         });
+    }
+
+    var fixTextarea = function() {
+        $timeout(function () {
+            var inputElement = document.querySelector('#selected_work_area_detail_description'); // Reemplaza '#miInput' con el selector correcto
+            
+            var event = new KeyboardEvent('keydown', {
+                key: 'ArrowUp',
+                code: 'ArrowUp',
+                keyCode: 40,
+                which: 40,
+                bubbles: true
+            });
+        
+            inputElement.dispatchEvent(event);
+            inputElement.dispatchEvent(event);
+            inputElement.dispatchEvent(event);
+        }, 0);    
     }
 
     $scope.init();

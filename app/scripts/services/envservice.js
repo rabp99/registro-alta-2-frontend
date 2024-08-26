@@ -29,7 +29,7 @@ angular.module('registroAltaFrontendApp')
                         return 'https://registroalta.robertobocanegra.com/api/';
                     case '192.168.100.133':
                         return 'http://192.168.100.133/registro-alta/api/';
-                    case 'https://staging.epps.hacvp.com/':
+                    case 'staging.epps.hacvp.com':
                         return 'https://api.staging.epps.hacvp.com/';
                 }
             },
@@ -51,6 +51,8 @@ angular.module('registroAltaFrontendApp')
                         return 'https://registroalta.robertobocanegra.com/';
                     case '192.168.100.133 ':
                         return 'https://192.168.100.133/registro-alta/api';
+                    case 'staging.epps.hacvp.com':
+                        return 'https://api.staging.epps.hacvp.com/';
                 }
             },
             getDownloadHost: function () {

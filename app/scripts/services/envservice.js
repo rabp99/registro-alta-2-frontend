@@ -30,7 +30,7 @@ angular.module('registroAltaFrontendApp')
                     case '192.168.100.133':
                         return 'http://192.168.100.133/registro-alta/api/';
                     case 'staging.epps.hacvp.com':
-                        return 'https://api.staging.epps.hacvp.com/';
+                        return 'https://api.staging.epps.hacvp.com/api';
                 }
             },
             getFullHost: function () {
@@ -52,7 +52,7 @@ angular.module('registroAltaFrontendApp')
                     case '192.168.100.133 ':
                         return 'https://192.168.100.133/registro-alta/api';
                     case 'staging.epps.hacvp.com':
-                        return 'https://api.staging.epps.hacvp.com/';
+                        return 'https://api.staging.epps.hacvp.com/api';
                 }
             },
             getDownloadHost: function () {

@@ -14,6 +14,7 @@
     "angular": false,
     "$": false,
     "confirm": false,
-    "Materialize": false
+    "Materialize": false,
+    "swal": false
   }
 }

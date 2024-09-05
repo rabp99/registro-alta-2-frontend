@@ -14,7 +14,8 @@ angular.module('registroAltaFrontendApp')
         productRequestsService,
         webSocketService,
         $window,
-        $utilsViewService
+        $utilsViewService,
+        envService
     ) {
         var waitingSignature = false;
 

@@ -27,7 +27,9 @@ angular.module('registroAltaFrontendApp')
                 $scope.responsible.job_position = data.values['responsible.job_position'];
                 var signature = data.values['responsible.signature'];
 
-                setCanvasFromBase64(signature);
+                if (signature) {
+                    setCanvasFromBase64(signature);
+                }
             }, function (error) {
                 Materialize.toast(error.data.message, 4000);
             });

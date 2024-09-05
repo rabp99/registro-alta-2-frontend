@@ -12,12 +12,13 @@ angular.module('registroAltaFrontendApp')
         $scope, 
         $window, 
         webSocketService,
-        $utilsViewService 
+        $utilsViewService,
+        envService
     ) {
         $scope.init = function () {        
             $scope.worker_document_type = "DNI";
             $scope.worker_document_number = null;
-            webSocketService.connect('ws://localhost:8766');
+            webSocketService.connect(envService.getWSHost());
         };
 
         $scope.clearSignature = function () {

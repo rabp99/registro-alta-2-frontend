@@ -73,6 +73,14 @@ angular.module('registroAltaFrontendApp')
             },
             getSgperApi: function () {
                 return 'http://172.27.58.61:8080/api.sgper/public/apifree/trabajador/getData1';
+            },
+            getWSHost: function() {
+                switch (window.location.hostname) {
+                    case 'localhost':
+                        return 'ws://localhost:8766';
+                    case 'staging.epps.hacvp.com':
+                        return 'ws://api.staging.epps.hacvp.com:8766';
+                }
             }
         };
     });

@@ -29,7 +29,7 @@ angular.module('registroAltaFrontendApp')
             $scope.selectedProductRequest = null;
 
             $scope.signature = null;
-            webSocketService.connect('ws://localhost:8766');
+            webSocketService.connect(envService.getWSHost());
             webSocketService.onMessage = function(payload) {
                 var data = JSON.parse(payload);
                 if (waitingSignature) {

@@ -1,0 +1,162 @@
+<div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
+    <!-- Search for small screen-->
+    <div class="container">
+        <div class="row heading-page">
+            <div class="col s10 m6 l6">
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Registro de Entrega</span></h5>
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item"><a ui-sref="admin.main">Inicio</a>
+                    </li>
+                    <li class="breadcrumb-item">Reportes</li>
+                    <li class="breadcrumb-item active">Registro de Entrega</li>
+                </ol>
+            </div>
+            <div class="col s2 m6 l6">
+                <button 
+                    id="generateReportBtn"
+                    type="button" 
+                    class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right" 
+                    ng-click="generateReport()"
+                    ng-disabled="
+                        worker_document_type == null || 
+                        worker_document_number == null ||
+                        start_date == null ||
+                        end_date == null">
+                    <i class="material-icons left">description</i>
+                    <span class="hide-on-small-onl">Generar Reporte</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col xl12 l12 m12 s12">
+    <div class="container">
+        <div class="section treeview-wrapper">
+            <div class="row">
+                <div class="col xl12 s12">
+                    <div class="card card-tabs">
+                        <div class="card-content">
+                            <h6>Filtros de Búsqueda</h6>
+                            <hr>
+                            <form ng-submit="search()">
+                                <div class="row">
+                                    
+                                    <div class="input-field col xl2 l2 m2 s4">
+                                        <i class="material-icons prefix">assignment_ind</i>
+                                        <select id="worker_document_type" ng-model="worker_document_type"
+                                            required material-select>
+                                            <option value="DNI">DNI</option>
+                                            <option value="CE">CE</option>
+                                        </select>
+                                        <label for="worker_document_type">Tipo de Documento</label>
+                                    </div>
+                                    
+                                    <div class="input-field col xl2 l2 m2 s4">
+                                        <i class="material-icons prefix">tag</i>
+                                        <input id="worker_document_number" type="text"
+                                            class="validate" ng-model="worker_document_number"
+                                            ng-keypress="checkEnter($event)"
+                                            maxlength="8" required pattern="\d*">
+                                        <label for="worker_document_number">Número de Documento</label>
+                                    </div>
+
+                                    <div class="input-field col xl2 l2 m2 s4">
+                                        <i class="material-icons prefix">date_range</i>
+                                        <input id="start_date" type="date" 
+                                            class="validate" 
+                                            ng-model="start_date"
+                                            required>
+                                        <label for="start_date">Fecha Inicio</label>
+                                    </div>
+
+                                    <div class="input-field col xl2 l2 m2 s4">
+                                        <i class="material-icons prefix">date_range</i>
+                                        <input id="end_date" type="date" 
+                                            class="validate" 
+                                            ng-model="end_date"
+                                            required>
+                                        <label for="end_date">Fecha Fin</label>
+                                    </div>
+
+                                    <div class="input-field col xl2 l2 m2 s4">
+                                        <button 
+                                            id="searchBtn"
+                                            type="submit" 
+                                            class="btn dropdown-settings waves-effect waves-light right breadcrumbs-btn"
+                                            ng-disabled="
+                                                worker_document_type == null || 
+                                                worker_document_number == null ||
+                                                start_date == null ||
+                                                end_date == null">
+                                            <i class="material-icons left">search</i>
+                                            <span class="hide-on-small-onl">Buscar </span>
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </form>
+                            <div>
+                                Total de registros encontrados: <span ng-show="!loading">{{ table.count }}</span>
+                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>N°</th>
+                                        <th>Fechas</th>
+                                        <th>Área</th>
+                                        <th ng-repeat="header in table.headers">{{ header }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="11" ng-show="table.loading">
+                                            <div class="center">
+                                                <div class="preloader-wrapper big active">
+                                                    <div class="spinner-layer spinner-blue-only">
+                                                        <div class="circle-clipper left">
+                                                            <div class="circle"></div>
+                                                        </div><div class="gap-patch">
+                                                            <div class="circle"></div>
+                                                        </div><div class="circle-clipper right">
+                                                            <div class="circle"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="12" ng-show="!table.loading && table.count === 0 && submittedSearch">
+                                            No se encontraron registros
+                                        </td>
+                                    </tr>
+                                    <tr ng-repeat="record in table.records" ng-show="!table.loading">
+                                        <td class="td-detail">{{ $index + 1 }}</td>
+                                        <td>{{ record.attention_date | date: 'dd/MM/yyyy': 'America/Lima' }}</td>
+                                        <td>{{ record.work_area_description }}</td>
+                                        <td ng-repeat="(key, product) in table.headers track by $index">
+                                            {{ record['product'+ key] }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="center">
+                                <pagination class="pagination"
+                                    page="table.page"
+                                    page-size="table.pagination.itemsPerPage"
+                                    total="table.count"
+                                    show-prev-next="true"
+                                    use-simple-prev-next="false"
+                                    dots="...."
+                                    hide-if-empty="false"
+                                    adjacent="2"
+                                    scroll-top="false"
+                                    pagination-action="table.pageChanged(page)" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

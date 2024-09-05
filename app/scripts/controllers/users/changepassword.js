@@ -8,7 +8,15 @@
  * Controller of the registroAltaFrontendApp
  */
 angular.module('registroAltaFrontendApp')
-.controller('UsersChangepasswordCtrl', function ($cookies, $scope, usersService, $state, $utilsViewService, $rootScope) {
+.controller('UsersChangepasswordCtrl', function (
+    $cookies,
+    $scope, 
+    usersService, 
+    $state, 
+    $utilsViewService, 
+    $rootScope,
+    $window
+) {
     $scope.init = function() {
         $scope.loading = true;
         if ($cookies.get('registro-alta-token')) {
@@ -24,21 +32,21 @@ angular.module('registroAltaFrontendApp')
         if (newpassword !== renespassword) {
             Materialize.toast('Las contraseñas no coinciden', 4000);
         } else {
-            $utilsViewService.disable('.btn-submit');
+            $utilsViewService.disable('#changePasswordBtn');
             usersService.changePassword({
                 newpassword: newpassword
             }, function(data) {
-                $utilsViewService.enable('.btn-submit');
-                Materialize.toast(data.message, 4000);
-                
-                $cookies.remove('padron-user');
-                $cookies.remove('padron-token');
-                $rootScope.user = undefined;
-                $rootScope.logged = false;
-                
-                $state.go('public.login');
+                swal({
+                    title: "¡Operación exitosa!",
+                    text: data.message,
+                    icon: "success",
+                    closeOnClickOutside: false
+                }).then(function(willProceed) {
+                    $window.location.reload();
+                    $utilsViewService.enable('#changePasswordBtn');
+                });
             }, function(error) {
-                $utilsViewService.enable('.btn-submit');
+                $utilsViewService.enable('#changePasswordBtn');
                 Materialize.toast(error.data.message, 4000);
             });
         }

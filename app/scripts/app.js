@@ -174,6 +174,15 @@ angular
             title: 'Reporte de Solicitudes'
         };
 
+        var reportsProductRequestRecordsState = {
+            name: 'admin.productRequestRecords',
+            url: '/reports/product-request-records',
+            templateUrl: 'views/reports/product-request-records.html',
+            controller: 'ReportsProductRequestRecordsCtrl',
+            controllerAs: 'reportsProductRequestRecords',
+            title: 'Registro de Entrega'
+        };
+        
         var reportesIndumentariaState = {
             name: 'admin.reportesIndumentaria',
             url: '/reportes/indumentaria',
@@ -399,6 +408,15 @@ angular
             title: 'Firma'
         };
 
+        var configurationState = {
+            name: 'admin.configuration',
+            url: '/configuration',
+            templateUrl: 'views/configuration.html',
+            controller: 'ConfigurationCtrl',
+            controllerAs: 'configuration',
+            title: 'Configuracióñ'
+        };
+
         $stateProvider.state(adminState);
         $stateProvider.state(publicState);
         $stateProvider.state(loginState);
@@ -442,6 +460,8 @@ angular
         $stateProvider.state(productRequestsRegisterState);
         $stateProvider.state(productRequestsAttendState);
         $stateProvider.state(productRequestsSignatureState);
+        $stateProvider.state(reportsProductRequestRecordsState);
+        $stateProvider.state(configurationState);
         $urlRouterProvider.otherwise('/admin');
     })
     .run(function ($rootScope, $transitions, $state, $window, $cookies) {

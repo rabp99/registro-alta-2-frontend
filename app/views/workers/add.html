@@ -2,8 +2,13 @@
     <!-- Search for small screen-->
     <div class="container">
         <div class="row heading-page">
-            <div class="col xl6 l6 m12 s12">
+            <div class="col s10 m6 l6">
                 <h5 class="breadcrumbs-title mt-0 mb-0"><span>Nuevo Colaborador</span></h5>
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item"><a ui-sref="admin.main">Inicio</a></li>
+                    <li class="breadcrumb-item"><a ui-sref="admin.workersIndex">Colaboradores</a></li>
+                    <li class="breadcrumb-item active">Nuevo Colaborador</li>
+                </ol>
             </div>
         </div>
     </div>
@@ -43,6 +48,7 @@
                                                     <div class="input-field input-group col xl12 l12 m12 s12">
                                                         <i class="material-icons prefix">assignment_ind</i>
                                                         <select id="document_type" ng-model="newWorker.document_type"
+                                                            class="validate"
                                                             required material-select>
                                                             <option value="DNI">DNI</option>
                                                             <option value="CE">CE</option>
@@ -64,6 +70,7 @@
                                                                     <i class="material-icons prefix">person</i>
                                                                     <input id="last_name1" name="last_name1" type="text"
                                                                         maxlength="60" uppercased
+                                                                        class="validate"
                                                                         ng-model="newWorker.last_name1" required>
                                                                     <label for="last_name1">Apellido
                                                                         Paterno</label>
@@ -75,6 +82,7 @@
                                                                     <i class="material-icons prefix">person</i>
                                                                     <input id="last_name2" name="last_name2" type="text"
                                                                         maxlength="60" uppercased
+                                                                        class="validate"
                                                                         ng-model="newWorker.last_name2" required>
                                                                     <label for="last_name2">Apellido
                                                                         Materno</label>
@@ -86,12 +94,14 @@
                                                         <i class="material-icons prefix">person</i>
                                                         <input id="names" name="names" type="text"
                                                             maxlength="60" uppercased
+                                                            class="validate"
                                                             ng-model="newWorker.names" required>
                                                         <label for="names">Nombres</label>
                                                     </div>
                                                     <div class="input-field input-group col xl12 l12 m12 s12">
                                                         <i class="material-icons prefix">event</i>
-                                                        <input id="birth_date" name="birth_date" type="date"
+                                                        <input id="birth_date" name="birth_date"
+                                                            class="validate" type="date"
                                                             ng-model="newWorker.cod_planilla">
                                                         <label for="birth_date">Fecha de Nacimiento</label>
                                                     </div>
@@ -101,7 +111,8 @@
                                                                 <div
                                                                     class="input-field input-group col xl12 l12 m12 s12">
                                                                     <i class="material-icons prefix">contacts</i>
-                                                                    <input id="tuition_code" name="tuition_code"
+                                                                    <input id="tuition_code"
+                                                                        class="validate" name="tuition_code"
                                                                         maxlength="10"
                                                                         type="text" ng-model="newWorker.tuition_code" pattern="\d*">
                                                                     <label for="tuition_code">Colegiatura</label>
@@ -111,7 +122,8 @@
                                                                 <div
                                                                     class="input-field input-group col xl12 l12 m12 s12">
                                                                     <i class="material-icons prefix">contacts</i>
-                                                                    <input id="payroll_code" name="payroll_code"
+                                                                    <input id="payroll_code" 
+                                                                        class="validate" name="payroll_code"
                                                                         maxlength="10"
                                                                         type="text" ng-model="newWorker.payroll_code" pattern="\d*">
                                                                     <label for="payroll_code">Cód. Planilla</label>
@@ -131,8 +143,9 @@
                                                     <div class="input-field input-group col xl12 l12 m12 s12">
                                                         <i class="material-icons prefix">groups</i>
                                                         <select id="worker_occupational_group_id"
+                                                            class="validate"
                                                             ng-model="newWorker.worker_occupational_group_id"
-                                                            material-select watch> required
+                                                            material-select watch>
                                                             <option value="" disabled selected>{{
                                                                 worker_occupational_group_empty }}</option>
                                                             <option ng-value="worker_occupational_group.id"
@@ -149,6 +162,7 @@
                                                                     class="input-field input-group col xl12 l12 m12 s12">
                                                                     <i class="material-icons prefix">home_health</i>
                                                                     <select id="belongs_other_cas"
+                                                                        class="validate"
                                                                         ng-model="newWorker.belongs_other_cas"
                                                                         material-select watch required>
                                                                         <option value="SI">SÍ</option>
@@ -163,8 +177,10 @@
                                                                     class="input-field input-group col xl12 l12 m12 s12">
                                                                     <i class="material-icons prefix">person_apron</i>
                                                                     <select id="worker_condition_id"
+                                                                        class="validate"
+                                                                        name="worker_condition_id"
                                                                         ng-model="newWorker.worker_condition_id"
-                                                                        material-select watch required>
+                                                                        material-select watch>
                                                                         <option value="" disabled selected>{{
                                                                             worker_condition_empty }}</option>
                                                                         <option ng-value="worker_condition.id"
@@ -180,8 +196,9 @@
                                                     <div class="input-field input-group col xl12 l12 m12 s12">
                                                         <i class="material-icons prefix">perm_contact_calendar</i>
                                                         <select id="tipo_epp"
+                                                            class="validate"
                                                             ng-model="newWorker.worker_medical_speciality_id"
-                                                            material-select watch required>
+                                                            material-select watch>
                                                             <option value="" disabled selected>{{
                                                                 worker_medical_speciality_empty }}</option>
                                                             <option ng-value="worker_medical_speciality.id"
@@ -198,10 +215,16 @@
                                 <div class="row mb-3" ng-hide="loading">
                                     <div class="col xl12 l12 m12 s12">
                                         <button
-                                            class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right btn-submit"
+                                            id="addWorkerBtn"
+                                            class="btn waves-effect waves-light breadcrumbs-btn right btn-submit"
                                             type="submit">
                                             <span class="hide-on-small-onl">Registrar</span>
                                         </button>
+                                        <a 
+                                            ui-sref="admin.workersIndex"
+                                            class="mr-1 right waves-effect btn-flat">
+                                            <span class="hide-on-small-onl">Cancelar</span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

@@ -17,7 +17,8 @@ angular.module('registroAltaFrontendApp')
     kitsWorkAreaDetailsService,
     productRequestsService,
     $window,
-    $timeout
+    $timeout,
+    $utilsViewService
 ) {
     $scope.init = function() {
         $scope.step = 1;
@@ -49,6 +50,8 @@ angular.module('registroAltaFrontendApp')
     };
 
     $scope.searchWorker = function(document_type, document_number) {
+        $utilsViewService.disable('#searchWorkerBtn');
+
         $scope.searchingWorker = true;
         workersService.findByDocument({
             document_type: document_type,
@@ -56,20 +59,30 @@ angular.module('registroAltaFrontendApp')
         }, function (data) {
             $scope.searchingWorker = false;
             $scope.selectedWorker = data.worker;
+
+            $utilsViewService.enable('#searchWorkerBtn');
         }, function (error) {
             $scope.searchingWorker = false;
             Materialize.toast(error.data.message, 4000);
+
+            $utilsViewService.enable('#searchWorkerBtn');
         });
     }
 
     $scope.onSelectWorker = function (worker) {
+        $utilsViewService.disable('#selectWorkerBtn');
+        
         workplacesService.getListByWorkerType({
             worker_type: worker.worker_occupational_group.type
         }, function (data) {
             $scope.workplaces = data.workplaces;
             $scope.step = 2;
+
+            $utilsViewService.enable('#selectWorkerBtn');
         }, function (error) {
             Materialize.toast(error.data.message, 4000);
+
+            $utilsViewService.enable('#selectWorkerBtn');
         });
     }
 
@@ -80,14 +93,20 @@ angular.module('registroAltaFrontendApp')
     }
 
     $scope.onSelectWorkplace = function (selectedWorkplace, worker) {
+        $utilsViewService.disable('#selectWorkplaceBtn');
+        
         workAreasService.getListByWorkplaceAndWorkerType({
             workplace_id: selectedWorkplace.id,
             worker_type: worker.worker_occupational_group.type
         }, function (data) {
             $scope.workAreas = data.workAreas;
             $scope.step = 3;
+
+            $utilsViewService.enable('#selectWorkplaceBtn');
         }, function (error) {
             Materialize.toast(error.data.message, 4000);
+
+            $utilsViewService.enable('#selectWorkplaceBtn');
         });
     }
 
@@ -127,13 +146,19 @@ angular.module('registroAltaFrontendApp')
     }
 
     $scope.onSelectWorkAreaDetail = function(selectedWorkAreaDetail) {
+        $utilsViewService.disable('#selectWorkAreaDetailBtn');
+        
         kitsWorkAreaDetailsService.getKitsByWorkAreaDetail({
             work_area_detail_id: selectedWorkAreaDetail.id
         }, function (data) {
             $scope.kits = data.kits;
             $scope.step = 4;
+
+            $utilsViewService.enable('#selectWorkAreaDetailBtn');
         }, function (error) {
             Materialize.toast(error.data.message, 4000);
+
+            $utilsViewService.enable('#selectWorkAreaDetailBtn');
         })
     }
 
@@ -160,6 +185,8 @@ angular.module('registroAltaFrontendApp')
     });
 
     $scope.save = function() {
+        $utilsViewService.disable('#saveBtn');
+        
         var kitsProductRequests = $scope.kits.map(function(kit) {
             var productRequestDetails = kit.products.map(function (product) {
                 return {
@@ -188,10 +215,13 @@ angular.module('registroAltaFrontendApp')
                 icon: "success",
                 closeOnClickOutside: false
             }).then(function(willProceed) {
+                // $utilsViewService.enable('#saveBtn');
                 $window.location.reload();
             });
         }, function (error) {
             Materialize.toast(error.data.message, 4000);
+
+            $utilsViewService.enable('#saveBtn');
         });
     }
 

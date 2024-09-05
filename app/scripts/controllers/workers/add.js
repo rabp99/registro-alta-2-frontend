@@ -13,12 +13,15 @@ angular.module('registroAltaFrontendApp')
         $state,
         workerOccupationalGroupsService,
         workerConditionsService,
-        workerMedicalSpecialitiesService
+        workerMedicalSpecialitiesService,
+        $utilsViewService
     ) {
         $scope.init = function () {
             $scope.newWorker = {};
             $scope.newWorker.document_type = "DNI";
             $scope.newWorker.worker_occupational_group_id = "";
+            $scope.newWorker.worker_condition_id = "";
+            $scope.newWorker.worker_medical_speciality_id = "";
             $scope.newWorker.belongs_other_cas = "NO";
 
             $scope.worker_occupational_groups = [];
@@ -37,12 +40,26 @@ angular.module('registroAltaFrontendApp')
         };
 
         $scope.addWorker = function (newWorker) {
+            if (!validate()) {
+                return;
+            }
+            
+            $utilsViewService.disable('#addWorkerBtn');
+
             $scope.loading = true;
             workersService.save(newWorker, function (data) {
-                $state.go('admin.workersIndex');
                 $scope.loading = false;
-                Materialize.toast(data.message, 4000);
+                swal({
+                    title: "¡Operación exitosa!",
+                    text: data.message,
+                    icon: "success",
+                    closeOnClickOutside: false
+                }).then(function(willProceed) {
+                    $utilsViewService.enable('#addWorkerBtn');
+                    $state.go('admin.workersIndex');
+                });
             }, function (err) {
+                $utilsViewService.enable('#addWorkerBtn');
                 Materialize.toast(err.data.message, 4000);
             });
         };
@@ -63,6 +80,22 @@ angular.module('registroAltaFrontendApp')
             workerMedicalSpecialitiesService.getList(function (data) {
                 $scope.worker_medical_specialities = data.worker_medical_specialities;
             });
+        }
+
+        var validate = function() {
+            if (!$scope.newWorker.worker_occupational_group_id) {
+                Materialize.toast("Seleccione el Grupo Ocupacional", 4000);
+                return false;
+            }
+            if (!$scope.newWorker.worker_condition_id) {
+                Materialize.toast("Seleccione la Condición Laboral", 4000);
+                return false;
+            }
+            if (!$scope.newWorker.worker_medical_speciality_id) {
+                Materialize.toast("Seleccione la Especialidad", 4000);
+                return false;
+            }
+            return true;
         }
 
         $scope.init();

@@ -24,9 +24,7 @@
             <a class="brand-logo darken-1" ui-sref='admin.main'>
                 <img class="hide-on-med-and-down" src="images/logo_esquina_izquierda.jpg"
                     alt="Essalud - Red Asistencial La Libertad" />
-                <img class="show-on-medium-and-down hide-on-med-and-up on-md-and-down-logo"
-                    src="images/logo_esquina_izquierda.png" alt="Essalud - Red Asistencial La Libertad" />
-                <span class="logo-text hide-on-med-and-down">Registro</span>
+                <span style="font-size: 1.2rem;" class="logo-text hide-on-med-and-down">Registro de EPP's</span>
             </a>
         </h1>
     </div>
@@ -36,33 +34,19 @@
             <a class="waves-effect waves-cyan" ui-sref='admin.main' ui-sref-active="active" ng-click="resetLinks()"><i
                     class="material-icons">home</i><span class="menu-title">Inicio</span></a>
         </li>
-        <!--
-        <li class="bold" ng-if="user.rol === 'Farmacia'">
-            <a class="waves-effect waves-cyan" ui-sref="admin.solicitudesAdd" ui-sref-active="active"
-                ng-click="resetLinks()"><i class="material-icons">add_circle</i><span class="menu-title">Nueva
-                    Solicitud</span></a>
+        <li class="bold pl-9">
+            Usuario: {{ user.username }}
         </li>
-        -->
         <li class="bold" ng-if="user.rol === 'Farmacia'">
             <a class="waves-effect waves-cyan" ui-sref="admin.productRequestsAttend" ui-sref-active="active"
                 ng-click="resetLinks()"><i class="material-icons">accessibility_new</i><span
                     class="menu-title">Atender Solicitud de EPP's</span></a>
         </li>
-        <li class="bold" ng-if="user.rol === 'Farmacia'">
-            <a class="waves-effect waves-cyan" ui-sref="admin.productosEntregar" ui-sref-active="active"
-                ng-click="resetLinks()"><i class="material-icons">healing</i><span class="menu-title">Entregar Prd. de
-                    Protección</span></a>
-        </li>
-        <li class="bold" ng-if="user.rol === 'Farmacia' || user.rol === 'Administrador'">
+        <li class="bold" ng-if="user.rol === 'Administrador'">
             <a id="reportes-link" class="collapsible-header waves-effect waves-cyan"><i
                     class="material-icons">build</i><span class="menu-title">Mantenimiento</span></a>
             <div class="collapsible-body">
                 <ul class="collapsible collapsible-sub">
-                    <li class="bold" ng-if="user.rol === 'Farmacia'">
-                        <a class="waves-effect waves-cyan" ui-sref="admin.productosIndex" ui-sref-active="active"><i
-                                class="material-icons">healing</i><span class="menu-title">Productos de
-                                Protección</span></a>
-                    </li>
                     <li class="bold" ng-if="user.rol === 'Administrador'">
                         <a class="waves-effect waves-cyan" ui-sref="admin.workersIndex" ui-sref-active="active"><i
                                 class="material-icons">assignment_ind</i><span
@@ -71,11 +55,6 @@
                     <li class="bold" ng-if="user.rol === 'Administrador'">
                         <a class="waves-effect waves-cyan" ui-sref="admin.usersIndex" ui-sref-active="active"><i
                                 class="material-icons">account_box</i><span class="menu-title">Usuarios</span></a>
-                    </li>
-                    <li class="bold" ng-if="user.rol === 'Administrador'">
-                        <a class="waves-effect waves-cyan" ui-sref="admin.solicitudesIndex" ui-sref-active="active"><i
-                                class="material-icons">accessibility_new</i><span
-                                class="menu-title">Solicitudes</span></a>
                     </li>
                 </ul>
             </div>
@@ -87,49 +66,18 @@
             <div class="collapsible-body">
                 <ul class="collapsible collapsible-sub">
                     <li class="bold"
-                        ng-if="user.rol === 'Farmacia' || user.rol === 'Administrador' || user.rol === 'Jefe de Servicio'">
-                        <a class="waves-effect waves-cyan" ui-sref="admin.reportesSolicitudes"
+                        ng-if="user.rol === 'Farmacia' || user.rol === 'Administrador'">
+                        <a class="waves-effect waves-cyan" ui-sref="admin.productRequestRecords"
                             ui-sref-active="active"><i class="material-icons">description</i><span
-                                class="menu-title">Reporte de Solicitudes</span></a>
-                    </li>
-                    <li class="bold" ng-if="user.rol === 'Farmacia' || user.rol === 'Administrador'">
-                        <a class="waves-effect waves-cyan" ui-sref="admin.reportesIndumentaria"
-                            ui-sref-active="active"><i class="material-icons">description</i><span
-                                class="menu-title">Reporte de Indumentaria</span></a>
-                    </li>
-                    <li class="bold"
-                        ng-if="user.rol === 'Farmacia' || user.rol === 'Administrador' || user.rol === 'Jefe de Servicio'">
-                        <a class="waves-effect waves-cyan" ui-sref="admin.reportesMarcaciones"
-                            ui-sref-active="active"><i class="material-icons">description</i><span
-                                class="menu-title">Reporte de Marcaciones</span></a>
-                    </li>
-                    <li class="bold"
-                        ng-if="user.rol === 'Farmacia' || user.rol === 'Administrador' || user.rol === 'Médico Ocupacional'">
-                        <a class="waves-effect waves-cyan" ui-sref="admin.reportesCuadroResumen"
-                            ui-sref-active="active"><i class="material-icons">description</i><span
-                                class="menu-title">Cuadro Resumen</span></a>
-                    </li>
-                    <li class="bold"
-                        ng-if="user.rol === 'Farmacia' || user.rol === 'Administrador' || user.rol === 'Médico Ocupacional'">
-                        <a class="waves-effect waves-cyan" ui-sref="admin.reportesReporteSemanal"
-                            ui-sref-active="active"><i class="material-icons">description</i><span
-                                class="menu-title">Reporte Semanal</span></a>
-                    </li>
-                    <li class="bold"
-                        ng-if="user.rol === 'Farmacia' || user.rol === 'Administrador' || user.rol === 'Médico Ocupacional'">
-                        <a class="waves-effect waves-cyan" ui-sref="admin.reportesAnexos" ui-sref-active="active"><i
-                                class="material-icons">description</i><span class="menu-title">Anexos</span></a>
+                                class="menu-title">Registro de Entrega</span></a>
                     </li>
                 </ul>
             </div>
         </li>
-        <li class="bold" ng-if="user.rol === 'Lavandería'">
-            <a class="waves-effect waves-cyan" ui-sref="admin.lavanderiaRegularizar" ui-sref-active="active"
-                ng-click="resetLinks()"><i class="material-icons">label_outline</i><span class="menu-title">Regularizar
-                    en Lavandería</span></a>
+        <li class="bold" ng-if="user.rol === 'Administrador'">
+            <a class="waves-effect waves-cyan" ui-sref="admin.configuration" ui-sref-active="active"
+                ng-click="resetLinks()"><i class="material-icons">build</i><span class="menu-title">Configuración</span></a>
         </li>
-
-
         <li class="bold">
             <a class="waves-effect waves-cyan" ui-sref="admin.usersChangepassword" ui-sref-active="active"
                 ng-click="resetLinks()"><i class="material-icons">vpn_key</i><span class="menu-title">Cambiar

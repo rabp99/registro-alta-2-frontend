@@ -8,7 +8,12 @@
  * Controller of the registroAltaFrontendApp
  */
 angular.module('registroAltaFrontendApp')
-    .controller('ProductRequestsSignatureCtrl', function ($scope, $utilsViewService, $window, solicitudesService, tiposService, webSocketService) {
+    .controller('ProductRequestsSignatureCtrl', function (
+        $scope, 
+        $window, 
+        webSocketService,
+        $utilsViewService 
+    ) {
         $scope.init = function () {        
             $scope.worker_document_type = "DNI";
             $scope.worker_document_number = null;
@@ -26,6 +31,8 @@ angular.module('registroAltaFrontendApp')
         };
 
         $scope.sendSignature = function() {
+            $utilsViewService.disable("#sendSignatureBtn");
+            
             var canvas = document.getElementById('signature');
             var img = convertCanvasToImage(canvas);
             var payload = {

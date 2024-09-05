@@ -1,23 +1,5 @@
 <div id="main-container" class="section">
     <div class="row">
-        <!--
-        <div class="col s12 m6 l4" ng-if="user.rol === 'Farmacia'">
-            <div class="card horizontal">
-                <div class="card-image">
-                    <i class="material-icons main-icons">add_circle</i>
-                </div>
-                <div class="card-stacked">
-                    <div class="card-content">
-                        <p>Nueva Solicitud</p>
-                    </div>
-                    <div class="card-action">
-                        <a ui-sref="admin.solicitudesAdd"
-                            class="waves-effect waves-light btn gradient-45deg-red-pink">Ir</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        -->
         <div class="col s12 m6 l4" ng-if="user.rol === 'Farmacia'">
             <div class="card horizontal">
                 <div class="card-image">
@@ -34,65 +16,33 @@
                 </div>
             </div>
         </div>
-        <div class="col s12 m6 l4" ng-if="user.rol === 'Vestidores'">
-            <div class="card horizontal">
-                <div class="card-image">
-                    <i class="material-icons main-icons">accessibility_new</i>
-                </div>
-                <div class="card-stacked">
-                    <div class="card-content">
-                        <p>Registrar en Vestidores</p>
-                    </div>
-                    <div class="card-action">
-                        <a ui-sref="admin.vestidoresRegister"
-                            class="waves-effect waves-light btn gradient-45deg-red-pink">Ir</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 m6 l4" ng-if="user.rol === 'Lavandería'">
+        <div class="col s12 m6 l4" ng-if="user.rol === 'Administrador'">
             <div class="card horizontal">
                 <div class="card-image">
                     <i class="material-icons main-icons">assignment_ind</i>
                 </div>
                 <div class="card-stacked">
                     <div class="card-content">
-                        <p>Registrar en Lavandería</p>
+                        <p>Colaboradores</p>
                     </div>
                     <div class="card-action">
-                        <a ui-sref="admin.lavanderiaRegister"
+                        <a ui-sref="admin.workersIndex"
                             class="waves-effect waves-light btn gradient-45deg-red-pink">Ir</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col s12 m6 l4" ng-if="user.rol === 'Farmacia'">
+        <div class="col s12 m6 l4" ng-if="user.rol === 'Administrador'">
             <div class="card horizontal">
                 <div class="card-image">
-                    <i class="material-icons main-icons">reply_all</i>
+                    <i class="material-icons main-icons">account_box</i>
                 </div>
                 <div class="card-stacked">
                     <div class="card-content">
-                        <p>Registrar Devolución</p>
+                        <p>Usuarios</p>
                     </div>
                     <div class="card-action">
-                        <a ui-sref="admin.solicitudesDevolver"
-                            class="waves-effect waves-light btn gradient-45deg-red-pink">Ir</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 m6 l4" ng-if="user.rol === 'Farmacia'">
-            <div class="card horizontal">
-                <div class="card-image">
-                    <i class="material-icons main-icons">healing</i>
-                </div>
-                <div class="card-stacked">
-                    <div class="card-content">
-                        <p>Entregar Prd. de Protección</p>
-                    </div>
-                    <div class="card-action">
-                        <a ui-sref="admin.productosEntregar"
+                        <a ui-sref="admin.usersIndex"
                             class="waves-effect waves-light btn gradient-45deg-red-pink">Ir</a>
                     </div>
                 </div>
@@ -105,114 +55,31 @@
                 </div>
                 <div class="card-stacked">
                     <div class="card-content">
-                        <p>Reporte de Solicitudes</p>
+                        <p>Reporte de Registro de Entrega</p>
                     </div>
                     <div class="card-action">
-                        <a ui-sref="admin.reportesSolicitudes"
+                        <a ui-sref="admin.productRequestRecords"
                             class="waves-effect waves-light btn gradient-45deg-red-pink">Ir</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col s12 m6 l4" ng-if="user.rol === 'Farmacia' || user.rol === 'Administrador'">
+        <div class="col s12 m6 l4">
             <div class="card horizontal">
                 <div class="card-image">
-                    <i class="material-icons main-icons">description</i>
+                    <i class="material-icons main-icons">build</i>
                 </div>
                 <div class="card-stacked">
                     <div class="card-content">
-                        <p>Reporte de Indumentaria</p>
+                        <p>Configuración</p>
                     </div>
                     <div class="card-action">
-                        <a ui-sref="admin.reportesIndumentaria"
+                        <a ui-sref='admin.configuration'
                             class="waves-effect waves-light btn gradient-45deg-red-pink">Ir</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col s12 m6 l4" ng-if="user.rol === 'Farmacia' || user.rol === 'Administrador'">
-            <div class="card horizontal">
-                <div class="card-image">
-                    <i class="material-icons main-icons">description</i>
-                </div>
-                <div class="card-stacked">
-                    <div class="card-content">
-                        <p>Reporte de Marcaciones</p>
-                    </div>
-                    <div class="card-action">
-                        <a ui-sref="admin.reportesMarcaciones"
-                            class="waves-effect waves-light btn gradient-45deg-red-pink">Ir</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 m6 l4" ng-if="user.rol === 'Lavandería'">
-            <div class="card horizontal">
-                <div class="card-image">
-                    <i class="material-icons main-icons">label_outline</i>
-                </div>
-                <div class="card-stacked">
-                    <div class="card-content">
-                        <p>Regularizar en Lavandería</p>
-                    </div>
-                    <div class="card-action">
-                        <a ui-sref="admin.lavanderiaRegularizar"
-                            class="waves-effect waves-light btn gradient-45deg-red-pink">Ir</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 m6 l4" ng-if="user.rol === 'Jefe de Servicio'">
-            <div class="card horizontal">
-                <div class="card-image">
-                    <i class="material-icons main-icons">description</i>
-                </div>
-                <div class="card-stacked">
-                    <div class="card-content">
-                        <p>Cuadro Resumen</p>
-                    </div>
-                    <div class="card-action">
-                        <a ui-sref="admin.reportesCuadroResumen"
-                            class="waves-effect waves-light btn gradient-45deg-red-pink">Ir</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 m6 l4" ng-if="user.rol === 'Jefe de Servicio'">
-            <div class="card horizontal">
-                <div class="card-image">
-                    <i class="material-icons main-icons">description</i>
-                </div>
-                <div class="card-stacked">
-                    <div class="card-content">
-                        <p>Reporte Semanal</p>
-                    </div>
-                    <div class="card-action">
-                        <a ui-sref="admin.reportesReporteSemanal"
-                            class="waves-effect waves-light btn gradient-45deg-red-pink">Ir</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 m6 l4" ng-if="user.rol === 'Jefe de Servicio'">
-            <div class="card horizontal">
-                <div class="card-image">
-                    <i class="material-icons main-icons">description</i>
-                </div>
-                <div class="card-stacked">
-                    <div class="card-content">
-                        <p>Anexos</p>
-                    </div>
-                    <div class="card-action">
-                        <a ui-sref="admin.reportesAnexos"
-                            class="waves-effect waves-light btn gradient-45deg-red-pink">Ir</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
         <div class="col s12 m6 l4">
             <div class="card horizontal">
                 <div class="card-image">

@@ -1,0 +1,95 @@
+<div class="breadcrumbs-dark pb-0 pt-4" id="breadcrumbs-wrapper">
+    <!-- Search for small screen-->
+    <div class="container">
+        <div class="row heading-page">
+            <div class="col s10 m6 l6">
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Configuración</span></h5>
+                <ol class="breadcrumbs mb-0">
+                    <li class="breadcrumb-item"><a ui-sref="admin.main">Inicio</a>
+                    </li>
+                    <li class="breadcrumb-item active">Configuración</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col xl12 l12 m12 s12">
+    <div class="container">
+        <div class="section treeview-wrapper">
+            <div class="row">
+                <div class="col xl12 s12">
+                    <div class="card card-tabs">
+                        <div class="card-content">
+                            <h6>Configuración</h6>
+                            <hr>
+                            <fieldset>
+                                <legend>Datos del Responsable del Registro</legend>
+                                <form ng-submit="save()">
+                                    <div class="row">
+                                        
+                                        <div class="input-field col xl12 l12 m12 s12">
+                                            <i class="material-icons prefix">person</i>
+                                            <input id="responsible.full_name" type="text"
+                                                ng-model="responsible.full_name"
+                                                class="validate"
+                                                maxlength="100">
+                                            <label for="responsible.full_name">Nombres y Apellidos</label>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        
+                                        <div class="input-field col xl12 l12 m12 s12">
+                                            <i class="material-icons prefix">person_outline</i>
+                                            <input id="responsible.job_position" type="text"
+                                                ng-model="responsible.job_position"
+                                                class="validate"
+                                                maxlength="100">
+                                            <label for="responsible.job_position">Cargo</label>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div>
+                                            <div class="center mb-2">
+                                                <h6>Firma</h6>
+                                                <div class="firma" pw-canvas version="version"
+                                                    options="{width: 600, 
+                                                    height: 400, 
+                                                    color: '#000', 
+                                                    undo: true,
+                                                    lineWidth: 2,
+                                                    customCanvasId: 'signature'}">
+                                                </div>
+                                            </div>
+                                            <div class="center">
+                                                <div>
+                                                    <button class="red btn btn-reset" type="button" ng-click="clearSignature()">
+                                                        <i class="material-icons left">clear</i>Borrar Firma
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="display-flex justify-content-end">
+                                            <button
+                                                id="saveBtn"
+                                                class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right"
+                                                style="margin: 2rem;"
+                                                type="submit">
+                                                <span class="hide-on-small-onl">Guardar</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

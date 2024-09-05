@@ -59,8 +59,8 @@
                                                     maxlength="8" required pattern="\d*">
                                                 <label for="worker_document_number">Número de Documento</label>
                                                 <span class="suffix">
-                                                    <button type="button" ng-click="searchWorker(worker_document_type, worker_document_number)"
-                                                        ng-class="{disabled: (worker_document_number.length < 8 || worker_document_number === undefined)}"
+                                                    <button id="searchWorkerBtn" type="button" ng-click="searchWorker(worker_document_type, worker_document_number)"
+                                                        ng-class="{disabled: (worker_document_number.length < 8 || worker_document_number === null || worker_document_number === undefined)}"
                                                         class="btn waves-effect waves-light btn-search">
                                                         <i class="material-icons">search</i>
                                                     </button>
@@ -106,6 +106,7 @@
                                                 <span class="hide-on-small-onl">Anterior &gt;&gt;</span>
                                             </button>
                                             <button
+                                                id="selectWorkerBtn"
                                                 ng-disabled="!selectedWorker.full_name"
                                                 class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right"
                                                 type="submit">
@@ -121,7 +122,7 @@
                                     <div class="row">
                                         <div class="col s12">
                                             <div class="input-field input-group col offset-m3 m6 s12">
-                                                <i class="material-icons prefix">person_apron</i>
+                                                <i class="material-icons prefix">domain</i>
                                                 <select id="selected_workplace"
                                                     ng-model="selectedWorkplaceId"
                                                     material-select watch required>
@@ -142,6 +143,7 @@
                                                 <span class="hide-on-small-onl">&lt;&lt; Anterior</span>
                                             </button>
                                             <button
+                                                id="selectWorkplaceBtn"
                                                 ng-disabled="!selectedWorkplace"
                                                 class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right"
                                                 type="submit">
@@ -157,7 +159,7 @@
                                     <div class="row">
                                         <div class="col s12">
                                             <div class="input-field input-group col offset-m3 m6 s12">
-                                                <i class="material-icons prefix">person_apron</i>
+                                                <i class="material-icons prefix">location_city</i>
                                                 <select id="selected_worker_area_id"
                                                     ng-model="selectedWorkAreaId"
                                                     ng-change="onSelectWorkArea(selectedWorkAreaId)"
@@ -171,7 +173,7 @@
                                         </div>
                                         <div class="col s12">
                                             <div class="input-field input-group col offset-m3 m6 s12" ng-show="workAreaDetails.length === 1">
-                                                <i class="material-icons prefix">person</i>
+                                                <i class="material-icons prefix">assignment</i>
                                                 <textarea id="selected_work_area_detail_description" 
                                                     rows="5" readonly
                                                     class="materialize-textarea"
@@ -201,6 +203,7 @@
                                                 <span class="hide-on-small-onl">&lt;&lt; Anterior</span>
                                             </button>
                                             <button
+                                                id="selectWorkAreaDetailBtn"
                                                 ng-disabled="!selectedWorkAreaDetail"
                                                 class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right"
                                                 type="submit">
@@ -266,10 +269,18 @@
                                                     <p class="font-weight-600">Productos a solicitar</p>
                                                     <ul style="margin-top: 0px;">
                                                         <li ng-repeat="kit in kits">
-                                                            {{ kit.amount}} {{ kit.description }}
+                                                            <div class="input-field inline" style="width: 60px;">
+                                                                <select id="selected_worker_area_id"
+                                                                    ng-model="kit.amount"
+                                                                    material-select required
+                                                                    ng-options="amountOption for amountOption in [1,2,3,4,5,6,7,8,9,10]">
+                                                                </select>
+                                                                <label for="selected_worker_area_id">Cantidad</label>
+                                                            </div>
+                                                            {{ kit.description }}
                                                             <ul>
                                                                 <li ng-repeat="product in kit.products" class="ml-4">
-                                                                    - {{ product.amount}} {{ product.description }}
+                                                                    - <span class="strong">{{ kit.amount * product.amount}}</span> {{ product.description }}
                                                                 </li>
                                                             </ul>
                                                         </li>
@@ -287,6 +298,7 @@
                                                 <span class="hide-on-small-onl">&lt;&lt; Anterior</span>
                                             </button>
                                             <button
+                                                id="saveBtn"
                                                 class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right"
                                                 type="submit">
                                                 <span class="hide-on-small-onl">Registrar</span>

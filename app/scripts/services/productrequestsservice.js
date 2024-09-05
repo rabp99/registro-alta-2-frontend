@@ -15,5 +15,9 @@ angular.module('registroAltaFrontendApp')
                 method: 'GET',
                 url: envService.getHost() + endpointUrl + '/get-active-by-worker/:document_type/:document_number.json'
             },
+            attend: {
+                method: 'POST',
+                url: envService.getHost() + endpointUrl + '/attend.json'
+            }
         });
     });

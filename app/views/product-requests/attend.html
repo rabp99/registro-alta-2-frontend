@@ -30,7 +30,7 @@
                                     </button>
                                     <button type="button" class="waves-effect waves-light btn box-shadow-none border-round mr-1 cursor-default-no-select"
                                         ng-class="{'gradient-45deg-amber-amber': step === 3, 'gradient-45deg-light-blue-cyan': step !== 3}">
-                                        Área
+                                        Firma
                                     </button>
                                     <button type="button" class="waves-effect waves-light btn box-shadow-none border-round mr-1 cursor-default-no-select"
                                         ng-class="{'gradient-45deg-amber-amber': step === 4, 'gradient-45deg-light-blue-cyan': step !== 4}">
@@ -62,7 +62,7 @@
                                                 <label for="worker_document_number">Número de Documento</label>
                                                 <span class="suffix">
                                                     <button type="button" ng-click="searchWorker(worker_document_type, worker_document_number)"
-                                                        ng-class="{disabled: (worker_document_number.length < 8 || worker_document_number === undefined)}"
+                                                        ng-class="{disabled: (worker_document_number.length < 8 || worker_document_number == null)}"
                                                         class="btn waves-effect waves-light btn-search">
                                                         <i class="material-icons">search</i>
                                                     </button>
@@ -108,6 +108,7 @@
                                                 <span class="hide-on-small-onl">Anterior &gt;&gt;</span>
                                             </button>
                                             <button
+                                                id="selectWorkerBtn"
                                                 ng-disabled="!selectedWorker.full_name"
                                                 class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right"
                                                 type="submit">
@@ -121,6 +122,9 @@
                             <div id="step2" ng-show="step === 2">
                                 <form ng-submit="onSelectProductRequest()">
                                     <div class="row mb-3">
+                                        <h5 class="center" ng-show="!productRequests.length">
+                                            No hay solicitudes que mostrar
+                                        </h5>
                                         <div class="col m6 mb-1" ng-repeat="productRequest in productRequests">
                                             <label class="cursor-pointer">
                                                 <div class="z-depth-1 padding-3" style="min-height: 420px;">
@@ -136,11 +140,15 @@
                                                     <hr>
                                                     <div class="mb-3">
                                                         <p class="font-weight-600">Lugar de Trabajo</p>
-                                                        <p class="medium-small">{{ productRequest.work_area.workplace.description }}</p>
+                                                        <p class="medium-small">{{ productRequest.work_area_detail.work_area.workplace.description }}</p>
                                                     </div>
                                                     <div class="mb-3">
                                                         <p class="font-weight-600">Área</p>
-                                                        <p class="medium-small">{{ productRequest.work_area.description }}</p>
+                                                        <p class="medium-small">{{ productRequest.work_area_detail.work_area.description }}</p>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <p class="font-weight-600">Detalle</p>
+                                                        <p class="medium-small">{{ productRequest.work_area_detail.description }}</p>
                                                     </div>
                                                     <div class="mb-3">
                                                         <p class="font-weight-600">Productos solicitados</p>
@@ -149,7 +157,7 @@
                                                                 {{ kits_product_request.amount }} {{ kits_product_request.kit.description }}
                                                                 <ul>
                                                                     <li ng-repeat="product_request_detail in kits_product_request.product_request_details" class="ml-4">
-                                                                        - {{ product_request_detail.amount }} {{ product_request_detail.product.description }}
+                                                                        - {{ kits_product_request.amount * product_request_detail.amount }} {{ product_request_detail.product.description }}
                                                                     </li>
                                                                 </ul>
                                                             </li>
@@ -282,7 +290,7 @@
                                                             {{ kits_product_request.amount}} {{ kits_product_request.kit.description }}
                                                             <ul>
                                                                 <li ng-repeat="product_request_detail in kits_product_request.product_request_details" class="ml-4">
-                                                                    - {{ product_request_detail.amount}} {{ product_request_detail.product.description }}
+                                                                    - {{ kits_product_request.amount * product_request_detail.amount}} {{ product_request_detail.product.description }}
                                                                 </li>
                                                             </ul>
                                                         </li>
@@ -295,11 +303,12 @@
                                         <div class="display-flex justify-content-center">
                                             <button
                                                 type="button"
-                                                ng-click="backToSelectWorkArea()"
+                                                ng-click="backToSign()"
                                                 class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right mr-1">
                                                 <span class="hide-on-small-onl">&lt;&lt; Anterior</span>
                                             </button>
                                             <button
+                                                id="saveBtn"
                                                 class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right"
                                                 type="submit">
                                                 <span class="hide-on-small-onl">Registrar</span>

@@ -12,7 +12,9 @@ angular.module('registroAltaFrontendApp')
         $scope, 
         workersService,
         productRequestsService,
-        webSocketService
+        webSocketService,
+        $window,
+        $utilsViewService
     ) {
         var waitingSignature = false;
 
@@ -61,14 +63,18 @@ angular.module('registroAltaFrontendApp')
         }
     
         $scope.onSelectWorker = function (worker) {
+            $utilsViewService.disable('#selectWorkerBtn');
             productRequestsService.getActiveByWorker({
                 document_type: worker.document_type,
                 document_number: worker.document_number,
             }, function (data) {
                 $scope.productRequests = data.productRequests;
                 $scope.step = 2;
+
+                $utilsViewService.enable('#selectWorkerBtn');
             }, function (error) {
                 Materialize.toast(error.data.message, 4000);
+                $utilsViewService.enable('#selectWorkerBtn');
             });
         }
     
@@ -80,6 +86,10 @@ angular.module('registroAltaFrontendApp')
         $scope.backToSelectProductRequest = function() {
             $scope.signature = null;
             $scope.step = 2;
+        }
+
+        $scope.backToSign = function() {
+            $scope.step = 3;
         }
     
         $scope.onSelectProductRequest = function() {
@@ -101,6 +111,28 @@ angular.module('registroAltaFrontendApp')
                 }
             }
         };
+
+        $scope.save = function() {
+            $utilsViewService.disable('#saveBtn');
+            
+            productRequestsService.attend({
+                product_request_year: $scope.selectedProductRequest.year,
+                product_request_number: $scope.selectedProductRequest.number,
+                signature: $scope.signature
+            }, function(data) {
+                swal({
+                    title: "¡Operación exitosa!",
+                    text: data.message,
+                    icon: "success",
+                    closeOnClickOutside: false
+                }).then(function(willProceed) {
+                    $window.location.reload();
+                });
+            }, function(error) {
+                $utilsViewService.enable('#saveBtn');
+                Materialize.toast(error.data.message, 4000);
+            });
+        }
 
         $scope.init();
     });

@@ -79,7 +79,7 @@ angular.module('registroAltaFrontendApp')
                     case 'localhost':
                         return 'ws://localhost:8766';
                     case 'staging.epps.hacvp.com':
-                        return 'wss://api.staging.epps.hacvp.com:8766';
+                        return 'wss://4c2eoyr2p2.execute-api.sa-east-1.amazonaws.com/production/';
                 }
             }
         };

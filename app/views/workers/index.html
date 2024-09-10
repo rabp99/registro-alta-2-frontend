@@ -57,6 +57,7 @@
                                         <th>Grupo Ocupacional</th>
                                         <th>Condición</th>
                                         <th>Especialidad</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -90,6 +91,11 @@
                                         <td>{{ worker.worker_occupational_group.description }}</td>
                                         <td>{{ worker.worker_condition.description }}</td>
                                         <td>{{ worker.worker_medical_speciality.description }}</td>
+                                        <td>
+                                            <a ui-sref="admin.workersEdit({ document_type: worker.document_type, document_number: worker.document_number })" class="btn waves-effect waves-light">
+                                                <i class="material-icons">create</i>
+                                            </a>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

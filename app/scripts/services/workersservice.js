@@ -15,19 +15,9 @@ angular.module('registroAltaFrontendApp')
                 method: 'GET',
                 url: envService.getHost() + endpointUrl + '/find-by-document/:document_type/:document_number.json'
             },
-
-
-            findByDni: {
-                method: 'GET',
-                url: envService.getHost() + endpointUrl + '/find_by_dni/:dni.json'
-            },
-            getEnabled: {
-                method: 'GET',
-                url: envService.getHost() + endpointUrl + '/get_enabled.json'
-            },
-            checkColaboradorProgramadoHoy: {
-                method: 'GET',
-                url: envService.getHost() + endpointUrl + '/check-colaborador-programado-hoy/:dni_medico.json'
+            update: {
+                method: 'PUT',
+                url: envService.getHost() + endpointUrl + '/update/:document_type/:document_number.json'
             }
         });
     });

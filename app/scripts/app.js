@@ -68,7 +68,7 @@ angular
 
         var usersChangepasswordState = {
             name: 'admin.usersChangepassword',
-            url: '/users/changepassword',
+            url: '/usuarios/cambiar-contraseña',
             templateUrl: 'views/users/changepassword.html',
             controller: 'UsersChangepasswordCtrl',
             controllerAs: 'usersChangepassword',
@@ -77,7 +77,7 @@ angular
 
         var usersIndexState = {
             name: 'admin.usersIndex',
-            url: '/users',
+            url: '/usuarios',
             templateUrl: 'views/users/index.html',
             controller: 'UsersIndexCtrl',
             controllerAs: 'usersIndex',
@@ -86,7 +86,7 @@ angular
 
         var usersAddState = {
             name: 'admin.usersAdd',
-            url: '/users/add',
+            url: '/usuarios/nuevo',
             templateUrl: 'views/users/add.html',
             controller: 'UsersAddCtrl',
             controllerAs: 'usersAdd',
@@ -95,7 +95,7 @@ angular
 
         var usersEditState = {
             name: 'admin.usersEdit',
-            url: '/users/edit/:id',
+            url: '/usuarios/editar/:id',
             templateUrl: 'views/users/edit.html',
             controller: 'UsersEditCtrl',
             controllerAs: 'usersEdit',
@@ -104,268 +104,27 @@ angular
 
         var usersViewState = {
             name: 'admin.usersView',
-            url: '/users/:id',
+            url: '/usuarios/:id',
             templateUrl: 'views/users/view.html',
             controller: 'UsersViewCtrl',
             controllerAs: 'usersView',
             title: 'Ver Usuario'
         };
 
-        var programacionesLoadState = {
-            name: 'admin.programacionesLoad',
-            url: '/programaciones/load',
-            templateUrl: 'views/programaciones/load.html',
-            controller: 'ProgramacionesLoadCtrl',
-            controllerAs: 'programacionesLoad',
-            title: 'Cargar Datos'
-        };
-
-        var programacionesSolicitudState = {
-            name: 'public.programacionesSolicitud',
-            url: '/solicitud',
-            templateUrl: 'views/programaciones/solicitud.html',
-            controller: 'ProgramacionesSolicitudCtrl',
-            controllerAs: 'programacionesSolicitud',
-            title: 'Registrar Solicitud'
-        };
-
-        var programacionesExternoState = {
-            name: 'public.programacionesExterno',
-            url: '/solicitud/externo',
-            templateUrl: 'views/programaciones/externo.html',
-            controller: 'ProgramacionesExternoCtrl',
-            controllerAs: 'programacionesExterno',
-            title: 'Registrar Solicitud de Externo'
-        };
-
-        var programacionesEntregaState = {
-            name: 'admin.programacionesEntrega',
-            url: '/entrega',
-            templateUrl: 'views/programaciones/entrega.html',
-            controller: 'ProgramacionesEntregaCtrl',
-            controllerAs: 'programacionesEntrega',
-            title: 'Registrar Entrega'
-        };
-
-        var programacionesSalidaState = {
-            name: 'public.programacionesSalida',
-            url: '/salida',
-            templateUrl: 'views/programaciones/salida.html',
-            controller: 'ProgramacionesSalidaCtrl',
-            controllerAs: 'programacionesSalida',
-            title: 'Registrar Salida'
-        };
-
-        var programacionesEntradaState = {
-            name: 'public.programacionesEntrada',
-            url: '/entrada',
-            templateUrl: 'views/programaciones/entrada.html',
-            controller: 'ProgramacionesEntradaCtrl',
-            controllerAs: 'programacionesEntrada',
-            title: 'Registrar Entrada'
-        };
-
-        var reportesSolicitudesState = {
-            name: 'admin.reportesSolicitudes',
-            url: '/reportes/solicitudes',
-            templateUrl: 'views/reportes/solicitudes.html',
-            controller: 'ReportesSolicitudesCtrl',
-            controllerAs: 'reportesSolicitudes',
-            title: 'Reporte de Solicitudes'
-        };
-
         var reportsProductRequestRecordsState = {
             name: 'admin.productRequestRecords',
-            url: '/reports/product-request-records',
+            // url: '/reports/product-request-records',
+            url: '/reportes/registro-entrega',
             templateUrl: 'views/reports/product-request-records.html',
             controller: 'ReportsProductRequestRecordsCtrl',
             controllerAs: 'reportsProductRequestRecords',
             title: 'Registro de Entrega'
         };
         
-        var reportesIndumentariaState = {
-            name: 'admin.reportesIndumentaria',
-            url: '/reportes/indumentaria',
-            templateUrl: 'views/reportes/indumentaria.html',
-            controller: 'ReportesIndumentariaCtrl',
-            controllerAs: 'reportesIndumentaria',
-            title: 'Reporte de Indumentaria'
-        };
-
-        var reportesMarcacionesState = {
-            name: 'admin.reportesMarcaciones',
-            url: '/reportes/marcaciones',
-            templateUrl: 'views/reportes/marcaciones.html',
-            controller: 'ReportesMarcacionesCtrl',
-            controllerAs: 'reportesMarcaciones',
-            title: 'Reporte de Marcaciones'
-        };
-
-        var reportesProductosState = {
-            name: 'admin.reportesProductos',
-            url: '/reportes/productos',
-            templateUrl: 'views/reportes/productos.html',
-            controller: 'ReportesProductosCtrl',
-            controllerAs: 'reportesProductos',
-            title: 'Reporte de Productos'
-        };
-
-        var vestidoresRegisterState = {
-            name: 'admin.vestidoresRegister',
-            url: '/vestidores/register',
-            templateUrl: 'views/vestidores/register.html',
-            controller: 'VestidoresRegisterCtrl',
-            controllerAs: 'VestidoresRegister',
-            title: 'Registro en Vestidores'
-        };
-
-        var lavanderiaRegisterState = {
-            name: 'admin.lavanderiaRegister',
-            url: '/lavanderia/register',
-            templateUrl: 'views/lavanderia/register.html',
-            controller: 'LavanderiaRegisterCtrl',
-            controllerAs: 'LavanderiaRegister',
-            title: 'Registro en Lavandería'
-        };
-
-        var solicitudesAddState = {
-            name: 'admin.solicitudesAdd',
-            url: '/solicitudes/add',
-            templateUrl: 'views/solicitudes/add.html',
-            controller: 'SolicitudesAddCtrl',
-            controllerAs: 'solicitudesAdd',
-            title: 'Nueva Solicitud'
-        };
-
-        var solicitudesFirmaState = {
-            name: 'public.solicitudesFirma',
-            url: '/solicitudes/firma',
-            templateUrl: 'views/solicitudes/firma.html',
-            controller: 'SolicitudesFirmaCtrl',
-            controllerAs: 'solicitudesFirma',
-            title: 'Firmar Solicitud'
-        };
-
-        var solicitudesDevolverState = {
-            name: 'admin.solicitudesDevolver',
-            url: '/solicitudes/devolver',
-            templateUrl: 'views/solicitudes/devolver.html',
-            controller: 'SolicitudesDevolverCtrl',
-            controllerAs: 'solicitudesDevolver',
-            title: 'Registrar Devolución'
-        };
-
-        var productosEntregarState = {
-            name: 'admin.productosEntregar',
-            url: '/productos/entregar',
-            templateUrl: 'views/productos/entregar.html',
-            controller: 'ProductosEntregarCtrl',
-            controllerAs: 'productosEntregar',
-            title: 'Productos Entregar'
-        };
-
-        var indumentariaLiberarState = {
-            name: 'admin.indumentariaLiberar',
-            url: '/indumentaria/liberar',
-            templateUrl: 'views/indumentaria/liberar.html',
-            controller: 'IndumentariaLiberarCtrl',
-            controllerAs: 'indumentariaLiberar',
-            title: 'Liberar Indumentaria'
-        };
-
-        var lavanderiaRegularizarState = {
-            name: 'admin.lavanderiaRegularizar',
-            url: '/lavanderia/regularizar',
-            templateUrl: 'views/lavanderia/regularizar.html',
-            controller: 'LavanderiaRegularizarCtrl',
-            controllerAs: 'lavanderiaRegularizar',
-            title: 'Regularizar en Lavandería'
-        };
-
-        var productosIndexState = {
-            name: 'admin.productosIndex',
-            url: '/mantenimiento/productos',
-            templateUrl: 'views/productos/index.html',
-            controller: 'ProductosIndexCtrl',
-            controllerAs: 'productosIndex',
-            title: 'Mantenimiento de Productos'
-        };
-
-        var reportesAnexosState = {
-            name: 'admin.reportesAnexos',
-            url: '/reportes/anexos',
-            templateUrl: 'views/reportes/anexos.html',
-            controller: 'ReportesAnexosCtrl',
-            controllerAs: 'reportesAnexos',
-            title: 'Reporte de Anexos'
-        };
-
-        var reportesCuadroResumenState = {
-            name: 'admin.reportesCuadroResumen',
-            url: '/reportes/cuadro_resumen',
-            templateUrl: 'views/reportes/cuadro_resumen.html',
-            controller: 'ReportesCuadroResumenCtrl',
-            controllerAs: 'reportesCuadroResumen',
-            title: 'Cuadro Resumen'
-        };
-
-        var colaboradoresIndexState = {
-            name: 'admin.colaboradoresIndex',
-            url: '/colaboradores/',
-            templateUrl: 'views/colaboradores/index.html',
-            controller: 'ColaboradoresIndexCtrl',
-            controllerAs: 'colaboradoresIndex',
-            title: 'Colaboradores'
-        };
-
-        var colaboradoresAddState = {
-            name: 'admin.colaboradoresAdd',
-            url: '/colaboradores/add',
-            templateUrl: 'views/colaboradores/add.html',
-            controller: 'ColaboradoresAddCtrl',
-            controllerAs: 'colaboradoresAdd',
-            title: 'Nuevo Colaborador'
-        };
-
-        var reportesReporteSemanalState = {
-            name: 'admin.reportesReporteSemanal',
-            url: '/reportes/reporte_semanal',
-            templateUrl: 'views/reportes/reporte_semanal.html',
-            controller: 'ReportesReporteSemanalCtrl',
-            controllerAs: 'reportesReporteSemanal',
-            title: 'Reporte Semanal'
-        };
-
-        var supervisoresIndexState = {
-            name: 'admin.supervisoresIndex',
-            url: '/supervisores',
-            templateUrl: 'views/supervisores/index.html',
-            controller: 'SupervisoresIndexCtrl',
-            controllerAs: 'supervisoresIndex',
-            title: 'Lista de Supervisores'
-        };
-
-        var supervisoresAddState = {
-            name: 'admin.supervisoresAdd',
-            url: '/supervisores/add',
-            templateUrl: 'views/supervisores/add.html',
-            controller: 'SupervisoresAddCtrl',
-            controllerAs: 'supervisoresAdd',
-            title: 'Nuevo Supervisor'
-        };
-
-        var solicitudesIndexState = {
-            name: 'admin.solicitudesIndex',
-            url: '/solicitudes',
-            templateUrl: 'views/solicitudes/index.html',
-            controller: 'SolicitudesIndexCtrl',
-            controllerAs: 'solicitudesIndex',
-            title: 'Lista de Solicitudes'
-        };
-
         var workersIndexState = {
             name: 'admin.workersIndex',
-            url: '/workers/',
+            // url: '/workers/',
+            url: '/colaboradores/',
             templateUrl: 'views/workers/index.html',
             controller: 'WorkersIndexCtrl',
             controllerAs: 'workersIndex',
@@ -374,16 +133,28 @@ angular
 
         var workersAddState = {
             name: 'admin.workersAdd',
-            url: '/workers/add',
+            // url: '/workers/add',
+            url: '/colaboradores/nuevo',
             templateUrl: 'views/workers/add.html',
             controller: 'WorkersAddCtrl',
             controllerAs: 'workersAdd',
             title: 'Nuevo Colaborador'
         };
 
+        var workersEditState = {
+            name: 'admin.workersEdit',
+            // url: '/workers/edit',
+            url: '/colaboradores/editar/:document_type/:document_number',
+            templateUrl: 'views/workers/edit.html',
+            controller: 'WorkersEditCtrl',
+            controllerAs: 'workersEdit',
+            title: 'Editar Colaborador'
+        };
+
         var productRequestsRegisterState = {
             name: 'public.productRequestsRegister',
-            url: '/product-requests/register',
+            // url: '/product-requests/register',
+            url: '/solicitudes/registrar',
             templateUrl: 'views/product-requests/register.html',
             controller: 'ProductRequestsRegisterCtrl',
             controllerAs: 'productRequestsRegister',
@@ -392,7 +163,8 @@ angular
 
         var productRequestsAttendState = {
             name: 'admin.productRequestsAttend',
-            url: '/product-requests/attend',
+            // url: '/product-requests/attend',
+            url: '/solicitudes/atención',
             templateUrl: 'views/product-requests/attend.html',
             controller: 'ProductRequestsAttendCtrl',
             controllerAs: 'productRequestsAttend',
@@ -401,7 +173,8 @@ angular
 
         var productRequestsSignatureState = {
             name: 'public.productRequestsSignature',
-            url: '/product-requests/signature',
+            // url: '/product-requests/signature',
+            url: '/solicitudes/firma',
             templateUrl: 'views/product-requests/signature.html',
             controller: 'ProductRequestsSignatureCtrl',
             controllerAs: 'productRequestsSignature',
@@ -410,7 +183,8 @@ angular
 
         var configurationState = {
             name: 'admin.configuration',
-            url: '/configuration',
+            // url: '/configuration',
+            url: '/configuración',
             templateUrl: 'views/configuration.html',
             controller: 'ConfigurationCtrl',
             controllerAs: 'configuration',
@@ -427,36 +201,9 @@ angular
         $stateProvider.state(usersAddState);
         $stateProvider.state(usersEditState);
         $stateProvider.state(usersViewState);
-        $stateProvider.state(programacionesLoadState);
-        $stateProvider.state(programacionesSolicitudState);
-        $stateProvider.state(programacionesExternoState);
-        $stateProvider.state(programacionesEntregaState);
-        $stateProvider.state(programacionesSalidaState);
-        $stateProvider.state(programacionesEntradaState);
-        $stateProvider.state(reportesSolicitudesState);
-        $stateProvider.state(reportesIndumentariaState);
-        $stateProvider.state(reportesMarcacionesState);
-        $stateProvider.state(reportesProductosState);
-        $stateProvider.state(reportesCuadroResumenState);
-        $stateProvider.state(vestidoresRegisterState);
-        $stateProvider.state(lavanderiaRegisterState);
-        $stateProvider.state(solicitudesAddState);
-        $stateProvider.state(solicitudesFirmaState);
-        $stateProvider.state(solicitudesDevolverState);
-        $stateProvider.state(productosEntregarState);
-        $stateProvider.state(indumentariaLiberarState);
-        $stateProvider.state(lavanderiaRegularizarState);
-        $stateProvider.state(productosIndexState);
-        $stateProvider.state(colaboradoresIndexState);
-        $stateProvider.state(colaboradoresAddState);
-        $stateProvider.state(reportesAnexosState);
-        $stateProvider.state(reportesReporteSemanalState);
-        $stateProvider.state(supervisoresIndexState);
-        $stateProvider.state(supervisoresAddState);
-        $stateProvider.state(solicitudesIndexState);
-
         $stateProvider.state(workersIndexState);
         $stateProvider.state(workersAddState);
+        $stateProvider.state(workersEditState);
         $stateProvider.state(productRequestsRegisterState);
         $stateProvider.state(productRequestsAttendState);
         $stateProvider.state(productRequestsSignatureState);

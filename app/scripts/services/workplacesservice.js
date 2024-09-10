@@ -11,9 +11,9 @@ angular.module('registroAltaFrontendApp')
     .factory('workplacesService', function ($resource, envService) {
         var endpointUrl = 'workplaces';
         return $resource(envService.getHost() + endpointUrl + '/:id.json', {}, {
-            getListByWorkerType: {
+            getListByWorker: {
                 method: 'GET',
-                url: envService.getHost() + endpointUrl + '/get-list-by-worker-type/:worker_type.json'
+                url: envService.getHost() + endpointUrl + '/get-list-by-worker/:document_type/:document_number.json'
             },
         });
     });

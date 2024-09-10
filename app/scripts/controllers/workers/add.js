@@ -98,5 +98,23 @@ angular.module('registroAltaFrontendApp')
             return true;
         }
 
+        $scope.$watch('newWorker.worker_occupational_group_id', function(newVal) {
+            if (newVal) {
+                var found = $scope.worker_occupational_groups.filter(function(workerOccupationalGroup) {
+                    return workerOccupationalGroup.id == newVal;
+                });
+                if (found) {
+                    found = found[0];
+                    if (found.type === "ASISTENCIAL") {
+                        $scope.newWorker.type_asistencial = true;
+                        $scope.newWorker.type_administrativo = false;
+                    } else if (found.type === "ADMINISTRATIVO") {
+                        $scope.newWorker.type_asistencial = false;
+                        $scope.newWorker.type_administrativo = true;
+                    }
+                }
+            }
+        });
+    
         $scope.init();
     });

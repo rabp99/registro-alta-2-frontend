@@ -72,8 +72,9 @@ angular.module('registroAltaFrontendApp')
     $scope.onSelectWorker = function (worker) {
         $utilsViewService.disable('#selectWorkerBtn');
         
-        workplacesService.getListByWorkerType({
-            worker_type: worker.worker_occupational_group.type
+        workplacesService.getListByWorker({
+            document_type: worker.document_type,
+            document_number: worker.document_number
         }, function (data) {
             $scope.workplaces = data.workplaces;
             $scope.step = 2;

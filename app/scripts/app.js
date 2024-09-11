@@ -232,13 +232,8 @@ angular
             var $state = trans.router.stateService;
             if (!$rootScope.logged) {
                 if (trans.$to().name !== 'login.login' &&
-                    trans.$to().name !== 'public.programacionesSolicitud' &&
-                    trans.$to().name !== 'public.solicitudesFirma' &&
-                    trans.$to().name !== 'public.programacionesExterno' &&
-                    trans.$to().name !== 'public.programacionesSalida' &&
                     trans.$to().name !== 'public.productRequestsRegister' &&
-                    trans.$to().name !== 'public.productRequestsSignature' &&
-                    trans.$to().name !== 'public.programacionesEntrada') {
+                    trans.$to().name !== 'public.productRequestsSignature') {
                     return $state.target('login.login');
                 }
             }

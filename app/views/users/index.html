@@ -77,9 +77,12 @@
                                     <tr ng-repeat="user in users" ng-show="!tableUsers.loading">
                                         <td>{{ user.id }}</td>
                                         <td>{{ user.username }}</td>
-                                        <td>{{ user.nombre_completo }}</td>
-                                        <td>{{ user.rol }}</td>
-                                        <td>{{ user.estado.descripcion }}</td>
+                                        <td>{{ user.full_name }}</td>
+                                        <td>{{ user.role }}</td>
+                                        <td>
+                                            <span ng-show="user.status">Activo</span>
+                                            <span ng-show="!user.status">Inactivo</span>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

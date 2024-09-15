@@ -55,7 +55,7 @@ angular.module('registroAltaFrontendApp')
     };
     
     var validate = function() {
-        if (!$scope.newUser.rol) {
+        if (!$scope.newUser.role) {
             Materialize.toast("Seleccione el Rol", 4000);
             return false;
         }

@@ -37,22 +37,22 @@
         <li class="bold pl-9">
             Usuario: {{ user.username }}
         </li>
-        <li class="bold" ng-if="user.rol === 'Farmacia'">
+        <li class="bold" ng-if="user.role === 'Farmacia'">
             <a class="waves-effect waves-cyan" ui-sref="admin.productRequestsAttend" ui-sref-active="active"
                 ng-click="resetLinks()"><i class="material-icons">accessibility_new</i><span
                     class="menu-title">Atender Solicitud de EPP's</span></a>
         </li>
-        <li class="bold" ng-if="user.rol === 'Administrador'">
+        <li class="bold" ng-if="user.role === 'Administrador'">
             <a id="reportes-link" class="collapsible-header waves-effect waves-cyan"><i
                     class="material-icons">build</i><span class="menu-title">Mantenimiento</span></a>
             <div class="collapsible-body">
                 <ul class="collapsible collapsible-sub">
-                    <li class="bold" ng-if="user.rol === 'Administrador'">
+                    <li class="bold" ng-if="user.role === 'Administrador'">
                         <a class="waves-effect waves-cyan" ui-sref="admin.workersIndex" ui-sref-active="active"><i
                                 class="material-icons">assignment_ind</i><span
                                 class="menu-title">Colaboradores</span></a>
                     </li>
-                    <li class="bold" ng-if="user.rol === 'Administrador'">
+                    <li class="bold" ng-if="user.role === 'Administrador'">
                         <a class="waves-effect waves-cyan" ui-sref="admin.usersIndex" ui-sref-active="active"><i
                                 class="material-icons">account_box</i><span class="menu-title">Usuarios</span></a>
                     </li>
@@ -60,13 +60,13 @@
             </div>
         </li>
         <li class="bold"
-            ng-if="user.rol === 'Farmacia' || user.rol === 'Administrador' || user.rol === 'Médico Ocupacional' || user.rol === 'Jefe de Servicio'">
+            ng-if="user.role === 'Farmacia' || user.role === 'Administrador' || user.role === 'Médico Ocupacional' || user.role === 'Jefe de Servicio'">
             <a id="reportes-link" class="collapsible-header waves-effect waves-cyan"><i
                     class="material-icons">description</i><span class="menu-title">Reportes</span></a>
             <div class="collapsible-body">
                 <ul class="collapsible collapsible-sub">
                     <li class="bold"
-                        ng-if="user.rol === 'Farmacia' || user.rol === 'Administrador'">
+                        ng-if="user.role === 'Farmacia' || user.role === 'Administrador'">
                         <a class="waves-effect waves-cyan" ui-sref="admin.productRequestRecords"
                             ui-sref-active="active"><i class="material-icons">description</i><span
                                 class="menu-title">Registro de Entrega</span></a>
@@ -74,7 +74,7 @@
                 </ul>
             </div>
         </li>
-        <li class="bold" ng-if="user.rol === 'Administrador'">
+        <li class="bold" ng-if="user.role === 'Administrador'">
             <a class="waves-effect waves-cyan" ui-sref="admin.configuration" ui-sref-active="active"
                 ng-click="resetLinks()"><i class="material-icons">build</i><span class="menu-title">Configuración</span></a>
         </li>

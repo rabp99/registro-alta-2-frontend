@@ -47,24 +47,24 @@
                                             </div>
                                             <div class="input-field input-group col xl12 l12 m12 s12">
                                                 <i class="material-icons prefix">person</i>
-                                                <input id="nombre_completo" 
-                                                    name="nombre_completo" 
+                                                <input id="full_name" 
+                                                    name="full_name" 
                                                     class="validate" 
                                                     type="text" 
-                                                    ng-model="newUser.nombre_completo" 
+                                                    ng-model="newUser.full_name" 
                                                     uppercased
                                                     required>
-                                                <label for="nombre_completo">Apellidos y nombres</label>
+                                                <label for="full_name">Apellidos y nombres</label>
                                             </div>
                                             <div class="input-field input-group col xl12 l12 m12 s12">
                                                 <i class="material-icons prefix">accessibility</i>
-                                                <select id="tipo_epp" ng-model="newUser.rol" 
+                                                <select id="role" ng-model="newUser.role" 
                                                     class="validate"    
-                                                    material-select watch name="rol">
+                                                    material-select watch name="role">
                                                     <option value="">Seleccione un Rol</option>
-                                                    <option ng-value="rol" ng-repeat="rol in roles">{{ rol }}</option>
+                                                    <option ng-value="role" ng-repeat="role in roles">{{ role }}</option>
                                                 </select>
-                                                <label for="rol">Rol</label>
+                                                <label for="role">Rol</label>
                                             </div>
                                         </div>
                                     </div>

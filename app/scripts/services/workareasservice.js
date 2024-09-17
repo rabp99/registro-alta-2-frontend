@@ -11,9 +11,9 @@ angular.module('registroAltaFrontendApp')
     .factory('workAreasService', function ($resource, envService) {
         var endpointUrl = 'work-areas';
         return $resource(envService.getHost() + endpointUrl + '/:id.json', {}, {
-            getListByWorkplaceAndWorkerType: {
+            getListByWorkplaceAndWorker: {
                 method: 'GET',
-                url: envService.getHost() + endpointUrl + '/get-list-by-workplace-and-worker-type/:workplace_id/:worker_type.json'
+                url: envService.getHost() + endpointUrl + '/get-list-by-workplace-and-worker/:workplace_id/:worker_document_type/:worker_document_number.json'
             },
         });
     });

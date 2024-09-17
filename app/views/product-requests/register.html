@@ -385,13 +385,22 @@
                                                     <p class="font-weight-600">Productos a solicitar</p>
                                                     <ul style="margin-top: 0px;">
                                                         <li ng-repeat="kit in kits">
-                                                            <div class="input-field inline" style="width: 60px;">
+                                                            <div class="input-field inline hide-on-small-only" style="width: 60px;">
                                                                 <select id="selected_worker_area_id"
                                                                     ng-model="kit.amount"
                                                                     material-select required
                                                                     ng-options="amountOption for amountOption in [1,2,3,4,5,6,7,8,9,10]">
                                                                 </select>
                                                                 <label for="selected_worker_area_id">Cantidad</label>
+                                                            </div>
+                                                            <div class="input-field inline hide-on-med-and-up" style="width: 60px;">
+                                                                <select id="selected_worker_area_id"
+                                                                    class="browser-default"
+                                                                    ng-model="kit.amount"
+                                                                    material-select required
+                                                                    ng-options="amountOption for amountOption in [1,2,3,4,5,6,7,8,9,10]">
+                                                                </select>
+                                                                <label class="hide-on-small-only" for="selected_worker_area_id">Cantidad</label>
                                                             </div>
                                                             {{ kit.description }}
                                                             <ul>

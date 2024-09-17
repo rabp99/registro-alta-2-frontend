@@ -14,8 +14,7 @@
                 <div class="col xl8 l8 s12 offset-xl2">
                     <div class="card card-tabs z-depth-4">
                         <div class="card-content">
-
-                            <div class="mb-3">
+                            <div class="mb-3 hide-on-small-only">
                                 <div class="display-flex justify-content-center">
                                     <button type="button" class="waves-effect waves-light btn box-shadow-none border-round mr-1 cursor-default-no-select"
                                         ng-class="{'gradient-45deg-amber-amber': step === 1, 'gradient-45deg-light-blue-cyan': step !== 1}">
@@ -35,277 +34,370 @@
                                     </button>
                                 </div>
                             </div>
-
-                            <div id="step1" ng-show="step === 1">
-                                <form ng-submit="onSelectWorker(selectedWorker)">
-                                    <div class="row">
-                                        <div class="col s12">
-                                            <div class="input-field input-group col offset-m3 m6 s12">
-                                                <i class="material-icons prefix">assignment_ind</i>
-                                                <select id="worker_document_type" ng-model="worker_document_type"
-                                                    required material-select>
-                                                    <option value="DNI">DNI</option>
-                                                    <option value="CE">CE</option>
-                                                </select>
-                                                <label for="worker_document_type">Tipo de Documento</label>
-                                            </div>
+                            <div>
+                                <div id="step1" ng-show="step === 1">
+                                    <div class="mb-3 hide-on-med-and-up">
+                                        <div class="display-flex justify-content-center flex-column">
+                                            <button type="button" class="waves-effect waves-light btn box-shadow-none border-round mr-1 cursor-default-no-select mb-2"
+                                                ng-class="{'gradient-45deg-amber-amber': step === 1, 'gradient-45deg-light-blue-cyan': step !== 1}">
+                                                Información Personal
+                                            </button>
                                         </div>
-                                        <div class="col s12">
-                                            <div class="input-field input-group col offset-m3 m6 s12">
-                                                <i class="material-icons prefix">tag</i>
-                                                <input id="worker_document_number" type="text"
-                                                    class="validate" ng-model="worker_document_number"
-                                                    ng-keypress="checkEnter($event)"
-                                                    maxlength="8" required pattern="\d*">
-                                                <label for="worker_document_number">Número de Documento</label>
-                                                <span class="suffix">
-                                                    <button id="searchWorkerBtn" type="button" ng-click="searchWorker(worker_document_type, worker_document_number)"
-                                                        ng-class="{disabled: (worker_document_number.length < 8 || worker_document_number === null || worker_document_number === undefined)}"
-                                                        class="btn waves-effect waves-light btn-search">
-                                                        <i class="material-icons">search</i>
-                                                    </button>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="center">
-                                            <img src="images/loading.gif" alt="Cargando" ng-show="searchingWorker">
-                                        </div>
-                                        <div ng-show="selectedWorker.full_name && !searchingWorker">
+                                    </div>
+                                    <form ng-submit="onSelectWorker(selectedWorker)" class="mb-2">
+                                        <div class="row">
                                             <div class="col s12">
                                                 <div class="input-field input-group col offset-m3 m6 s12">
-                                                    <i class="material-icons prefix">person</i>
-                                                    <input id="worker_full_name" type="text"
-                                                        ng-model="selectedWorker.full_name" readonly>
-                                                    <label for="worker_full_name">Nombre Completo</label>
+                                                    <i class="material-icons prefix">assignment_ind</i>
+                                                    <select id="worker_document_type" ng-model="worker_document_type"
+                                                        required material-select>
+                                                        <option value="DNI">DNI</option>
+                                                        <option value="CE">CE</option>
+                                                    </select>
+                                                    <label for="worker_document_type">Tipo de Documento</label>
                                                 </div>
                                             </div>
                                             <div class="col s12">
                                                 <div class="input-field input-group col offset-m3 m6 s12">
-                                                    <i class="material-icons prefix">groups</i>
-                                                    <input id="worker_worker_occupational_group_description" type="text"
-                                                        ng-model="selectedWorker.worker_occupational_group.description" readonly>
-                                                    <label for="worker_worker_occupational_group_description">Grupo Ocupacional</label>
+                                                    <i class="material-icons prefix">tag</i>
+                                                    <input id="worker_document_number" type="text"
+                                                        class="validate" ng-model="worker_document_number"
+                                                        ng-keypress="checkEnter($event)"
+                                                        maxlength="8" required pattern="\d*">
+                                                    <label for="worker_document_number">Número de Documento</label>
+                                                    <span class="suffix">
+                                                        <button id="searchWorkerBtn" type="button" ng-click="searchWorker(worker_document_type, worker_document_number)"
+                                                            ng-class="{disabled: (worker_document_number.length < 8 || worker_document_number === null || worker_document_number === undefined)}"
+                                                            class="btn waves-effect waves-light btn-search">
+                                                            <i class="material-icons">search</i>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="center">
+                                                <img class="sm-width-100" src="images/loading.gif" alt="Cargando" ng-show="searchingWorker">
+                                            </div>
+                                            <div ng-show="selectedWorker.full_name && !searchingWorker">
+                                                <div class="col s12">
+                                                    <div class="input-field input-group col offset-m3 m6 s12">
+                                                        <i class="material-icons prefix">person</i>
+                                                        <input id="worker_full_name" type="text"
+                                                            ng-model="selectedWorker.full_name" readonly>
+                                                        <label for="worker_full_name">Nombre Completo</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col s12">
+                                                    <div class="input-field input-group col offset-m3 m6 s12">
+                                                        <i class="material-icons prefix">groups</i>
+                                                        <input id="worker_worker_occupational_group_description" type="text"
+                                                            ng-model="selectedWorker.worker_occupational_group.description" readonly>
+                                                        <label for="worker_worker_occupational_group_description">Grupo Ocupacional</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col s12">
+                                                    <div class="input-field input-group col offset-m3 m6 s12">
+                                                        <i class="material-icons prefix">perm_contact_calendar</i>
+                                                        <input id="worker_worker_medical_speciality_description" type="text"
+                                                            ng-model="selectedWorker.worker_medical_speciality.description" readonly>
+                                                        <label for="worker_worker_medical_speciality_description">Especialidad</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="display-flex justify-content-center">
+                                                <button
+                                                    style="opacity: 0;"
+                                                    disabled
+                                                    class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right mr-1">
+                                                    <span class="hide-on-small-onl">Anterior &gt;&gt;</span>
+                                                </button>
+                                                <button
+                                                    id="selectWorkerBtn"
+                                                    ng-disabled="!selectedWorker.full_name"
+                                                    class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right"
+                                                    type="submit">
+                                                    <span class="hide-on-small-onl">Siguiente &gt;&gt;</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="mb-3 hide-on-med-and-up">
+                                        <div class="display-flex justify-content-center flex-column">
+                                            <button type="button" class="waves-effect waves-light btn box-shadow-none border-round mr-1 cursor-default-no-select mb-2"
+                                                ng-class="{'gradient-45deg-amber-amber': step === 2, 'gradient-45deg-light-blue-cyan': step !== 2}">
+                                                Lugar de Trabajo
+                                            </button>
+                                            <button type="button" class="waves-effect waves-light btn box-shadow-none border-round mr-1 cursor-default-no-select mb-2"
+                                                ng-class="{'gradient-45deg-amber-amber': step === 3, 'gradient-45deg-light-blue-cyan': step !== 3}">
+                                                Área
+                                            </button>
+                                            <button type="button" class="waves-effect waves-light btn box-shadow-none border-round mr-1 cursor-default-no-select mb-2"
+                                                ng-class="{'gradient-45deg-amber-amber': step === 4, 'gradient-45deg-light-blue-cyan': step !== 4}">
+                                                Registrar Solicitud
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="step2" ng-show="step === 2">
+                                    <div class="mb-3 hide-on-med-and-up">
+                                        <div class="display-flex justify-content-center flex-column">
+                                            <button type="button" class="waves-effect waves-light btn box-shadow-none border-round mr-1 cursor-default-no-select mb-2"
+                                                ng-class="{'gradient-45deg-amber-amber': step === 1, 'gradient-45deg-light-blue-cyan': step !== 1}">
+                                                Información Personal
+                                            </button>
+                                            <button type="button" class="waves-effect waves-light btn box-shadow-none border-round mr-1 cursor-default-no-select mb-2"
+                                                ng-class="{'gradient-45deg-amber-amber': step === 2, 'gradient-45deg-light-blue-cyan': step !== 2}">
+                                                Lugar de Trabajo
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <form class="mb-2" ng-submit="onSelectWorkplace(selectedWorkplace, selectedWorker)">
+                                        <div class="row">
+                                            <div class="col s12">
+                                                <div class="input-field input-group col offset-m3 m6 s12">
+                                                    <i class="material-icons prefix">domain</i>
+                                                    <select id="selected_workplace"
+                                                        ng-model="selectedWorkplaceId"
+                                                        material-select watch required>
+                                                        <option value="" disabled selected>{{
+                                                            "SELECCIONAR UN LUGAR DE TRABAJO" }}</option>
+                                                        <option ng-value="workplace.id" ng-repeat="workplace in workplaces">{{ workplace.description }}</option>
+                                                    </select>
+                                                    <label for="worker_condition">Lugar de Trabajo</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="display-flex justify-content-center">
+                                                <button
+                                                    type="button"
+                                                    ng-click="backToSelectWorker()"
+                                                    class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right mr-1">
+                                                    <span class="hide-on-small-onl">&lt;&lt; Anterior</span>
+                                                </button>
+                                                <button
+                                                    id="selectWorkplaceBtn"
+                                                    ng-disabled="!selectedWorkplace"
+                                                    class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right"
+                                                    type="submit">
+                                                    <span class="hide-on-small-onl">Siguiente &gt;&gt;</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="mb-3 hide-on-med-and-up">
+                                        <div class="display-flex justify-content-center flex-column">
+                                            <button type="button" class="waves-effect waves-light btn box-shadow-none border-round mr-1 cursor-default-no-select mb-2"
+                                                ng-class="{'gradient-45deg-amber-amber': step === 3, 'gradient-45deg-light-blue-cyan': step !== 3}">
+                                                Área
+                                            </button>
+                                            <button type="button" class="waves-effect waves-light btn box-shadow-none border-round mr-1 cursor-default-no-select mb-2"
+                                                ng-class="{'gradient-45deg-amber-amber': step === 4, 'gradient-45deg-light-blue-cyan': step !== 4}">
+                                                Registrar Solicitud
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="step3" ng-show="step === 3">
+                                    <div class="mb-3 hide-on-med-and-up">
+                                        <div class="display-flex justify-content-center flex-column">
+                                            <button type="button" class="waves-effect waves-light btn box-shadow-none border-round mr-1 cursor-default-no-select mb-2"
+                                                ng-class="{'gradient-45deg-amber-amber': step === 1, 'gradient-45deg-light-blue-cyan': step !== 1}">
+                                                Información Personal
+                                            </button>
+                                            <button type="button" class="waves-effect waves-light btn box-shadow-none border-round mr-1 cursor-default-no-select mb-2"
+                                                ng-class="{'gradient-45deg-amber-amber': step === 2, 'gradient-45deg-light-blue-cyan': step !== 2}">
+                                                Lugar de Trabajo
+                                            </button>
+                                            <button type="button" class="waves-effect waves-light btn box-shadow-none border-round mr-1 cursor-default-no-select mb-2"
+                                                ng-class="{'gradient-45deg-amber-amber': step === 3, 'gradient-45deg-light-blue-cyan': step !== 3}">
+                                                Área
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <form class="mb-2" ng-submit="onSelectWorkAreaDetail(selectedWorkAreaDetail)">
+                                        <div class="row">
+                                            <div class="col s12">
+                                                <div class="input-field input-group col offset-m3 m6 s12">
+                                                    <i class="material-icons prefix">location_city</i>
+                                                    <select id="selected_worker_area_id"
+                                                        ng-model="selectedWorkAreaId"
+                                                        ng-change="onSelectWorkArea(selectedWorkAreaId)"
+                                                        material-select watch required>
+                                                        <option value="" disabled selected>{{
+                                                            "SELECCIONAR UN ÁREA" }}</option>
+                                                        <option ng-value="workArea.id" ng-repeat="workArea in workAreas">{{ workArea.description }}</option>
+                                                    </select>
+                                                    <label for="selected_worker_area_id">Área</label>
                                                 </div>
                                             </div>
                                             <div class="col s12">
-                                                <div class="input-field input-group col offset-m3 m6 s12">
-                                                    <i class="material-icons prefix">perm_contact_calendar</i>
-                                                    <input id="worker_worker_medical_speciality_description" type="text"
-                                                        ng-model="selectedWorker.worker_medical_speciality.description" readonly>
-                                                    <label for="worker_worker_medical_speciality_description">Especialidad</label>
+                                                <div class="input-field input-group col offset-m3 m6 s12" ng-show="workAreaDetails.length === 1">
+                                                    <i class="material-icons prefix">assignment</i>
+                                                    <textarea id="selected_work_area_detail_description" 
+                                                        rows="5" readonly
+                                                        class="materialize-textarea"
+                                                        ng-model="selectedWorkAreaDetail.description"></textarea>
+                                                    <label for="selected_work_area_detail_description">Nota</label>
+                                                </div>
+                                                <div class="col offset-m3 m6 s12 mb-2" ng-show="workAreaDetails.length > 1">
+                                                    <p ng-repeat="workAareaDetail in workAreaDetails">
+                                                        <label>
+                                                            <input type="radio"
+                                                                name="selectedWorkAreaDetailId" 
+                                                                ng-model="selectedWorkAreaDetailId" 
+                                                                ng-value="workAareaDetail.id"
+                                                                ng-change="selectWorkAreaDetail(selectedWorkAreaDetailId)">
+                                                            <span>{{ workAareaDetail.description }}</span>
+                                                        </label>
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="display-flex justify-content-center">
-                                            <button
-                                                style="opacity: 0;"
-                                                disabled
-                                                class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right mr-1">
-                                                <span class="hide-on-small-onl">Anterior &gt;&gt;</span>
-                                            </button>
-                                            <button
-                                                id="selectWorkerBtn"
-                                                ng-disabled="!selectedWorker.full_name"
-                                                class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right"
-                                                type="submit">
-                                                <span class="hide-on-small-onl">Siguiente &gt;&gt;</span>
+                                        <div class="row">
+                                            <div class="display-flex justify-content-center">
+                                                <button
+                                                    type="button"
+                                                    ng-click="backToSelectWorkplace()"
+                                                    class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right mr-1">
+                                                    <span class="hide-on-small-onl">&lt;&lt; Anterior</span>
+                                                </button>
+                                                <button
+                                                    id="selectWorkAreaDetailBtn"
+                                                    ng-disabled="!selectedWorkAreaDetail"
+                                                    class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right"
+                                                    type="submit">
+                                                    <span class="hide-on-small-onl">Siguiente &gt;&gt;</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="mb-3 hide-on-med-and-up">
+                                        <div class="display-flex justify-content-center flex-column">
+                                            <button type="button" class="waves-effect waves-light btn box-shadow-none border-round mr-1 cursor-default-no-select mb-2"
+                                                ng-class="{'gradient-45deg-amber-amber': step === 4, 'gradient-45deg-light-blue-cyan': step !== 4}">
+                                                Registrar Solicitud
                                             </button>
                                         </div>
                                     </div>
-                                </form>
-                            </div>
+                                </div>
 
-                            <div id="step2" ng-show="step === 2">
-                                <form ng-submit="onSelectWorkplace(selectedWorkplace, selectedWorker)">
-                                    <div class="row">
-                                        <div class="col s12">
-                                            <div class="input-field input-group col offset-m3 m6 s12">
-                                                <i class="material-icons prefix">domain</i>
-                                                <select id="selected_workplace"
-                                                    ng-model="selectedWorkplaceId"
-                                                    material-select watch required>
-                                                    <option value="" disabled selected>{{
-                                                        "SELECCIONAR UN LUGAR DE TRABAJO" }}</option>
-                                                    <option ng-value="workplace.id" ng-repeat="workplace in workplaces">{{ workplace.description }}</option>
-                                                </select>
-                                                <label for="worker_condition">Lugar de Trabajo</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="display-flex justify-content-center">
-                                            <button
-                                                type="button"
-                                                ng-click="backToSelectWorker()"
-                                                class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right mr-1">
-                                                <span class="hide-on-small-onl">&lt;&lt; Anterior</span>
+                                <div id="step4" ng-show="step === 4">
+                                    <div class="mb-3 hide-on-med-and-up">
+                                        <div class="display-flex justify-content-center flex-column">
+                                            <button type="button" class="waves-effect waves-light btn box-shadow-none border-round mr-1 cursor-default-no-select mb-2"
+                                                ng-class="{'gradient-45deg-amber-amber': step === 1, 'gradient-45deg-light-blue-cyan': step !== 1}">
+                                                Información Personal
                                             </button>
-                                            <button
-                                                id="selectWorkplaceBtn"
-                                                ng-disabled="!selectedWorkplace"
-                                                class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right"
-                                                type="submit">
-                                                <span class="hide-on-small-onl">Siguiente &gt;&gt;</span>
+                                            <button type="button" class="waves-effect waves-light btn box-shadow-none border-round mr-1 cursor-default-no-select mb-2"
+                                                ng-class="{'gradient-45deg-amber-amber': step === 2, 'gradient-45deg-light-blue-cyan': step !== 2}">
+                                                Lugar de Trabajo
+                                            </button>
+                                            <button type="button" class="waves-effect waves-light btn box-shadow-none border-round mr-1 cursor-default-no-select mb-2"
+                                                ng-class="{'gradient-45deg-amber-amber': step === 3, 'gradient-45deg-light-blue-cyan': step !== 3}">
+                                                Área
+                                            </button>
+                                            <button type="button" class="waves-effect waves-light btn box-shadow-none border-round mr-1 cursor-default-no-select mb-2"
+                                                ng-class="{'gradient-45deg-amber-amber': step === 4, 'gradient-45deg-light-blue-cyan': step !== 4}">
+                                                Registrar Solicitud
                                             </button>
                                         </div>
                                     </div>
-                                </form>
-                            </div>
-
-                            <div id="step3" ng-show="step === 3">
-                                <form ng-submit="onSelectWorkAreaDetail(selectedWorkAreaDetail)">
-                                    <div class="row">
-                                        <div class="col s12">
-                                            <div class="input-field input-group col offset-m3 m6 s12">
-                                                <i class="material-icons prefix">location_city</i>
-                                                <select id="selected_worker_area_id"
-                                                    ng-model="selectedWorkAreaId"
-                                                    ng-change="onSelectWorkArea(selectedWorkAreaId)"
-                                                    material-select watch required>
-                                                    <option value="" disabled selected>{{
-                                                        "SELECCIONAR UN ÁREA" }}</option>
-                                                    <option ng-value="workArea.id" ng-repeat="workArea in workAreas">{{ workArea.description }}</option>
-                                                </select>
-                                                <label for="selected_worker_area_id">Área</label>
-                                            </div>
-                                        </div>
-                                        <div class="col s12">
-                                            <div class="input-field input-group col offset-m3 m6 s12" ng-show="workAreaDetails.length === 1">
-                                                <i class="material-icons prefix">assignment</i>
-                                                <textarea id="selected_work_area_detail_description" 
-                                                    rows="5" readonly
-                                                    class="materialize-textarea"
-                                                    ng-model="selectedWorkAreaDetail.description"></textarea>
-                                                <label for="selected_work_area_detail_description">Nota</label>
-                                            </div>
-                                            <div class="col offset-m3 m6 s12 mb-2" ng-show="workAreaDetails.length > 1">
-                                                <p ng-repeat="workAareaDetail in workAreaDetails">
-                                                    <label>
-                                                        <input type="radio"
-                                                            name="selectedWorkAreaDetailId" 
-                                                            ng-model="selectedWorkAreaDetailId" 
-                                                            ng-value="workAareaDetail.id"
-                                                            ng-change="selectWorkAreaDetail(selectedWorkAreaDetailId)">
-                                                        <span>{{ workAareaDetail.description }}</span>
-                                                    </label>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="display-flex justify-content-center">
-                                            <button
-                                                type="button"
-                                                ng-click="backToSelectWorkplace()"
-                                                class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right mr-1">
-                                                <span class="hide-on-small-onl">&lt;&lt; Anterior</span>
-                                            </button>
-                                            <button
-                                                id="selectWorkAreaDetailBtn"
-                                                ng-disabled="!selectedWorkAreaDetail"
-                                                class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right"
-                                                type="submit">
-                                                <span class="hide-on-small-onl">Siguiente &gt;&gt;</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-
-                            <div id="step4" ng-show="step === 4">
-                                <form ng-submit="save()">
-                                    <div class="row">
-                                        <div class="col offset-m2 m8 s12">
-                                            <div class="col m12 s12">
-                                                <h5>RESUMEN DE LA SOLICITUD</h5>
-                                                <hr>
-                                            </div>
-                                            <div class="col m6 s12">
-                                                <div class="mb-3">
-                                                    <p class="font-weight-600">Número de Documento</p>
-                                                    <p class="medium-small">{{ selectedWorker.document_type }}: {{ selectedWorker.document_number }}</p>
+                                    <form ng-submit="save()">
+                                        <div class="row">
+                                            <div class="col offset-m2 m8 s12">
+                                                <div class="col m12 s12">
+                                                    <h5>RESUMEN DE LA SOLICITUD</h5>
+                                                    <hr>
                                                 </div>
-                                            </div>
-                                            <div class="col m6 s12">
-                                                <div class="mb-3">
-                                                    <p class="font-weight-600">Nombre del Trabajdor</p>
-                                                    <p class="medium-small">{{ selectedWorker.full_name }}</p>
+                                                <div class="col m6 s12">
+                                                    <div class="mb-3">
+                                                        <p class="font-weight-600">Número de Documento</p>
+                                                        <p class="medium-small">{{ selectedWorker.document_type }}: {{ selectedWorker.document_number }}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col m6 s12">
-                                                <div class="mb-3">
-                                                    <p class="font-weight-600">Grupo Ocupacional</p>
-                                                    <p class="medium-small">{{ selectedWorker.worker_occupational_group.description }}</p>
+                                                <div class="col m6 s12">
+                                                    <div class="mb-3">
+                                                        <p class="font-weight-600">Nombre del Trabajdor</p>
+                                                        <p class="medium-small">{{ selectedWorker.full_name }}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col m6 s12">
-                                                <div class="mb-3">
-                                                    <p class="font-weight-600">Especialidad</p>
-                                                    <p class="medium-small">{{ selectedWorker.worker_medical_speciality.description }}</p>
+                                                <div class="col m6 s12">
+                                                    <div class="mb-3">
+                                                        <p class="font-weight-600">Grupo Ocupacional</p>
+                                                        <p class="medium-small">{{ selectedWorker.worker_occupational_group.description }}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col m6 s12">
-                                                <div class="mb-3">
-                                                    <p class="font-weight-600">Lugar de Trabajo</p>
-                                                    <p class="medium-small">{{ selectedWorkplace.description }}</p>
+                                                <div class="col m6 s12">
+                                                    <div class="mb-3">
+                                                        <p class="font-weight-600">Especialidad</p>
+                                                        <p class="medium-small">{{ selectedWorker.worker_medical_speciality.description }}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col m6 s12">
-                                                <div class="mb-3">
-                                                    <p class="font-weight-600">Área</p>
-                                                    <p class="medium-small">{{ selectedWorkArea.description }}</p>
+                                                <div class="col m6 s12">
+                                                    <div class="mb-3">
+                                                        <p class="font-weight-600">Lugar de Trabajo</p>
+                                                        <p class="medium-small">{{ selectedWorkplace.description }}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col m12 s12">
-                                                <div class="mb-3">
-                                                    <p class="font-weight-600">Detalle</p>
-                                                    <p class="medium-small">{{ selectedWorkAreaDetail.description }}</p>
+                                                <div class="col m6 s12">
+                                                    <div class="mb-3">
+                                                        <p class="font-weight-600">Área</p>
+                                                        <p class="medium-small">{{ selectedWorkArea.description }}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col m12 s12">
-                                                <div class="mb-3">
-                                                    <p class="font-weight-600">Productos a solicitar</p>
-                                                    <ul style="margin-top: 0px;">
-                                                        <li ng-repeat="kit in kits">
-                                                            <div class="input-field inline" style="width: 60px;">
-                                                                <select id="selected_worker_area_id"
-                                                                    ng-model="kit.amount"
-                                                                    material-select required
-                                                                    ng-options="amountOption for amountOption in [1,2,3,4,5,6,7,8,9,10]">
-                                                                </select>
-                                                                <label for="selected_worker_area_id">Cantidad</label>
-                                                            </div>
-                                                            {{ kit.description }}
-                                                            <ul>
-                                                                <li ng-repeat="product in kit.products" class="ml-4">
-                                                                    - <span class="strong">{{ kit.amount * product.amount}}</span> {{ product.description }}
-                                                                </li>
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
+                                                <div class="col m12 s12">
+                                                    <div class="mb-3">
+                                                        <p class="font-weight-600">Detalle</p>
+                                                        <p class="medium-small">{{ selectedWorkAreaDetail.description }}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col m12 s12">
+                                                    <div class="mb-3">
+                                                        <p class="font-weight-600">Productos a solicitar</p>
+                                                        <ul style="margin-top: 0px;">
+                                                            <li ng-repeat="kit in kits">
+                                                                <div class="input-field inline" style="width: 60px;">
+                                                                    <select id="selected_worker_area_id"
+                                                                        ng-model="kit.amount"
+                                                                        material-select required
+                                                                        ng-options="amountOption for amountOption in [1,2,3,4,5,6,7,8,9,10]">
+                                                                    </select>
+                                                                    <label for="selected_worker_area_id">Cantidad</label>
+                                                                </div>
+                                                                {{ kit.description }}
+                                                                <ul>
+                                                                    <li ng-repeat="product in kit.products" class="ml-4">
+                                                                        - <span class="strong">{{ kit.amount * product.amount}}</span> {{ product.description }}
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="display-flex justify-content-center">
-                                            <button
-                                                type="button"
-                                                ng-click="backToSelectWorkArea()"
-                                                class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right mr-1">
-                                                <span class="hide-on-small-onl">&lt;&lt; Anterior</span>
-                                            </button>
-                                            <button
-                                                id="saveBtn"
-                                                class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right"
-                                                type="submit">
-                                                <span class="hide-on-small-onl">Registrar</span>
-                                            </button>
+                                        <div class="row">
+                                            <div class="display-flex justify-content-center">
+                                                <button
+                                                    type="button"
+                                                    ng-click="backToSelectWorkArea()"
+                                                    class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right mr-1">
+                                                    <span class="hide-on-small-onl">&lt;&lt; Anterior</span>
+                                                </button>
+                                                <button
+                                                    id="saveBtn"
+                                                    class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right"
+                                                    type="submit">
+                                                    <span class="hide-on-small-onl">Registrar</span>
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>

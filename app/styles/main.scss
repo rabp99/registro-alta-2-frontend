@@ -404,3 +404,21 @@ dl {
 .d-flex {
     display: flex;
 }
+
+@media only screen and (max-width: 600px) {
+    .sm-display-flex {
+        display: flex;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .sm-flex-direction-col {
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .sm-width-100 {
+        width: 100%;
+    }
+}

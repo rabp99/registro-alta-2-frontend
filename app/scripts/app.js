@@ -120,6 +120,16 @@ angular
             controllerAs: 'reportsProductRequestRecords',
             title: 'Registro de Entrega'
         };
+
+        var reportsReportRangeDates = {
+            name: 'admin.reportRangeDates',
+            // url: '/reports/range-dates',
+            url: '/reportes/rango-fechas',
+            templateUrl: 'views/reports/range-dates.html',
+            controller: 'ReportsRangeDatesCtrl',
+            controllerAs: 'reportsRangeDates',
+            title: 'Reporte por Rango de Fechas'
+        };
         
         var workersIndexState = {
             name: 'admin.workersIndex',
@@ -208,6 +218,7 @@ angular
         $stateProvider.state(productRequestsAttendState);
         $stateProvider.state(productRequestsSignatureState);
         $stateProvider.state(reportsProductRequestRecordsState);
+        $stateProvider.state(reportsReportRangeDates);
         $stateProvider.state(configurationState);
         $urlRouterProvider.otherwise('/admin');
     })

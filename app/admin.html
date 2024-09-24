@@ -71,6 +71,12 @@
                             ui-sref-active="active"><i class="material-icons">description</i><span
                                 class="menu-title">Registro de Entrega</span></a>
                     </li>
+                    <li class="bold"
+                        ng-if="user.role === 'Farmacia' || user.role === 'Administrador'">
+                        <a class="waves-effect waves-cyan" ui-sref="admin.reportRangeDates"
+                            ui-sref-active="active"><i class="material-icons">description</i><span
+                                class="menu-title">Reporte por Fechas</span></a>
+                    </li>
                 </ul>
             </div>
         </li>

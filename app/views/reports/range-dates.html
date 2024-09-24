@@ -3,12 +3,12 @@
     <div class="container">
         <div class="row heading-page">
             <div class="col s10 m6 l6">
-                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Registro de Entrega</span></h5>
+                <h5 class="breadcrumbs-title mt-0 mb-0"><span>Reporte por Fechas</span></h5>
                 <ol class="breadcrumbs mb-0">
                     <li class="breadcrumb-item"><a ui-sref="admin.main">Inicio</a>
                     </li>
                     <li class="breadcrumb-item">Reportes</li>
-                    <li class="breadcrumb-item active">Registro de Entrega</li>
+                    <li class="breadcrumb-item active">Reporte por Fechas</li>
                 </ol>
             </div>
             <div class="col s2 m6 l6">
@@ -18,8 +18,6 @@
                     class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right" 
                     ng-click="generateReport()"
                     ng-disabled="
-                        worker_document_type == null || 
-                        worker_document_number == null ||
                         start_date == null ||
                         end_date == null">
                     <i class="material-icons left">description</i>
@@ -41,25 +39,6 @@
                             <form ng-submit="search()">
                                 <div class="row">
                                     
-                                    <div class="input-field col xl2 l2 m2 s4">
-                                        <i class="material-icons prefix">assignment_ind</i>
-                                        <select id="worker_document_type" ng-model="worker_document_type"
-                                            required material-select>
-                                            <option value="DNI">DNI</option>
-                                            <option value="CE">CE</option>
-                                        </select>
-                                        <label for="worker_document_type">Tipo de Documento</label>
-                                    </div>
-                                    
-                                    <div class="input-field col xl2 l2 m2 s4">
-                                        <i class="material-icons prefix">tag</i>
-                                        <input id="worker_document_number" type="text"
-                                            class="validate" ng-model="worker_document_number"
-                                            ng-keypress="checkEnter($event)"
-                                            maxlength="8" required pattern="\d*">
-                                        <label for="worker_document_number">Número de Documento</label>
-                                    </div>
-
                                     <div class="input-field col xl2 l2 m2 s4">
                                         <i class="material-icons prefix">date_range</i>
                                         <input id="start_date" type="date" 
@@ -84,8 +63,6 @@
                                             type="submit" 
                                             class="btn dropdown-settings waves-effect waves-light right breadcrumbs-btn"
                                             ng-disabled="
-                                                worker_document_type == null || 
-                                                worker_document_number == null ||
                                                 start_date == null ||
                                                 end_date == null">
                                             <i class="material-icons left">search</i>
@@ -101,15 +78,17 @@
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>N°</th>
-                                        <th>Fechas</th>
-                                        <th>Área</th>
+                                        <th>RA/RP/OC/OD</th>
+                                        <th>Documento</th>
+                                        <th>Responsable de Entrega de EPP</th>
+                                        <th>IPRES Receptora</th>
                                         <th ng-repeat="header in table.headers">{{ header }}</th>
+                                        <th>Fecha de Entrega de EPP</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td colspan="11" ng-show="table.loading">
+                                        <td colspan="13" ng-show="table.loading">
                                             <div class="center">
                                                 <div class="preloader-wrapper big active">
                                                     <div class="spinner-layer spinner-blue-only">
@@ -126,17 +105,19 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="11" ng-show="!table.loading && table.count === 0 && submittedSearch">
+                                        <td colspan="13" ng-show="!table.loading && table.count === 0 && submittedSearch">
                                             No se encontraron registros
                                         </td>
                                     </tr>
                                     <tr ng-repeat="record in table.records" ng-show="!table.loading">
-                                        <td class="td-detail">{{ $index + 1 }}</td>
-                                        <td>{{ record.attention_date | date: 'dd/MM/yyyy': 'America/Lima' }}</td>
-                                        <td>{{ record.work_area_description }}</td>
+                                        <td>RED ASISTENCIAL LA LIBERTAD</td>
+                                        <td>{{ record.document_type }}: {{ record.document_number }}</td>
+                                        <td>{{ record.handled_by }}</td>
+                                        <td>HOSPITAL DE ALTA COMPLEJIDAD</td>
                                         <td ng-repeat="(key, product) in table.headers track by $index">
                                             {{ record['product'+ key] }}
                                         </td>
+                                        <td>{{ record.attention_date | date: 'dd/MM/yyyy': 'America/Lima' }}</td>
                                     </tr>
                                 </tbody>
                             </table>

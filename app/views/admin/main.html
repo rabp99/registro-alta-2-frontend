@@ -64,6 +64,22 @@
                 </div>
             </div>
         </div>
+        <div class="col s12 m6 l4" ng-if="user.role === 'Farmacia' || user.role === 'Administrador'">
+            <div class="card horizontal">
+                <div class="card-image">
+                    <i class="material-icons main-icons">description</i>
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <p>Reporte por Fechas</p>
+                    </div>
+                    <div class="card-action">
+                        <a ui-sref="admin.reportRangeDates"
+                            class="waves-effect waves-light btn gradient-45deg-red-pink">Ir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col s12 m6 l4">
             <div class="card horizontal">
                 <div class="card-image">
